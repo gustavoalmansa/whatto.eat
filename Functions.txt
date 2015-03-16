@@ -1,0 +1,39 @@
+We have:
+	Recipes:
+		- Ingredients (list of lists [["ingredient", quantity]]
+                - Instructions (String)
+                - Author (User... String?)
+                - Rating (Integer)
+                - Categories (List of strings)
+ 	Users:
+		- Username (string)
+		- Password (string)
+		- Inventory (list of lists [["ingredient", quanitity]]
+		- Shopping list (list of lists [["ingredient", quantity]]
+
+Functions:
+	add to shopping list:
+		find recipe
+		for ingredients in recipe:
+			if in inventory:
+				if quantity in inventory < in recipe:
+					add (RecipeQuantity - InventoryQuantity)
+			else :
+				if ingredients in shopping list:
+					add [quantity] to shopping list quantity
+				else:
+					add [ingredient, quantity] to shopping list
+
+	add to inventory:
+		take shopping list
+		for ingredients in shopping list:
+			if ingredient in inventory:
+				add shoppinglist Quantity to InventoryQuantity
+			else: 
+				add [ingredient, quantity] to shopping list
+
+	search recipes:
+		list = [links to recipes]
+		for recipes in database:
+			for ingredients in recipe:
+				if ingredient in user.inventory:
