@@ -1,2 +1,2 @@
 from django import forms
-from rango.models import Ingredients, Recipe, Category, Inventory, ShoppingList
+from whatToEat.models import Ingredients, Recipe, Category, Inventory, ShoppingList

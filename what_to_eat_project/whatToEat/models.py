@@ -5,19 +5,15 @@ from django.contrib.auth.models import User
 class Ingredients(models.Model):
     name = models.CharField(max_length=128, unique=True)
     quantity = models.IntegerField(default=0)
-    recipes = ManyToManyField(Recipe)
-    inventories = ManyToManyField(Inventory)
-    shoppingLists = ManyToManyField(ShoppingList)
 
     def __unicode__(self):
         return self.name
 
 class Recipe(models.Model):
     name = models.CharField(max_length=128,unique = True)
-    rating = models.IntegerField(max_value = 5,default = 0)
-    categories = models.ManyToManyField(Category)
+    rating = models.IntegerField(default = 0)
     ingredients = models.ManyToManyField(Ingredients)
-    author = models.ForeignKey(User)
+    author = models.ForeignKey(User, default = "WhatToEat staff")
 
     def __unicode__(self):
         return self.name
@@ -25,22 +21,27 @@ class Recipe(models.Model):
 class Category(models.Model):
     name = models.CharField(max_length=20, unique = True)
     recipes = models.ManyToManyField(Recipe)
-    ingredients = models.ManyToManyField(Ingredients)
 
     def __unicode__(self):
         return self.name
 
 class Inventory(models.Model):
     user = models.CharField(max_length=30, unique = True)
-    ingredients = ManyToManyField(Ingredients)
+    ingredients = models.ManyToManyField(Ingredients)
+
+    def __unicode__(self):
+        return self.ingredients
 
 class ShoppingList(models.Model):
     user = models.ForeignKey(User)
     shopping = models.ManyToManyField(Ingredients)
 
+    def __unicode__(self):
+        return self.shopping
+
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
-    inventory = OneToOneField(Inventory)
+    inventory = models.OneToOneField(Inventory)
 
-    def __unicode__(spictureelf):
+    def __unicode__(self):
         return self.user.username
