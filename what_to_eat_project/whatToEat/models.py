@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 class Ingredients(models.Model):
     name = models.CharField(max_length=128, unique=True)
-    quantity = models.IntegerField(default=0)
+    ##quantity = models.IntegerField(default=0)
 
     def __unicode__(self):
         return self.name
@@ -13,7 +13,6 @@ class Recipe(models.Model):
     name = models.CharField(max_length=128,unique = True)
     rating = models.IntegerField(default = 0)
     ingredients = models.ManyToManyField(Ingredients)
-    author = models.ForeignKey(User, default = 0)
 
     def __unicode__(self):
         return self.name
