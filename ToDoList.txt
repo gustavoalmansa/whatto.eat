@@ -1,0 +1,22 @@
+Things that need to be done:
+
+-Get Models.py working optimally. Come up with better ER model. Simplify if we need to.
+
+-Have a good populate.py working. Just a few examples for us to make sure it works.
+
+-Make add_recipe, add_category(maybe?) pages.
+ 
+-Make a user page.
+	-will need to contain an inventory and a shopping list.
+	-can add things from the shopping list into the inventory (shopping list can be saved?)
+
+-New users can log in/make accounts.
+
+-Make a page which lists recipes.
+	-Can add the list of ingredients to the user's inventory
+	-Recipes should be listed by rating, probably...
+	-Make a possible search where recipes which have ingredients which are not in your inventory ommited.
+
+-Make sure adding a recipe will make a new page for that recipe. (If that's the easiest way to do it)
+
+-And I guess that's it really..?
