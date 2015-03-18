@@ -1,13 +1,10 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
 
 {% load staticfiles %}
-<html>
 
-    <head>
-        <title>WhatToEat</title>
-    </head>
+{% block title %}{{ category_name }}{% endblock %}
 
-    <body>
+{% block body_block %}
         <h1>The creators!</h1>
         <strong>Gustavo Almansa</strong><br />
         <strong>George Illingworth</strong><br />
@@ -15,6 +12,5 @@
         <img src="{% static "images/rasmus.jpg" %}" alt="Where is Rasmus?" /><br />
         <strong>Jim Walker</strong><br />
         <a href="/whatToEat/">Back home</a><br />
-    </body>
 
-</html>
+{% endblock %}
