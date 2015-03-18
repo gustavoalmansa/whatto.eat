@@ -2,9 +2,22 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+class UserProfile(models.Model):
+    user = models.OneToOneField(User)
+
+    def __unicode__(self):
+        return self.user.username
+
+
 class Ingredients(models.Model):
     name = models.CharField(max_length=128, unique=True)
-    ##quantity = models.IntegerField(default=0)
+
+    def __unicode__(self):
+        return self.name
+
+
+class Category(models.Model):
+    name = models.CharField(max_length=20, unique=True)
 
     def __unicode__(self):
         return self.name
@@ -14,14 +27,8 @@ class Recipe(models.Model):
     name = models.CharField(max_length=128, unique=True)
     rating = models.IntegerField(default=0)
     ingredients = models.ManyToManyField(Ingredients)
-
-    def __unicode__(self):
-        return self.name
-
-
-class Category(models.Model):
-    name = models.CharField(max_length=20, unique=True)
-    recipes = models.ManyToManyField(Recipe)
+    author = models.ForeignKey(UserProfile)
+    category = models.ForeignKey(Category)
 
     def __unicode__(self):
         return self.name
@@ -36,15 +43,9 @@ class ShoppingList(models.Model):
 
 
 class Inventory(models.Model):
-    ingredients = models.ManyToManyField(Ingredients)
+    ingredients = models.ForeignKey(Ingredients)
+    quantity = models.DecimalField(max_digits=7, decimal_places=2, default=0.00)
+    user = models.ForeignKey(UserProfile)
 
     def __unicode__(self):
         return self.ingredients
-
-
-class UserProfile(models.Model):
-    user = models.OneToOneField(User)
-    inventory = models.OneToOneField(Inventory)
-
-    def __unicode__(self):
-        return self.user.username

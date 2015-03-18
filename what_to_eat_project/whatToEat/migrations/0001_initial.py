@@ -36,8 +36,8 @@ class Migration(migrations.Migration):
             name='Inventory',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('user', models.CharField(unique=True, max_length=30)),
-                ('ingredients', models.ManyToManyField(to='whatToEat.Ingredients')),
+                ('quantity', models.DecimalField(default=0.0, max_digits=7, decimal_places=2)),
+                ('ingredients', models.ForeignKey(to='whatToEat.Ingredients')),
             ],
             options={
             },
@@ -49,7 +49,6 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('name', models.CharField(unique=True, max_length=128)),
                 ('rating', models.IntegerField(default=0)),
-                ('ingredients', models.ManyToManyField(to='whatToEat.Ingredients')),
             ],
             options={
             },
@@ -70,7 +69,6 @@ class Migration(migrations.Migration):
             name='UserProfile',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('inventory', models.OneToOneField(to='whatToEat.Inventory')),
                 ('user', models.OneToOneField(to=settings.AUTH_USER_MODEL)),
             ],
             options={
@@ -78,9 +76,27 @@ class Migration(migrations.Migration):
             bases=(models.Model,),
         ),
         migrations.AddField(
-            model_name='category',
-            name='recipes',
-            field=models.ManyToManyField(to='whatToEat.Recipe'),
+            model_name='recipe',
+            name='author',
+            field=models.ForeignKey(to='whatToEat.UserProfile'),
+            preserve_default=True,
+        ),
+        migrations.AddField(
+            model_name='recipe',
+            name='category',
+            field=models.ForeignKey(to='whatToEat.Category'),
+            preserve_default=True,
+        ),
+        migrations.AddField(
+            model_name='recipe',
+            name='ingredients',
+            field=models.ManyToManyField(to='whatToEat.Ingredients'),
+            preserve_default=True,
+        ),
+        migrations.AddField(
+            model_name='inventory',
+            name='user',
+            field=models.ForeignKey(to='whatToEat.UserProfile'),
             preserve_default=True,
         ),
     ]
