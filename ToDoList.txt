@@ -1,6 +1,6 @@
 Things that need to be done:
 
--Get Models.py working optimally. Come up with better ER model. Simplify if we need to.
+///////////////////////////////////////////////////-Get Models.py working optimally. Come up with better ER model. Simplify if we need to.
 
 -Have a good populate.py working. Just a few examples for us to make sure it works.
 
