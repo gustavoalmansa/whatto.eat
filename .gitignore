@@ -6,6 +6,7 @@
 *.exe
 *.o
 *.so
+*.pyc
  
 # Packages #
 ############
@@ -39,3 +40,4 @@ Thumbs.db
 tangowithdjango/
 *.idea
 db.sqlite3
+*~

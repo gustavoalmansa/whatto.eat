@@ -4,7 +4,8 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'what_to_eat_project.settings')
 import django
 django.setup()
 
-from whatToEat.models import Ingredients
+from whatToEat.models import Ingredients, Recipe
+
 
 def populate():
 
