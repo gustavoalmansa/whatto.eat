@@ -23,10 +23,21 @@ class Migration(migrations.Migration):
             bases=(models.Model,),
         ),
         migrations.CreateModel(
-            name='Ingredients',
+            name='Ingredient',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('name', models.CharField(unique=True, max_length=128)),
+            ],
+            options={
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Ingredients_In_Recipe',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('quantity', models.DecimalField(default=0.0, max_digits=7, decimal_places=2)),
+                ('ingredient', models.ForeignKey(to='whatToEat.Ingredient')),
             ],
             options={
             },
@@ -37,7 +48,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('quantity', models.DecimalField(default=0.0, max_digits=7, decimal_places=2)),
-                ('ingredients', models.ForeignKey(to='whatToEat.Ingredients')),
+                ('ingredient', models.ForeignKey(to='whatToEat.Ingredient')),
             ],
             options={
             },
@@ -49,6 +60,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('name', models.CharField(unique=True, max_length=128)),
                 ('rating', models.IntegerField(default=0)),
+                ('instructions', models.CharField(default=b' ', max_length=5000)),
             ],
             options={
             },
@@ -58,7 +70,8 @@ class Migration(migrations.Migration):
             name='ShoppingList',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('shopping', models.ManyToManyField(to='whatToEat.Ingredients')),
+                ('quantity', models.DecimalField(default=0.0, max_digits=7, decimal_places=2)),
+                ('shopping', models.ForeignKey(to='whatToEat.Ingredient')),
                 ('user', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
             ],
             options={
@@ -88,15 +101,15 @@ class Migration(migrations.Migration):
             preserve_default=True,
         ),
         migrations.AddField(
-            model_name='recipe',
-            name='ingredients',
-            field=models.ManyToManyField(to='whatToEat.Ingredients'),
-            preserve_default=True,
-        ),
-        migrations.AddField(
             model_name='inventory',
             name='user',
             field=models.ForeignKey(to='whatToEat.UserProfile'),
+            preserve_default=True,
+        ),
+        migrations.AddField(
+            model_name='ingredients_in_recipe',
+            name='recipe',
+            field=models.ForeignKey(to='whatToEat.Recipe'),
             preserve_default=True,
         ),
     ]

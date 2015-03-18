@@ -9,7 +9,7 @@ class UserProfile(models.Model):
         return self.user.username
 
 
-class Ingredients(models.Model):
+class Ingredient(models.Model):
     name = models.CharField(max_length=128, unique=True)
 
     def __unicode__(self):
@@ -26,9 +26,9 @@ class Category(models.Model):
 class Recipe(models.Model):
     name = models.CharField(max_length=128, unique=True)
     rating = models.IntegerField(default=0)
-    ingredients = models.ManyToManyField(Ingredients)
     author = models.ForeignKey(UserProfile)
     category = models.ForeignKey(Category)
+    instructions = models.CharField(max_length = 5000, default = " ")
 
     def __unicode__(self):
         return self.name
@@ -36,16 +36,25 @@ class Recipe(models.Model):
 
 class ShoppingList(models.Model):
     user = models.ForeignKey(User)
-    shopping = models.ManyToManyField(Ingredients)
+    quantity = models.DecimalField(max_digits=7, decimal_places=2, default=0.00)
+    shopping = models.ForeignKey(Ingredient)
 
     def __unicode__(self):
         return self.shopping
 
 
 class Inventory(models.Model):
-    ingredients = models.ForeignKey(Ingredients)
+    ingredient = models.ForeignKey(Ingredient)
     quantity = models.DecimalField(max_digits=7, decimal_places=2, default=0.00)
     user = models.ForeignKey(UserProfile)
 
     def __unicode__(self):
-        return self.ingredients
+        return self.ingredient
+
+class Ingredients_In_Recipe(models.Model):
+    ingredient = models.ForeignKey(Ingredient)
+    recipe = models.ForeignKey(Recipe)
+    quantity = models.DecimalField(max_digits=7, decimal_places=2, default=0.00)
+
+    def __unicode__(self):
+        return self.recipe.name
