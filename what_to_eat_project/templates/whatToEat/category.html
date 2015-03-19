@@ -1,0 +1,19 @@
+{% extends base.html %}
+
+{% block title %} {{ category_name }}{% endblock %}
+
+{% block body_block %}
+        {% if category %}
+            {% if recipes %}
+            <ul>
+                {% for recipe in recipes %}
+                <li>{{ recipe.name }}</li>
+                {% endfor %}
+            </ul>
+            {% else %}
+                <strong>No recipes currently in category.</strong>
+            {% endif %}
+        {% else %}
+            The specified category {{ category_name }} does not exist!
+        {% endif %}
+{% endblock %}

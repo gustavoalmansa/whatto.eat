@@ -26,7 +26,13 @@ def populate():
     add_ingred("Rice")
     add_ingred("Mushroom")
 
-    LunchCat = add_cat("Lunch")
+    add_cat("All Recipes")
+    add_cat("Breakfast")
+    add_cat("Lunch")
+    add_cat("Snacks")
+    add_cat("Dinner")
+    add_cat("Dessert")
+
 
     add_recipe(name="Mushroom omelette", rating=4, author=author_profile, category=LunchCat,
                instructions="\n1) Crack the eggs into a mixing bowl \n2) Add a pinch of salt and pepper"
