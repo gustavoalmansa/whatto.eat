@@ -3,6 +3,7 @@
 {% block title %} {{ recipe_name }}{% endblock %}
 
 {% block body_block %}
-        {{ recipe_name }} Rating: {{ recipe_instructions }}
-        {{ recipe_instructions }}
+        <h1> {{ recipe_name }} </h1> by {{ recipe_author }} <br> Rating: {{ recipe_rating }}
+        <br> <br>
+        {{ recipe_instr }}
 {% endblock %}

@@ -33,7 +33,7 @@ class Recipe(models.Model):
     name = models.CharField(max_length=128, unique=True)
     slug = models.SlugField(unique=True)
     rating = models.IntegerField(default=0)
-    author = models.ForeignKey(UserProfile, required=False)
+    author = models.ForeignKey(UserProfile)
     category = models.ForeignKey(Category)
     instructions = models.CharField(max_length = 5000, default = " ")
 

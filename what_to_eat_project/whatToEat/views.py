@@ -35,10 +35,13 @@ def recipe(request, recipe_name_slug):
     try:
         recipe = Recipe.objects.get(slug=recipe_name_slug)
         context_dict['recipe_name'] = recipe.name
+        context_dict['recipe_rating'] = recipe.rating
+        context_dict['recipe_instr'] = recipe.instructions
+        context_dict['recipe_author'] = recipe.author
     except Recipe.DoesNotExist:
         pass
 
-    return render(request, 'whatToEat/category.html', context_dict)
+    return render(request, 'whatToEat/recipe.html', context_dict)
 
 
 def add_recipe(request, category_name_slug):
