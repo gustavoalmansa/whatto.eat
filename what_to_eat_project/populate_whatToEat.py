@@ -14,8 +14,8 @@ def populate():
         u = User(username="User "+str(i), password='q')
         u.save()
 
-    print("Users added but not the profiles")
     author_profile = add_profile(User.objects.get(username="User 1"))
+    print("Users added")
 
     add_ingred("Chicken")
     add_ingred("Egg")
@@ -25,6 +25,7 @@ def populate():
     add_ingred("Milk")
     add_ingred("Rice")
     add_ingred("Mushroom")
+    print("Ingredients added")
 
     add_cat("All Recipes")
     add_cat("Breakfast")
@@ -32,13 +33,9 @@ def populate():
     add_cat("Snacks")
     add_cat("Dinner")
     add_cat("Dessert")
+    print("Catagories added")
 
-
-<<<<<<< HEAD
     add_recipe(name="Mushroom omelette", rating=4, author=author_profile, category=lunch_category,
-=======
-    add_recipe(name="Mushroom omelette", rating=4, author=author_profile, category=add_cat("Lunch"),
->>>>>>> e09fd901ee4fbcdd7c21f7a0a967b710143d184c
                instructions="\n1) Crack the eggs into a mixing bowl \n2) Add a pinch of salt and pepper"
                             "\n3) Beat well with a fork Quarter or roughly chop the mushrooms and add to a small frying"
                             " pan on a high heat with a small knob of butter, a drizzle of olive oil and a pinch of "
@@ -50,6 +47,7 @@ def populate():
                             "\n7) Ease around the edge of the omelette with a spatula, then fold it in half "
                             "\n8) When it starts to turn golden brown underneath, remove the pan from the heat and "
                             "slide the omelette on to a plate")
+    print("Recipe added")
 
 
 def add_profile(user):
