@@ -29,6 +29,18 @@ def category(request, category_name_slug):
 
     return render(request, 'whatToEat/category.html', context_dict)
 
+
+def recipe(request, recipe_name_slug):
+    context_dict = {}
+    try:
+        recipe = Recipe.objects.get(slug=recipe_name_slug)
+        context_dict['recipe_name'] = recipe.name
+    except Recipe.DoesNotExist:
+        pass
+
+    return render(request, 'whatToEat/category.html', context_dict)
+
+
 def add_recipe(request, category_name_slug):
 
     if request.method == 'POST':
@@ -53,3 +65,4 @@ def add_recipe(request, category_name_slug):
     # Bad form (or form details), no form supplied...
     # Render the form with error messages (if any).
     return render(request, 'whatToEat/add_recipe.html', {'form': form, 'category':category_name_slug})
+

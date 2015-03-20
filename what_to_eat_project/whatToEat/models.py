@@ -23,7 +23,7 @@ class Category(models.Model):
 
     def save(self, *args, **kwargs):
                 self.slug = slugify(self.name)
-                super(Category,self).save(*args, **kwargs)
+                super(Category, self).save(*args, **kwargs)
 
     def __unicode__(self):
         return self.name
@@ -31,10 +31,15 @@ class Category(models.Model):
 
 class Recipe(models.Model):
     name = models.CharField(max_length=128, unique=True)
+    slug = models.SlugField(unique=True)
     rating = models.IntegerField(default=0)
     author = models.ForeignKey(UserProfile, required=False)
     category = models.ForeignKey(Category)
     instructions = models.CharField(max_length = 5000, default = " ")
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super(Recipe, self).save(*args, **kwargs)
 
     def __unicode__(self):
         return self.name
@@ -56,6 +61,7 @@ class Inventory(models.Model):
 
     def __unicode__(self):
         return self.ingredient
+
 
 class Ingredients_In_Recipe(models.Model):
     ingredient = models.ForeignKey(Ingredient)
