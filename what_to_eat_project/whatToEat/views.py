@@ -5,7 +5,8 @@ from whatToEat.models import Recipe, Category, Ingredients_In_Recipe, ShoppingLi
 
 def index(request):
     category_list = Category.objects.all()[:6]
-    context_dict = {'categories' : category_list}
+    recipe_list = Recipe.objects.order_by('-rating')[:10]
+    context_dict = {'categories': category_list, 'recipes': recipe_list}
     return render(request, 'whatToEat/index.html', context_dict)
 
 
