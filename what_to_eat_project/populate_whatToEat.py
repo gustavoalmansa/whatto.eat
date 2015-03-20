@@ -34,7 +34,7 @@ def populate():
     add_cat("Dessert")
 
 
-    add_recipe(name="Mushroom omelette", rating=4, author=author_profile, category=LunchCat,
+    add_recipe(name="Mushroom omelette", rating=4, author=author_profile, category="Lunch",
                instructions="\n1) Crack the eggs into a mixing bowl \n2) Add a pinch of salt and pepper"
                             "\n3) Beat well with a fork Quarter or roughly chop the mushrooms and add to a small frying"
                             " pan on a high heat with a small knob of butter, a drizzle of olive oil and a pinch of "

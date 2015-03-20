@@ -25,4 +25,4 @@ def category(request, category_name_slug):
     except Category.DoesNotExist:
         pass
 
-    return render(request, 'rango/category.html', context_dict)
+    return render(request, 'whatToEat/category.html', context_dict)
