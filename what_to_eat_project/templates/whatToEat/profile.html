@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Profile{% endblock %}
+
+{% block body_block %}
+    <!-- TODO: Create the inventory list as a sidebar? -->
+    {% if user_profile %}
+        <p><b>Username:</b> {{ user_profile }}</p>
+    {% endif %}
+
+    {% if ingredient_list %}
+        <div class="panel panel-default">
+            <div class="panel-heading">Inventory</div>
+            <table class="table">
+                <thead>
+                <th>Ingredient</th>
+                <th>Quantity</th>
+                <th>Status</th>
+                </thead>
+                <tbody>
+                {% for item in ingredient_list %}
+                    <tr>
+                        <td>{{ item.ingredient }}</td>
+                        <td>
+                            <form role="form" class="form-inline">
+                                {% csrf_token %}
+                                <div class="input-group">
+                                    <input type="number" class="form-control" id="ingredient-{{ item.ingredient.id }}" value="{{ item.quantity }}">
+                                    <div class="input-group-btn">
+                                        <button type="button" class="btn btn-default">Update</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </td>
+                        <td>Not changed</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
+{% endblock %}
