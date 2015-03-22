@@ -35,17 +35,16 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                {#                <li><a href="{% url 'index' %}">Home</a></li>#}
-                {#                    {% if user.is_authenticated %}#}
-                {##}
-                {#                        <li><a href="{% url 'auth_logout' %}?next=/index/">Logout</a></li>#}
-                {#                        <li><a href="{% url '' %}">Add a New Recipe</a></li>#}
-                {#                        <li><a href="{% url '' %}">Update Inventory</a></li>#}
-                {#                    {% else %}#}
-                {#                        <li><a href="{% url '' %}">Register Here</a></li>#}
-                {#                        <li><a href="{% url '' %}">Login</a></li>#}
-                {#                    {% endif %}#}
-                <li><a href="{% url 'profile' %}">Profile</a></li>
+                                <li><a href="{% url 'index' %}">Home</a></li>
+                                    {% if user.is_authenticated %}
+                                        <li><a href="{% url 'profile' %}">Profile</a></li>
+                                        <li><a href="{% url 'auth_logout' %}?next=/index/">Logout</a></li>#}
+                                        <li><a href="{% url 'index' %}">Add a New Recipe</a></li>
+                                        <li><a href="{% url 'index' %}">Update Inventory</a></li>
+                                    {% else %}
+                                        <li><a href="{% url 'index' %}">Register Here</a></li>
+                                        <li><a href="{% url 'login' %}">Login</a></li>
+                                    {% endif %}
                 <li><a href="{% url 'about' %}">About</a></li>
             </ul>
         </div>
@@ -56,6 +55,23 @@
         {% block body_block %}{% endblock %}
     </div>
 </div>
+
+{% load whatToEat_extras %}
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+                {% block side_block %}
+                {% get_category_list category %}
+                {% endblock %}
+
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+           <div>
+                </div>
+        </div>
+      </div>
+    </div>
 
 
 <!-- Bootstrap core JavaScript

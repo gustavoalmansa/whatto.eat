@@ -7,19 +7,7 @@
 {% block body_block %}
 
         <h1>Someday...</h1>
-        There wll be recipes and shopping lists here! <strong>{{ boldmessage }}</strong><br />
-
-        {% if categories %}
-            <ul>
-                {% for category in categories %}
-               <li><a href="/whatToEat/category/{{ category.slug }}">{{ category.name }}</a></li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <strong>There are no categories present.</strong>
-        {% endif %}
-
-        <a href="/whatToEat/about/">About</a><br />
+        There wll be a search functionality here! <strong>{{ boldmessage }}</strong><br />
         <img src="{% static "images/salad.jpg" %}" alt="Happy salad man?" />
 
 {% endblock %}
