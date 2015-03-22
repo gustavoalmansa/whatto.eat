@@ -60,7 +60,7 @@ class Inventory(models.Model):
     user = models.ForeignKey(UserProfile)
 
     def __unicode__(self):
-        return self.ingredient
+        return self.ingredient.name
 
 
 class Ingredients_In_Recipe(models.Model):

@@ -4,7 +4,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'what_to_eat_project.settings')
 import django
 django.setup()
 
-from whatToEat.models import Ingredient, Recipe, Category, UserProfile
+from whatToEat.models import Ingredient, Recipe, Category, UserProfile, Inventory
 from django.contrib.auth.models import User
 
 
@@ -17,8 +17,8 @@ def populate():
     author_profile = add_profile(User.objects.get(username="User 1"))
     print("Users added")
 
-    add_ingred("Chicken")
-    add_ingred("Egg")
+    chicken_ingredient = add_ingred("Chicken")
+    egg_ingredient = add_ingred("Egg")
     add_ingred("Honey")
     add_ingred("Soy Sauce")
     add_ingred("Ketchup")
@@ -49,6 +49,10 @@ def populate():
                             "slide the omelette on to a plate")
     print("Recipe added")
 
+    add_ingredient_to_inventory(author_profile, 2.0, chicken_ingredient)
+    add_ingredient_to_inventory(author_profile, 3.0, egg_ingredient)
+    print("Ingredients added to inventory")
+
 
 def add_profile(user):
     up = UserProfile.objects.get_or_create(user=user)[0]
@@ -70,6 +74,16 @@ def add_recipe(name, rating, author, category, instructions):
                                      author=author, category=category,
                                      instructions=instructions)[0]
     return r
+
+
+def add_ingredient_to_inventory(user_profile, quantity, ingredient):
+    i = Inventory.objects.get_or_create(
+        user=user_profile,
+        quantity=quantity,
+        ingredient=ingredient
+    )[0]
+    return i
+
 
 if __name__ == '__main__':
     print "Running population script v0.01"

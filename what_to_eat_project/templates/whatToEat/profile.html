@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Profile{% endblock %}
+
+{% block body_block %}
+    <!-- TODO: Create the inventory list as a sidebar? -->
+    {% if user_profile %}
+        <p><b>Username:</b> {{ user_profile }}</p>
+    {% endif %}
+
+    {% if ingredient_list %}
+        <div class="panel panel-default">
+            <div class="panel-heading">Inventory</div>
+            <table class="table">
+                <thead>
+                <th>Ingredient</th>
+                <th>Quantity</th>
+                </thead>
+                {% for item in ingredient_list %}
+                    <tr>
+                        <td>{{ item.ingredient }}</td>
+                        <td>{{ item.quantity }}</td>
+                        <!-- TODO: Add the form field and update button -->
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    {% endif %}
+
+
+{% endblock %}

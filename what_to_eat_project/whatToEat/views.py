@@ -1,7 +1,8 @@
+from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import render
 from whatToEat.forms import RecipeForm
-from whatToEat.models import Recipe, Category, Ingredients_In_Recipe, ShoppingList, Inventory
+from whatToEat.models import Recipe, Category, Ingredients_In_Recipe, ShoppingList, Inventory, UserProfile
 
 
 def index(request):
@@ -67,5 +68,21 @@ def add_recipe(request, category_name_slug):
 
     # Bad form (or form details), no form supplied...
     # Render the form with error messages (if any).
-    return render(request, 'whatToEat/add_recipe.html', {'form': form, 'category':category_name_slug})
+    return render(request, 'whatToEat/add_recipe.html', {'form': form, 'category': category_name_slug})
 
+
+def profile(request):
+    # TODO: Add login functionality and and uncomment the request.user line
+    context_dict = {}
+    try:
+        # user = User.objects.get(username=request.user)
+        user = User.objects.get(username="User 1")
+        user_profile = UserProfile.objects.get(user=user)
+        ingredient_list = Inventory.objects.filter(user=user_profile)
+        context_dict['user_profile'] = user_profile
+        context_dict['ingredient_list'] = ingredient_list
+        print(context_dict)
+    except UserProfile.DoesNotExist, Inventory.DoesNotExist:
+        pass
+
+    return render(request, 'whatToEat/profile.html', context_dict)
