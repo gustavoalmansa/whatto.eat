@@ -38,13 +38,13 @@
                                 <li><a href="{% url 'index' %}">Home</a></li>
                                     {% if user.is_authenticated %}
                                         <li><a href="{% url 'profile' %}">My Profile</a></li>
-                                        <li><a href="{% url 'auth_logout' %}?next=/whatToEat/">Logout</a></li>
+                                        <li><a href="{% url 'auth_logout' %}?next=/whatToEat/">Log Out</a></li>
                                         <li><a href="{% url 'index' %}">Add a New Recipe</a></li>
                                         <li><a href="{% url 'index' %}">Update Inventory</a></li>
+
                                     {% else %}
                                         <li><a href="{% url 'registration_register' %}">Register Here</a></li>
                                         <li><a href="{% url 'auth_login' %}">Login</a></li>
-                                        
                                     {% endif %}
                 <li><a href="{% url 'about' %}">About</a></li>
             </ul>
