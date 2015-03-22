@@ -37,22 +37,14 @@
             <ul class="nav navbar-nav navbar-right">
                                 <li><a href="{% url 'index' %}">Home</a></li>
                                     {% if user.is_authenticated %}
-<<<<<<< HEAD
+
                                         <li><a href="{% url 'profile' %}">Profile</a></li>
-                                        <li><a href="{% url 'auth_logout' %}?next=/index/">Logout</a></li>#}
+                                        <li><a href="{% url 'logout' %}">Logout</a></li>#}
                                         <li><a href="{% url 'index' %}">Add a New Recipe</a></li>
                                         <li><a href="{% url 'index' %}">Update Inventory</a></li>
                                     {% else %}
-                                        <li><a href="{% url 'index' %}">Register Here</a></li>
-=======
-
-                                        <li><a href="{% url 'logout' %}">Logout</a></li>
-{#                                        <li><a href="{% url '' %}">Add a New Recipe</a></li>#}
-{#                                        <li><a href="{% url '' %}">Update Inventory</a></li>#}
-                                        <li><a href="{% url 'profile' %}">Profile</a></li>
-                                    {% else %}
 {#                                        <li><a href="{% url '' %}">Register Here</a></li>#}
->>>>>>> e729628e53600e71678aec40f92ca68f0a6d2450
+
                                         <li><a href="{% url 'login' %}">Login</a></li>
                                     {% endif %}
                 <li><a href="{% url 'about' %}">About</a></li>
