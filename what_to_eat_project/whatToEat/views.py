@@ -1,8 +1,10 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import render
 from whatToEat.forms import RecipeForm
-from whatToEat.models import Recipe, Category, Ingredients_In_Recipe, ShoppingList, Inventory, UserProfile
+from whatToEat.models import Recipe, Category, Ingredients_In_Recipe, ShoppingList, Inventory, UserProfile, Ingredient
+import json as simplejson
 
 
 def index(request):
@@ -71,18 +73,44 @@ def add_recipe(request, category_name_slug):
     return render(request, 'whatToEat/add_recipe.html', {'form': form, 'category': category_name_slug})
 
 
+# TODO: Remove comments of @login_required
+# @login_required
 def profile(request):
     # TODO: Add login functionality and and uncomment the request.user line
     context_dict = {}
     try:
+        # TODO: Remove user comment
         # user = User.objects.get(username=request.user)
         user = User.objects.get(username="User 1")
         user_profile = UserProfile.objects.get(user=user)
         ingredient_list = Inventory.objects.filter(user=user_profile)
         context_dict['user_profile'] = user_profile
         context_dict['ingredient_list'] = ingredient_list
-        print(context_dict)
     except UserProfile.DoesNotExist, Inventory.DoesNotExist:
         pass
 
     return render(request, 'whatToEat/profile.html', context_dict)
+
+
+# @login_required
+def update_inventory(request):
+    if request.method == "POST" and request.is_ajax():
+        try:
+            ingredient_id = request.POST.get("ingredient", 0)
+            quantity = request.POST.get("quantity", 0)
+            if quantity != 0 and ingredient_id != 0:
+                ingredient = Ingredient.objects.get(id=ingredient_id)
+                # TODO: Remove user comment and delete next line
+                # user = User.objects.get(username=request.user)
+                user = User.objects.get(username="User 1")
+                user_profile = UserProfile.objects.get(user=user)
+                row = Inventory.objects.get_or_create(user=user_profile, ingredient=ingredient)[0]
+                row.quantity = quantity
+                row.save()
+            return HttpResponse("Test")
+        except Inventory.DoesNotExist:
+            pass
+        except User.DoesNotExist, UserProfile.DoesNotExist:
+            pass
+    else:
+        return HttpResponse("Can't update via GET method")

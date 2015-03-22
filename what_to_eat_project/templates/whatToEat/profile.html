@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-
 {% block title %}Profile{% endblock %}
 
 {% block body_block %}
@@ -15,17 +14,26 @@
                 <thead>
                 <th>Ingredient</th>
                 <th>Quantity</th>
+                <th>Status</th>
                 </thead>
                 {% for item in ingredient_list %}
                     <tr>
                         <td>{{ item.ingredient }}</td>
-                        <td>{{ item.quantity }}</td>
-                        <!-- TODO: Add the form field and update button -->
+                        <td>
+                            <form role="form" class="form-inline">
+                                {% csrf_token %}
+                                <div class="input-group">
+                                    <input type="number" class="form-control" id="ingredient-{{ item.ingredient.id }}" value="{{ item.quantity }}">
+                                    <div class="input-group-btn">
+                                        <button type="button" class="btn btn-default">Update</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </td>
+                        <td>Not changed</td>
                     </tr>
                 {% endfor %}
             </table>
         </div>
     {% endif %}
-
-
 {% endblock %}
