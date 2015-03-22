@@ -1,6 +1,7 @@
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.http import HttpResponse
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from whatToEat.forms import RecipeForm
 from whatToEat.models import Recipe, Category, Ingredients_In_Recipe, ShoppingList, Inventory, UserProfile, Ingredient
@@ -123,3 +124,31 @@ def update_inventory(request):
             pass
     else:
         return HttpResponse("Can't update via GET method")
+
+
+def user_login(request):
+
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+
+        user = authenticate(username=username, password=password)
+
+        if user:
+            # Is the account active? It could have been disabled.
+            if user.is_active:
+                login(request, user)
+                return HttpResponseRedirect('/whatToEat/')
+            else:
+                return HttpResponse("Your whatToEat account is disabled.")
+        else:
+            print "Invalid login details: {0}, {1}".format(username, password)
+            return HttpResponse("Invalid login details supplied.")
+    else:
+        return render(request, 'whatToEat/login.html', {})
+
+@login_required
+def user_logout(request):
+    logout(request)
+
+    return HttpResponseRedirect('/rango/')

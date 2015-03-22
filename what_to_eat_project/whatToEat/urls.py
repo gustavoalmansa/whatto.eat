@@ -9,6 +9,8 @@ urlpatterns = patterns('',
         url(r'^recipe/(?P<recipe_name_slug>[\w\-]+)/$', views.recipe, name='recipe'),
         url(r'^profile/', views.profile, name='profile'),
         url(r'^update-inventory/', views.update_inventory, name='update_inventory'),
+        url(r'^login/$', views.user_login, name='login'),
+        url(r'^logout/$', views.user_logout, name='logout'),
 )
 
 
