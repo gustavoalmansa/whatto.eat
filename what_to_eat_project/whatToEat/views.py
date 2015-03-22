@@ -75,17 +75,14 @@ def add_recipe(request, category_name_slug):
     return render(request, 'whatToEat/add_recipe.html', {'form': form, 'category': category_name_slug})
 
 
-# TODO: Remove comments of @login_required
-# @login_required
+@login_required
 def profile(request):
-    # TODO: Add login functionality and and uncomment the request.user line
     context_dict = {}
     try:
-        # TODO: Remove user comment
-        # user = User.objects.get(username=request.user)
-        user = User.objects.get(username="User 1")
+        user = User.objects.get(username=request.user)
         user_profile = UserProfile.objects.get(user=user)
         ingredient_list = Inventory.objects.filter(user=user_profile)
+        context_dict['user'] = user
         context_dict['user_profile'] = user_profile
         context_dict['ingredient_list'] = ingredient_list
     except UserProfile.DoesNotExist, Inventory.DoesNotExist:
@@ -94,7 +91,7 @@ def profile(request):
     return render(request, 'whatToEat/profile.html', context_dict)
 
 
-# @login_required
+@login_required
 def update_inventory(request):
     if request.method == 'POST' and request.is_ajax():
         try:
@@ -107,9 +104,7 @@ def update_inventory(request):
             quantity = request.POST.get('quantity', 0)
             if ingredient_id != 0:
                 ingredient = Ingredient.objects.get(id=ingredient_id)
-                # TODO: Remove user comment and delete next line
-                # user = User.objects.get(username=request.user)
-                user = User.objects.get(username="User 1")
+                user = User.objects.get(username=request.user)
                 user_profile = UserProfile.objects.get(user=user)
                 row = Inventory.objects.get_or_create(user=user_profile, ingredient=ingredient)[0]
                 row.quantity = quantity
