@@ -18,6 +18,7 @@ def about(request):
     context_dict = ""
     return render(request, 'whatToEat/about.html', context_dict)
 
+
 def category(request, category_name_slug):
     context_dict = {}
     try:
@@ -94,11 +95,16 @@ def profile(request):
 
 # @login_required
 def update_inventory(request):
-    if request.method == "POST" and request.is_ajax():
+    if request.method == 'POST' and request.is_ajax():
         try:
-            ingredient_id = request.POST.get("ingredient", 0)
-            quantity = request.POST.get("quantity", 0)
-            if quantity != 0 and ingredient_id != 0:
+            dict = {
+                'status': 'failure',
+                'quantity': '0',
+                'ingredient': '0'
+            }
+            ingredient_id = request.POST.get('ingredient', 0)
+            quantity = request.POST.get('quantity', 0)
+            if ingredient_id != 0:
                 ingredient = Ingredient.objects.get(id=ingredient_id)
                 # TODO: Remove user comment and delete next line
                 # user = User.objects.get(username=request.user)
@@ -107,7 +113,10 @@ def update_inventory(request):
                 row = Inventory.objects.get_or_create(user=user_profile, ingredient=ingredient)[0]
                 row.quantity = quantity
                 row.save()
-            return HttpResponse("Test")
+                dict['status'] = 'success'
+                dict['quantity'] = quantity
+                dict['ingredient'] = ingredient_id
+            return HttpResponse(simplejson.dumps(dict), content_type="application/json")
         except Inventory.DoesNotExist:
             pass
         except User.DoesNotExist, UserProfile.DoesNotExist:

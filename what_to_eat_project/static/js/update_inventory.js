@@ -1,6 +1,33 @@
-$(function() {
-    // using jQuery
+$( document ).ready(initPage());
+function initPage() {
+    "use strict"; //Help to get better code quality
 
+    //Initial Ajax setup
+    var csrftoken = getCookie('csrftoken');
+    $.ajaxSetup({
+        type: "POST",
+        beforeSend: function (xhr, settings) {
+            if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                xhr.setRequestHeader("X-CSRFToken", csrftoken);
+            }
+        }
+    });
+
+
+    //Event registers
+    $(".input-group-btn .btn").on("click", updateClickHandler);
+
+
+    //Event handlers
+    function updateClickHandler(){
+        var inputField = $(this).closest(".input-group").find("input");
+        var quantity = inputField.val();
+        var ingredientId = inputField.attr("id").split("-")[1];
+        createOrUpdateIngredient(ingredientId, quantity);
+    }
+
+
+    //Helper functions
     function csrfSafeMethod(method) {
         // these HTTP methods do not require CSRF protection
         return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
@@ -22,32 +49,45 @@ $(function() {
         return cookieValue;
     }
 
-    var csrftoken = getCookie('csrftoken');
+    function resetAllStatus() {
 
-    $.ajaxSetup({
-        type: "POST",
-        beforeSend: function(xhr, settings) {
-            if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-                xhr.setRequestHeader("X-CSRFToken", csrftoken);
-            }
-        }
-    });
+        var allInventoryRows = $(".table tr");
 
-    $(".input-group-btn .btn").on("click", function(){
-        /*TODO: get ingredientID and quantity*/
-        var ingredientId = "";
-        var quantity = "";
-        var passedData = {ingredient: 18, quantity: 4};
+        $.each(allInventoryRows, function () {
+            $(this)
+                .find("td")
+                .last()
+                .html("Not changed");
+        });
+    }
+
+    function updateIngredientStatus(text, ingredientId){
+        var inputField = $("#ingredient-" + ingredientId);
+        inputField
+            .closest("tr")
+            .find("td")
+            .last()
+            .html(text);
+    }
+
+    function createOrUpdateIngredient(ingredientId, quantity) {
+        var passedData = {ingredient: ingredientId, quantity: quantity};
         $.ajax({
             url: "/whatToEat/update-inventory/",
             dataType: "JSON",
-            data: passedData,
-            done: function(data){
-                console.log("My data " + data);
-            }
-        });
-    })
+            data: passedData
+        })
+            .done(function (data) {
 
+                var status = data.status;
+                var ingredientId = data.ingredient;
 
+                if (status == "success" && ingredientId > 0) {
+                    resetAllStatus();
+                    updateIngredientStatus("Updated successfully", ingredientId);
+                }
 
-});
+            })
+    }
+
+}

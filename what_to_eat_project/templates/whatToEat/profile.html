@@ -16,6 +16,7 @@
                 <th>Quantity</th>
                 <th>Status</th>
                 </thead>
+                <tbody>
                 {% for item in ingredient_list %}
                     <tr>
                         <td>{{ item.ingredient }}</td>
@@ -33,6 +34,7 @@
                         <td>Not changed</td>
                     </tr>
                 {% endfor %}
+                </tbody>
             </table>
         </div>
     {% endif %}
