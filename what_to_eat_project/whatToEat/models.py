@@ -35,7 +35,7 @@ class Recipe(models.Model):
     rating = models.IntegerField(default=0)
     author = models.ForeignKey(UserProfile)
     category = models.ForeignKey(Category)
-    instructions = models.CharField(max_length = 5000, default = " ")
+    instructions = models.CharField(max_length=5000, default=" ")
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)

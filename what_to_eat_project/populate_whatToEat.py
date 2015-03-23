@@ -4,7 +4,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'what_to_eat_project.settings')
 import django
 django.setup()
 
-from whatToEat.models import Ingredient, Recipe, Category, UserProfile, Inventory
+from whatToEat.models import Ingredient, Recipe, Category, UserProfile, Inventory, Ingredients_In_Recipe
 from django.contrib.auth.models import User
 
 
@@ -25,6 +25,12 @@ def populate():
     add_ingred("Milk")
     add_ingred("Rice")
     add_ingred("Mushroom")
+    salt = add_ingred("Salt")
+    pepper = add_ingred("Pepper")
+    butter = add_ingred("Butter")
+    oliveOil = add_ingred("Olive oil")
+    chedderCheese = add_ingred("Chedder Cheese")
+    mushroom = add_ingred("Mushroom")
     print("Ingredients added")
 
     add_cat("All Recipes")
@@ -35,8 +41,8 @@ def populate():
     add_cat("Dessert")
     print("Catagories added")
 
-    add_recipe(name="Mushroom omelette", rating=4, author=author_profile, category=lunch_category,
-               instructions="\n1) Crack the eggs into a mixing bowl \n2) Add a pinch of salt and pepper"
+    mushroomOmlette = add_recipe(name="Mushroom omelette", rating=4, author=author_profile, category=lunch_category,
+                                 instructions="\n1) Crack the eggs into a mixing bowl \n2) Add a pinch of salt and pepper"
                             "\n3) Beat well with a fork Quarter or roughly chop the mushrooms and add to a small frying"
                             " pan on a high heat with a small knob of butter, a drizzle of olive oil and a pinch of "
                             "salt and pepper"
@@ -48,6 +54,14 @@ def populate():
                             "\n8) When it starts to turn golden brown underneath, remove the pan from the heat and "
                             "slide the omelette on to a plate")
     print("Recipe added")
+
+    relate_ingred_to_recipe(egg_ingredient, mushroomOmlette, 2)
+    relate_ingred_to_recipe(salt, mushroomOmlette, 0.01)
+    #relate_ingred_to_recipe(pepper. mushroomOmlette, 0.02)
+    relate_ingred_to_recipe(butter, mushroomOmlette, 0.5)
+    relate_ingred_to_recipe(oliveOil, mushroomOmlette, 0.5)
+    relate_ingred_to_recipe(chedderCheese, mushroomOmlette, 0.4)
+    relate_ingred_to_recipe(mushroom, mushroomOmlette, 3)
 
     add_ingredient_to_inventory(author_profile, 2.0, chicken_ingredient)
     add_ingredient_to_inventory(author_profile, 3.0, egg_ingredient)
@@ -80,10 +94,15 @@ def add_ingredient_to_inventory(user_profile, quantity, ingredient):
     i = Inventory.objects.get_or_create(
         user=user_profile,
         quantity=quantity,
-        ingredient=ingredient
-    )[0]
+        ingredient=ingredient)[0]
     return i
 
+
+def relate_ingred_to_recipe(ingredient, recipe, quantity):
+    ir = Ingredients_In_Recipe.objects.get_or_create(ingredient=ingredient,
+                                                     recipe=recipe,
+                                                     quantity=quantity)
+    return ir
 
 if __name__ == '__main__':
     print "Running population script v0.01"

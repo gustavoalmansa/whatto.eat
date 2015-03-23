@@ -37,6 +37,11 @@ def recipe(request, recipe_name_slug):
     context_dict = {}
     try:
         recipe = Recipe.objects.get(slug=recipe_name_slug)
+        context_dict['ingredient_list'] = []
+        for ingred in Ingredients_In_Recipe.objects.filter(recipe=recipe):
+            context_dict['ingredient_list'] += [ingred]
+
+        context_dict['ingredient'] = ingred
         context_dict['recipe_name'] = recipe.name
         context_dict['recipe_rating'] = recipe.rating
         context_dict['recipe_instr'] = recipe.instructions
