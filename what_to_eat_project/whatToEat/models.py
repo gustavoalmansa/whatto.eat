@@ -47,7 +47,7 @@ class Recipe(models.Model):
 
 class ShoppingList(models.Model):
     user = models.ForeignKey(User)
-    quantity = models.DecimalField(max_digits=7, decimal_places=2, default=0.00)
+    quantity = models.CharField(max_length=100, default=" ")
     shopping = models.ForeignKey(Ingredient)
 
     def __unicode__(self):
@@ -56,7 +56,7 @@ class ShoppingList(models.Model):
 
 class Inventory(models.Model):
     ingredient = models.ForeignKey(Ingredient)
-    quantity = models.DecimalField(max_digits=7, decimal_places=2, default=0.00)
+    quantity = models.CharField(max_length=100, default=" ")
     user = models.ForeignKey(UserProfile)
 
     def __unicode__(self):
