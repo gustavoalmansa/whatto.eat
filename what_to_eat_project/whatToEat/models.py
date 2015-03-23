@@ -66,7 +66,7 @@ class Inventory(models.Model):
 class Ingredients_In_Recipe(models.Model):
     ingredient = models.ForeignKey(Ingredient)
     recipe = models.ForeignKey(Recipe)
-    quantity = models.DecimalField(max_digits=7, decimal_places=2, default=0.00)
+    quantity = models.CharField(max_length=100, default=" ")
 
     def __unicode__(self):
         return self.recipe.name

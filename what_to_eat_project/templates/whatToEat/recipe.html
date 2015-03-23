@@ -5,9 +5,9 @@
 {% block body_block %}
         <h1> {{ recipe_name }} </h1> by {{ recipe_author }} <br> Rating: {{ recipe_rating }}
         <br> <br>
-{#        {% for ingredient in ingredient_list %}#}
-{#                {{ ingredient.ingredient.name }}  {{ ingredient.quantity }} <br>#}
-{#        {% endfor %}#}
-{#        <br>#}
+        {% for ingredient in ingredient_list %}
+               {{ ingredient.quantity }} {{ ingredient.ingredient.name }}   <br>
+        {% endfor %}
+        <br>
         {{ recipe_instr }}
 {% endblock %}

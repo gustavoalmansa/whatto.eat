@@ -18,7 +18,7 @@ def populate():
     print("Users added")
 
     chicken_ingredient = add_ingred("Chicken")
-    egg_ingredient = add_ingred("Egg")
+    egg_ingredient = add_ingred("Eggs")
     add_ingred("Honey")
     add_ingred("Soy Sauce")
     add_ingred("Ketchup")
@@ -30,7 +30,7 @@ def populate():
     butter = add_ingred("Butter")
     oliveOil = add_ingred("Olive oil")
     chedderCheese = add_ingred("Chedder Cheese")
-    mushroom = add_ingred("Mushroom")
+    mushroom = add_ingred("Mushrooms")
     print("Ingredients added")
 
     add_cat("All Recipes")
@@ -55,13 +55,13 @@ def populate():
                             "slide the omelette on to a plate")
     print("Recipe added")
 
-    relate_ingred_to_recipe(egg_ingredient, mushroomOmlette, 2)
-    relate_ingred_to_recipe(salt, mushroomOmlette, 0.01)
-    #relate_ingred_to_recipe(pepper. mushroomOmlette, 0.02)
-    relate_ingred_to_recipe(butter, mushroomOmlette, 0.5)
-    relate_ingred_to_recipe(oliveOil, mushroomOmlette, 0.5)
-    relate_ingred_to_recipe(chedderCheese, mushroomOmlette, 0.4)
-    relate_ingred_to_recipe(mushroom, mushroomOmlette, 3)
+    relate_ingred_to_recipe(egg_ingredient, mushroomOmlette, "2 large")
+    relate_ingred_to_recipe(salt, mushroomOmlette, "A pinch of")
+    relate_ingred_to_recipe(pepper. mushroomOmlette, "A pinch of")
+    relate_ingred_to_recipe(butter, mushroomOmlette, "A knob of")
+    relate_ingred_to_recipe(oliveOil, mushroomOmlette, "A splash of")
+    relate_ingred_to_recipe(chedderCheese, mushroomOmlette, "A handful of")
+    relate_ingred_to_recipe(mushroom, mushroomOmlette, "3 large")
 
     add_ingredient_to_inventory(author_profile, 2.0, chicken_ingredient)
     add_ingredient_to_inventory(author_profile, 3.0, egg_ingredient)
