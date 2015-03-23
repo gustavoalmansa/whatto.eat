@@ -121,7 +121,6 @@ function initPage() {
                 console.log("OK");
 
                 if (status == "success" && ingredientId > 0) {
-                    //TODO: Add the correct template in the second column
                     resetAllStatus();
                     var newLine = $("<tr>");
                     var column1 = $("<td>");
