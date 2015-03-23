@@ -9,9 +9,7 @@ import json as simplejson
 
 
 def index(request):
-    category_list = Category.objects.all()[:6]
-    recipe_list = Recipe.objects.order_by('-rating')[:10]
-    context_dict = {'categories': category_list, 'recipes': recipe_list}
+    context_dict = {}
     return render(request, 'whatToEat/index.html', context_dict)
 
 
@@ -147,3 +145,12 @@ def user_logout(request):
     logout(request)
 
     return HttpResponseRedirect('/whatToEat/')
+
+def search_results(request):
+    #TODO make function that actually searches recipes and returns them
+    context_dict = {}
+    
+    context_dict['result_list'] = ['implement', 'search with results','to go here']
+
+
+    return render(request, 'whatToEat/search.html', context_dict)

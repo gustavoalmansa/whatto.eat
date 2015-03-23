@@ -1,10 +1,11 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>WhatTo.Eat</title>
-    </head>
+{% extends "base.html" %}
 
-    <body>
+{% load staticfiles %}
+
+{% block title %}{{ category_name }}{% endblock %}
+
+{% block body_block %}
+
         <h1>Add a New Recipe</h1>
 
         <form id="recipe_form" method="post" action="/whatToEat/category/{{ category }}/add_recipe/">
@@ -22,6 +23,4 @@
 
             <input type="submit" name="submit" value="Add Recipe" /> Add Recipe
         </form>
-    </body>
-
-</html>
+{% endblock %}
