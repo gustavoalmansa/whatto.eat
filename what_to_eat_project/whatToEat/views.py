@@ -80,7 +80,16 @@ def add_recipe(request, category_name_slug):
 
 @login_required
 def profile(request):
-    context_dict = {}
+
+    context_dict = {
+        'all_ingredients': {}
+    }
+    try:
+        all_ingredients = Ingredient.objects.order_by('name')
+        context_dict['all_ingredients'] = all_ingredients
+    except Ingredient.DoesNotExist:
+        pass
+
     try:
         user = User.objects.get(username=request.user)
         user_profile = UserProfile.objects.get(user=user)
@@ -115,6 +124,7 @@ def update_inventory(request):
                 dict['status'] = 'success'
                 dict['quantity'] = quantity
                 dict['ingredient'] = ingredient_id
+                dict['ingredientname'] = row.ingredient.name
             return HttpResponse(simplejson.dumps(dict), content_type="application/json")
         except Inventory.DoesNotExist:
             pass
