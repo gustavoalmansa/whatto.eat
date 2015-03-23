@@ -1,6 +1,11 @@
 $( document ).ready(initPage());
 function initPage() {
-    "use strict"; //Help to get better code quality
+    "use strict"; //Help to get better code quality by applying strict rules in code execution
+
+
+    //Initial select styling
+    $(".selectpicker").selectpicker();
+
 
     //Initial Ajax setup
     var csrftoken = getCookie('csrftoken');
@@ -15,15 +20,24 @@ function initPage() {
 
 
     //Event registers
-    $(".input-group-btn .btn").on("click", updateClickHandler);
+    $(" .custom-update .btn").on("click", updateClickHandler);
+    $("#btn-add-ingredient").on("click", addClickHandler);
 
 
     //Event handlers
     function updateClickHandler(){
-        var inputField = $(this).closest(".input-group").find("input");
+        var inputField = $(this).closest(".custom-update").find("input");
         var quantity = inputField.val();
         var ingredientId = inputField.attr("id").split("-")[1];
-        createOrUpdateIngredient(ingredientId, quantity);
+        updateIngredient(ingredientId, quantity);
+    }
+
+    function addClickHandler(){
+        var selectField = $(this).closest("form").find("select");
+        var inputField =  $(this).parent().find("#new-ingredient-quantity");
+        var ingredientId = selectField.val();
+        var quantity = inputField.val();
+        addIngredient(ingredientId, quantity);
     }
 
 
@@ -70,7 +84,7 @@ function initPage() {
             .html(text);
     }
 
-    function createOrUpdateIngredient(ingredientId, quantity) {
+    function updateIngredient(ingredientId, quantity) {
         var passedData = {ingredient: ingredientId, quantity: quantity};
         $.ajax({
             url: "/whatToEat/update-inventory/",
@@ -86,6 +100,42 @@ function initPage() {
                     resetAllStatus();
                     updateIngredientStatus("Updated successfully", ingredientId);
                 }
+
+            })
+    }
+
+
+    function addIngredient(ingredientId, quantity) {
+        var passedData = {ingredient: ingredientId, quantity: quantity};
+        $.ajax({
+            url: "/whatToEat/update-inventory/",
+            dataType: "JSON",
+            data: passedData
+        })
+            .done(function (data) {
+
+                var status = data.status;
+                var ingredientId = data.ingredient;
+                var ingredientName = data.ingredientname;
+                var quantity = data.quantity;
+                console.log("OK");
+
+                if (status == "success" && ingredientId > 0) {
+                    //TODO: Add the correct template in the second column
+                    resetAllStatus();
+                    var newLine = $("<tr>");
+                    var column1 = $("<td>");
+                    var column2 = $("<td>");
+                    var column3 = $("<td>");
+                    column1.html(ingredientName);
+                    column2.html(quantity);
+                    column3.html("Sucessfully added");
+                    newLine.append(column1);
+                    newLine.append(column2);
+                    newLine.append(column3);
+                    $(".table").append(newLine);
+                }
+
 
             })
     }

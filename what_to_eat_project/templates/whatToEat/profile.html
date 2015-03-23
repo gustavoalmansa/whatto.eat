@@ -12,9 +12,11 @@
             <div class="panel-heading">Inventory</div>
             <table class="table">
                 <thead>
-                <th>Ingredient</th>
-                <th>Quantity</th>
-                <th>Status</th>
+                <tr>
+                    <th>Ingredient</th>
+                    <th>Quantity</th>
+                    <th>Status</th>
+                </tr>
                 </thead>
                 <tbody>
                 {% for item in ingredient_list %}
@@ -23,10 +25,10 @@
                         <td>
                             <form role="form" class="form-inline">
                                 {% csrf_token %}
-                                <div class="input-group">
-                                    <input type="number" class="form-control" id="ingredient-{{ item.ingredient.id }}" value="{{ item.quantity }}">
+                                <div class="input-group custom-update">
+                                    <input type="number" class="form-control" id="ingredient-{{ item.ingredient.id }}" value="{{ item.quantity }}" placeholder="Quantity">
                                     <div class="input-group-btn">
-                                        <button type="button" class="btn btn-default">Update</button>
+                                        <button type="button" class="btn btn-default btn-primary">Update</button>
                                     </div>
                                 </div>
                             </form>
@@ -38,4 +40,27 @@
             </table>
         </div>
     {% endif %}
+
+
+    {% if all_ingredients %}
+        <div class="panel panel-default">
+            <div class="panel-heading">Add new ingredient to inventory</div>
+            <div class="panel-body">
+                <form role="form" class="form-inline">
+                    <select class="selectpicker">
+                        {% for item in all_ingredients %}
+                            <option value="{{ item.id }}">{{ item.name }}</option>
+                        {% endfor %}
+                    </select>
+                    <div class="input-group">
+                        <div class="input-group-btn">
+                            <input class="form-control" value="" id="new-ingredient-quantity" placeholder="Quantity">
+                            <button type="button" class="btn btn-default btn-primary" id="btn-add-ingredient">Add</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    {% endif %}
+
 {% endblock %}
