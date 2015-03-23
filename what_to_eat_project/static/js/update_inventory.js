@@ -146,7 +146,7 @@ function initPage() {
                     newLine.append(column1);
                     newLine.append(column2);
                     newLine.append(column3);
-                    $(".table").append(newLine);
+                    $(".table tbody").append(newLine);
                 }
 
 
