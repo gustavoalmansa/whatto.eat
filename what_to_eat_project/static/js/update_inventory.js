@@ -20,7 +20,7 @@ function initPage() {
 
 
     //Event registers
-    $(" .custom-update .btn").on("click", updateClickHandler);
+    $(".table tbody").on("click", ".custom-update .btn", updateClickHandler);
     $("#btn-add-ingredient").on("click", addClickHandler);
 
 
@@ -127,8 +127,22 @@ function initPage() {
                     var column1 = $("<td>");
                     var column2 = $("<td>");
                     var column3 = $("<td>");
+                    var form = $("<form>", {role:"form", class:"form-inline"});
+                    var div2 = $("<div>", {class: "input-group custom-update"});
+                    var input = $("<input>", {
+                        type: "number", class: "form-control",
+                        id: "ingredient-"+ingredientId, value: quantity,
+                        placeholder: "Quantity"
+                    });
+                    var inputGroupBtn = $("<div>", { class: "input-group-btn" });
+                    var button = $("<button>", { type: "button", class: "btn btn-default btn-primary" });
+                    button.html("update");
+                    inputGroupBtn.append(button);
+                    div2.append(input);
+                    div2.append(inputGroupBtn);
+                    form.append(div2);
+                    column2.append(form);
                     column1.html(ingredientName);
-                    column2.html(quantity);
                     column3.html("Sucessfully added");
                     newLine.append(column1);
                     newLine.append(column2);
