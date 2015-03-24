@@ -15,7 +15,7 @@ TEMPLATE_PATH = os.path.join(BASE_DIR, 'templates')
 
 TEMPLATE_DIRS = [TEMPLATE_PATH]
 
-STATIC_PATH = os.path.join(BASE_DIR,'static')
+STATIC_PATH = os.path.join(BASE_DIR, 'static')
 
 STATICFILES_DIRS = [STATIC_PATH]
 
@@ -49,7 +49,8 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'whatToEat',
-    'registration'
+    'registration',
+    'bootstrap3'
 )
 
 MIDDLEWARE_CLASSES = (

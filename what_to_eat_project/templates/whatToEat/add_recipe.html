@@ -1,20 +1,22 @@
 {% extends "base.html" %}
 
 {% load staticfiles %}
+{% load bootstrap3 %}
+
 
 {% block title %}{{ category_name }}{% endblock %}
 
 {% block body_block %}
 
-        <h1>Add a New Recipe</h1>
+    <h1>Add a New Recipe</h1>
 
-        <form id="recipe_form" method="post" action="/whatToEat/category/{{ category }}/add_recipe/">
-                {% csrf_token %}
-                {{ recipe_form.as_p }}
-                {{ ingredient_form.as_p }}
-                {{ link_form.as_p }}
+    <form id="recipe_form" method="post" action="/whatToEat/category/{{ category }}/add_recipe/">
+        {% csrf_token %}
+        {% bootstrap_form recipe_form %}
+        {% bootstrap_form ingredient_form %}
+        {% bootstrap_form link_form %}
         <input type="submit" name="submit" value="Add Recipe" />
     </form>
 
-        
+
 {% endblock %}

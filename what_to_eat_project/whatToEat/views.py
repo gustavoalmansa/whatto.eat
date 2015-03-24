@@ -78,13 +78,10 @@ def add_recipe(request, category_name_slug):
     else:
         # If the request was not a POST, display the form to enter details.
         recipe_form = RecipeForm()
-        ingredient_form = IngredientForm()
-        link_form = linkIngredientToRecipe()
 
     # Bad form (or form details), no form supplied...
     # Render the form with error messages (if any).
-    return render(request, 'whatToEat/add_recipe.html', {'recipe_form': recipe_form, 'ingredient_form': ingredient_form,
-                                                         'link_form': link_form, 'category': category_name_slug})
+    return render(request, 'whatToEat/add_recipe.html', {'recipe_form': recipe_form, 'category': category_name_slug})
 
 
 @login_required

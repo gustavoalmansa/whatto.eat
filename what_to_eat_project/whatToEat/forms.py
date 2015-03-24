@@ -18,12 +18,14 @@ class IngredientForm(forms.ModelForm):
     class Meta:
         model = Ingredient
 
+
 class linkIngredientToRecipe(forms.ModelForm):
 
     quantity = forms.CharField(max_length=100, help_text="Quantity")
     class Meta:
         model = Ingredients_In_Recipe
         exclude = ("recipe", "ingredient")
+
 
 class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
