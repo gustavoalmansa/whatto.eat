@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
-from whatToEat.forms import RecipeForm
+from whatToEat.forms import RecipeForm, IngredientForm, linkIngredientToRecipe
 from whatToEat.models import Recipe, Category, Ingredients_In_Recipe, ShoppingList, Inventory, UserProfile, Ingredient
 import json as simplejson
 
@@ -55,27 +55,37 @@ def recipe(request, recipe_name_slug):
 def add_recipe(request, category_name_slug):
 
     if request.method == 'POST':
-        form = RecipeForm(request.POST)
+        recipe_form = RecipeForm(data=request.POST)
+        ingredient_form = IngredientForm(data=request.POST)
+        link_form = linkIngredientToRecipe(data=request.POST)
         # Have we been provided with a valid form?
-        if form.is_valid():
-            # Save the new category to the database.
-            form.save(commit=True)
-            ##form.author_id = request.user
-            ##form.save()
+        if recipe_form.is_valid() and ingredient_form.is_valid() and link_form.is_valid():
+            recipe.author = request.user
+            recipe.category = Category.objects.get(slug=category_name_slug)
+            recipe = recipe_form.save()
+            ingredient = ingredient_form.save()
+            link = link_form.save(commit=False)
+            link.recipe = recipe
+            link.ingredient = ingredient
+            link.save()
 
             # Now call the index() view.
             # The user will be shown the homepage.
             return index(request)
         else:
             # The supplied form contained errors - just print them to the terminal.
-            print form.errors
+            print ("Recipe Errors\n ", recipe_form.errors, "\n\n", "IngredientForm errors\n ",
+                   ingredient_form.errors, "\n\n", "Link form errors\n", link_form.errors)
     else:
         # If the request was not a POST, display the form to enter details.
-        form = RecipeForm()
+        recipe_form = RecipeForm()
+        ingredient_form = IngredientForm()
+        link_form = linkIngredientToRecipe()
 
     # Bad form (or form details), no form supplied...
     # Render the form with error messages (if any).
-    return render(request, 'whatToEat/add_recipe.html', {'form': form, 'category': category_name_slug})
+    return render(request, 'whatToEat/add_recipe.html', {'recipe_form': recipe_form, 'ingredient_form': ingredient_form,
+                                                         'link_form': link_form, 'category': category_name_slug})
 
 
 @login_required

@@ -9,18 +9,18 @@
         <h1>Add a New Recipe</h1>
 
         <form id="recipe_form" method="post" action="/whatToEat/category/{{ category }}/add_recipe/">
-
-            {% csrf_token %}
-            {% for hidden in form.hidden_fields %}
-                {{ hidden }}
-            {% endfor %}
-
-            {% for field in form.visible_fields %}
-                {{ field.errors }}
-                {{ field.help_text }}
-                {{ field }}<br>
-            {% endfor %}
-
-            <input type="submit" name="submit" value="Add Recipe" /> Add Recipe
+            {{ recipe_form.as_p }}
         </form>
+
+        <form id="ingredient_form" method="post" action="/whatToEat/category/{{ category }}/add_recipe/">
+                {{ ingredient_form.as_p }}
+        </form>
+    <br />
+    <form id="link_form" method="post" action="/whatToEat/category/{{ category }}/add_recipe/">
+                {{ link_form.as_p }}
+                {% csrf_token %}
+        <input type="submit" name="submit" value="Add Recipe" />
+    </form>
+
+        
 {% endblock %}
