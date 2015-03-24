@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% load whatToEat_extras %}
+
+{% block title %}  All of Our Recipes {% endblock %}
+
+{% block body_block %}
+    <h1> Here's all of our recipes! </h1>
+    {% for recipe in recipes %}
+        <li><a href="/whatToEat/recipe/{{ recipe.slug }}">{{ recipe.name }}</a></li>
+    {% endfor %}
+{% endblock %}
