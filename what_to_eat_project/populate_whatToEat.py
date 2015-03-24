@@ -42,7 +42,6 @@ def populate():
 
     print("Ingredients added")
 
-    add_cat("All Recipes")
     breakfast =add_cat("Breakfast")
     lunch = add_cat("Lunch")
     snack  = add_cat("Snacks")

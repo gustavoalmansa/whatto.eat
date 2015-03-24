@@ -17,6 +17,12 @@ def about(request):
     context_dict = ""
     return render(request, 'whatToEat/about.html', context_dict)
 
+def all_recipes(request):
+    context_dict = {}
+    recipes = Recipe.objects.filter(category=category)
+    context_dict['recipes'] = recipes
+
+    return render(request, 'whatToEat/all_recipes.html', context_dict)
 
 def category(request, category_name_slug):
     context_dict = {}

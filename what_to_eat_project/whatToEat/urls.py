@@ -11,6 +11,7 @@ urlpatterns = patterns('',
         url(r'^add_profile/', views.register_profile, name='add_profile'),
         url(r'^update-inventory/', views.update_inventory, name='update_inventory'),
         url(r'^search/$', views.search_results, name='search'),
+        url(r'^all_recipes/$', views.all_recipes, name='all_recipes'),
 )
 
 

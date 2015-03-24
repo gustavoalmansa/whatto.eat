@@ -1,5 +1,7 @@
 {% if cats %}
     <ul class="nav nav-sidebar">
+        {% if c == act_cat %} <li  class="active" > {% else  %} <li>{% endif %}
+            <a href="{% url 'all_recipes' %}">{{ c.name }}</a></li>
     {% for c in cats %}
         {% if c == act_cat %} <li  class="active" > {% else  %} <li>{% endif %}
             <a href="{% url 'category'  c.slug %}">{{ c.name }}</a></li>
