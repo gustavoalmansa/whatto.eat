@@ -19,7 +19,7 @@ def about(request):
 
 def all_recipes(request):
     context_dict = {}
-    recipes = Recipe.objects.filter(category=category)
+    recipes = Recipe.objects.all()
     context_dict['recipes'] = recipes
 
     return render(request, 'whatToEat/all_recipes.html', context_dict)
