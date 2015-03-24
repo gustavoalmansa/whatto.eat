@@ -94,7 +94,7 @@ def profile(request):
         'all_ingredients': {}
     }
     try:
-        all_ingredients = Ingredient.objects.order_by('name')
+        all_ingredients = Ingredient.objects.order_by('ingredient_name')
         context_dict['all_ingredients'] = all_ingredients
     except Ingredient.DoesNotExist:
         pass
@@ -133,7 +133,7 @@ def update_inventory(request):
                 dict['status'] = 'success'
                 dict['quantity'] = quantity
                 dict['ingredient'] = ingredient_id
-                dict['ingredientname'] = row.ingredient.name
+                dict['ingredientname'] = row.ingredient.ingredient_name
             return HttpResponse(simplejson.dumps(dict), content_type="application/json")
         except Inventory.DoesNotExist:
             pass

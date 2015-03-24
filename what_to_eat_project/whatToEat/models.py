@@ -14,7 +14,7 @@ class Ingredient(models.Model):
     ingredient_name = models.CharField(max_length=128, unique=True)
 
     def __unicode__(self):
-        return self.name
+        return self.ingredient_name
 
 
 class Category(models.Model):
