@@ -60,9 +60,10 @@ def add_recipe(request, category_name_slug):
         link_form = linkIngredientToRecipe(data=request.POST)
         # Have we been provided with a valid form?
         if recipe_form.is_valid() and ingredient_form.is_valid() and link_form.is_valid():
+            recipe = = recipe_form.save(commit=False)
             recipe.author = request.user
             recipe.category = Category.objects.get(slug=category_name_slug)
-            recipe = recipe_form.save()
+            recipe.save()
             ingredient = ingredient_form.save()
             link = link_form.save(commit=False)
             link.recipe = recipe
