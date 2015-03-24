@@ -10,7 +10,7 @@
 {% block body_block %}
         <h1>whatToEat login</h1>
 
-        <form id="login_form" method="post" action="/whatToEat/login/">
+        <form id="login_form" method="post" action="/accounts/login/">
             {% csrf_token %}
             Username: <input type="text" name="username" value="" size="50" />
             <br />
