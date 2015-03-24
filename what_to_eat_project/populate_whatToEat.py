@@ -13,6 +13,7 @@ def populate():
     for i in xrange(15):
         u = User(username="User "+str(i), password='q')
         u.save()
+        add_profile(u)
 
     author_profile = add_profile(User.objects.get(username="User 1"))
     print("Users added")

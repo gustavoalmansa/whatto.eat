@@ -9,12 +9,12 @@
         <h1>Add a New Recipe</h1>
 
         <form id="recipe_form" method="post" action="/whatToEat/category/{{ category }}/add_recipe/">
-            {{ recipe_form.as_p }}
+                {% csrf_token %}
+                {{ recipe_form.as_p }}
 
                 {{ ingredient_form.as_p }}
 
                 {{ link_form.as_p }}
-                {% csrf_token %}
         <input type="submit" name="submit" value="Add Recipe" />
     </form>
 

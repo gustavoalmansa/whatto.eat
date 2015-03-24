@@ -5,6 +5,7 @@ from whatToEat.models import Ingredient, Recipe, Category, Inventory, ShoppingLi
 class RecipeForm(forms.ModelForm):
     name = forms.CharField(max_length=128, help_text="Please enter the name of your recipe.")
     instructions = forms.CharField(max_length=5000, help_text="Please enter all of the instructions:")
+    print("Recipe name: ", name.__str__())
 
     class Meta:
         model = Recipe
