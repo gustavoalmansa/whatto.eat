@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load bootstrap_toolkit %}
+
+{% block body_block %}
+    <div class="page-header">
+        <h1>Complete Registration Here</h1>
+    </div>
+    <form role="form"  method="post" action="." enctype="multipart/form-data">
+
+        {% csrf_token %}
+
+        {{ form|as_bootstrap }}
+
+        <br>
+
+        <button class="btn btn-primary" type="submit" class="btn btn-default">Submit</button>
+
+    </form>
+{% endblock %}

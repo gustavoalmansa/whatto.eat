@@ -49,7 +49,8 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'whatToEat',
-    'registration'
+    'registration',
+    'bootstrap_toolkit',
 )
 
 MIDDLEWARE_CLASSES = (

@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
-from whatToEat.forms import RecipeForm, IngredientForm, linkIngredientToRecipe
+from whatToEat.forms import RecipeForm, IngredientForm, linkIngredientToRecipe, UserProfileForm
 from whatToEat.models import Recipe, Category, Ingredients_In_Recipe, ShoppingList, Inventory, UserProfile, Ingredient
 import json as simplejson
 
@@ -88,6 +88,39 @@ def add_recipe(request, category_name_slug):
     # Render the form with error messages (if any).
     return render(request, 'whatToEat/add_recipe.html', {'recipe_form': recipe_form, 'ingredient_form': ingredient_form,
                                                          'link_form': link_form, 'category': category_name_slug})
+
+def register_profile(request):
+
+    # A HTTP POST?
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST)
+
+        # Have we been provided with a valid form?
+        if form.is_valid():
+            # Now sort out the UserProfile instance.
+            # Since we need to set the user attribute ourselves, we set commit=False.
+            # This delays saving the model until we're ready to avoid integrity problems.
+            profile = form.save(commit=False)
+            profile.user = request.user
+
+            # Did the user provide a profile picture?
+            # If so, we need to get it from the input form and put it in the UserProfile model.
+            if 'picture' in request.FILES:
+                profile.picture = request.FILES['picture']
+
+            # Now we save the UserProfile model instance.
+            profile.save()
+            # Now call the index() view.
+            # The user will be shown the homepage.
+            return index(request)
+        else:
+            # The supplied form contained errors - just print them to the terminal.
+            print form.errors
+    else:
+        form = 6
+    return render(request, 'whatToEat/profile_registration.html', {'form': form})
+
+
 
 
 @login_required
