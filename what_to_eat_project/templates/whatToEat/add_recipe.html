@@ -11,9 +11,7 @@
         <form id="recipe_form" method="post" action="/whatToEat/category/{{ category }}/add_recipe/">
                 {% csrf_token %}
                 {{ recipe_form.as_p }}
-
                 {{ ingredient_form.as_p }}
-
                 {{ link_form.as_p }}
         <input type="submit" name="submit" value="Add Recipe" />
     </form>

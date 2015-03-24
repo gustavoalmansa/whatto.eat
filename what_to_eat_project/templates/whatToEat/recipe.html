@@ -6,7 +6,7 @@
         <h1> {{ recipe_name }} </h1> by {{ recipe_author }} <br> Rating: {{ recipe_rating }}
         <br> <br>
         {% for ingredient in ingredient_list %}
-               {{ ingredient.quantity }} {{ ingredient.ingredient.name }}   <br>
+               {{ ingredient.quantity }} {{ ingredient.ingredient.ingredient_name }}   <br>
         {% endfor %}
         <br>
         {{ recipe_instr }}

@@ -63,6 +63,34 @@ function initPage() {
         return cookieValue;
     }
 
+    function appendNewRow(ingredientId, quantity, ingredientName){
+        var newLine = $("<tr>");
+        var column1 = $("<td>");
+        var column2 = $("<td>");
+        var column3 = $("<td>");
+        var form = $("<form>", {role:"form", class:"form-inline"});
+        var div2 = $("<div>", {class: "input-group custom-update"});
+        var input = $("<input>", {
+            type: "text", class: "form-control",
+            id: "ingredient-"+ingredientId, value: quantity,
+            placeholder: "Quantity"
+        });
+        var inputGroupBtn = $("<div>", { class: "input-group-btn" });
+        var button = $("<button>", { type: "button", class: "btn btn-default btn-primary" });
+        button.html("update");
+        inputGroupBtn.append(button);
+        div2.append(input);
+        div2.append(inputGroupBtn);
+        form.append(div2);
+        column2.append(form);
+        column1.html(ingredientName);
+        column3.html("Sucessfully added");
+        newLine.append(column1);
+        newLine.append(column2);
+        newLine.append(column3);
+        $(".table tbody").append(newLine);
+    }
+
     function resetAllStatus() {
 
         var allInventoryRows = $(".table tr");
@@ -122,31 +150,7 @@ function initPage() {
 
                 if (status == "success" && ingredientId > 0) {
                     resetAllStatus();
-                    var newLine = $("<tr>");
-                    var column1 = $("<td>");
-                    var column2 = $("<td>");
-                    var column3 = $("<td>");
-                    var form = $("<form>", {role:"form", class:"form-inline"});
-                    var div2 = $("<div>", {class: "input-group custom-update"});
-                    var input = $("<input>", {
-                        type: "number", class: "form-control",
-                        id: "ingredient-"+ingredientId, value: quantity,
-                        placeholder: "Quantity"
-                    });
-                    var inputGroupBtn = $("<div>", { class: "input-group-btn" });
-                    var button = $("<button>", { type: "button", class: "btn btn-default btn-primary" });
-                    button.html("update");
-                    inputGroupBtn.append(button);
-                    div2.append(input);
-                    div2.append(inputGroupBtn);
-                    form.append(div2);
-                    column2.append(form);
-                    column1.html(ingredientName);
-                    column3.html("Sucessfully added");
-                    newLine.append(column1);
-                    newLine.append(column2);
-                    newLine.append(column3);
-                    $(".table tbody").append(newLine);
+                    appendNewRow(ingredientId, quantity, ingredientName);
                 }
 
 
