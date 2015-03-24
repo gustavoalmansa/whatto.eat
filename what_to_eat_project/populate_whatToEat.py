@@ -79,7 +79,7 @@ def populate():
                                     rating=3, author=author_profile,
                                     category=snack,
                                     instructions = "1)Toast the bread in a toaster. Meanwhile, mix the cheese sauce, onions and a grind of pepper together in a small bowl.\n2)Transfer the toast to a non-stick grill rack and drape the ham over each slice. Next, spoon the cheese sauce onto the ham and spread it around with the back of the spoon. Scatter the grated cheese over the sauce, then pop the rarebit under a hot grill until the cheese turns bubbly and golden. Cut each slice in half and serve while still hot.")
-    print("Recipe added")
+
 
     relateIngredientDictToRecipe({white_bread:"4 slices of",
                                   four_cheese_sauce:"350g tub of",
@@ -94,7 +94,6 @@ def populate():
                                     category=dinner,
                                     instructions = "1)Put 2 chicken breasts, skin side up in a small baking dish and season.\n2)Squeeze the lemon into a bowl and stir in the honey and soy sauce. Spoon the mixture over the chicken, then tuck the squeezed-out half of lemon between the pieces (this will moisten and add flavour to the chicken).\n3)Roast the chicken breasts in a baking dish, uncovered, for 30-35 minutes in a preheated oven (190C/gas 5/fan oven 170C). Cook until done and richly glazed, basting with the juices at least twice. To check if they are done, prod the chicken with your finger - if it's still a bit soft, give it a bit longer.\n4)Serve with salad and potatoes roasted with herbs and garlic.")
 
-    print ("Recipe added")
 
     relateIngredientDictToRecipe({chicken_breast:"2",
                                   lemon:"half of a",
@@ -107,8 +106,6 @@ def populate():
                                         category=dinner,
                                         instructions="1)Make 3 slashes on each of the drumsticks. Mix together the soy, honey, oil, tomato puree and mustard. Pour this mixture over the chicken and coat thoroughly. Leave to marinate for 30 mins at room temperature or overnight in the fridge. Heat oven to 200C/fan 180C/gas 6.\n2)Tip the chicken into a shallow roasting tray and cook for 35 mins, turning occasionally, until the chicken is tender and glistening with the marinade.")
 
-    print ("Recipe added")
-
     relateIngredientDictToRecipe({chicken_drumstick:"Eight",
                                   soy_sauce:"Two Tablespoons",
                                   honey:"One Tablespoon",
@@ -117,6 +114,7 @@ def populate():
                                   dijon:"One Tablespoon"},
                                  stickyChickenDrumstick)
 
+    print ("Recipes added, and ingredients related")
 
 def add_profile(user):
     up = UserProfile.objects.get_or_create(user=user)[0]
