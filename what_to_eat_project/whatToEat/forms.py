@@ -2,14 +2,22 @@ from django import forms
 from django.contrib.auth.models import User
 from whatToEat.models import Ingredient, Recipe, Category, Inventory, ShoppingList, UserProfile, Ingredients_In_Recipe
 
-class RecipeForm(forms.ModelForm):
+
+class InitialRecipeForm(forms.ModelForm):
     name = forms.CharField(max_length=128, help_text="Please enter the name of your recipe.")
-    instructions = forms.CharField(max_length=5000, help_text="Please enter all of the instructions:")
     print("Recipe name: ", name.__str__())
 
     class Meta:
         model = Recipe
-        exclude = ('category', 'author', 'rating', 'slug')
+        exclude = ('instructions', 'category', 'author', 'rating', 'slug')
+
+
+class DetailRecipeForm(forms.ModelForm):
+    instructions = forms.CharField(widget=forms.Textarea)
+
+    class Meta:
+        model = Recipe
+        exclude = ('name', 'category', 'author', 'rating', 'slug')
 
 
 class IngredientForm(forms.ModelForm):
@@ -22,6 +30,7 @@ class IngredientForm(forms.ModelForm):
 class linkIngredientToRecipe(forms.ModelForm):
 
     quantity = forms.CharField(max_length=100, help_text="Quantity")
+
     class Meta:
         model = Ingredients_In_Recipe
         exclude = ("recipe", "ingredient")
