@@ -128,7 +128,7 @@ def add_cat(name):
 
 
 def add_ingred(name):
-    i = Ingredient.objects.get_or_create(name=name)[0]
+    i = Ingredient.objects.get_or_create(ingredient_name=name)[0]
     return i
 
 def relateIngredientDictToRecipe(ingredientDict, recipe):

@@ -61,17 +61,14 @@ def add_recipe(request, category_name_slug):
         # Have we been provided with a valid form?
         if recipe_form.is_valid() and ingredient_form.is_valid() and link_form.is_valid():
             recipe = recipe_form.save(commit=False)
-            print("Recipe name2: ", recipe.name)
             recipe.author = UserProfile.objects.get(user=request.user)
             recipe.category = Category.objects.get(slug=category_name_slug)
             recipe.save()
-            print("Recipe name3: ", recipe.name)
             ingredient = ingredient_form.save()
             link = link_form.save(commit=False)
             link.recipe = recipe
             link.ingredient = ingredient
             link.save()
-            print("Final recipe name: ", recipe.name)
             # Now call the index() view.
             # The user will be shown the homepage.
             return index(request)

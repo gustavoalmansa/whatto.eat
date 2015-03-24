@@ -13,7 +13,7 @@ class RecipeForm(forms.ModelForm):
 
 
 class IngredientForm(forms.ModelForm):
-    name = forms.CharField(max_length=128, help_text="Enter ingredient")
+    ingredient_name = forms.CharField(max_length=100, help_text="Enter ingredient")
 
     class Meta:
         model = Ingredient
