@@ -11,7 +11,8 @@ from django.contrib.auth.models import User
 def populate():
 
     for i in xrange(15):
-        u = User(username="User "+str(i), password='q')
+        u = User(username="User "+str(i))
+	u.set_password("q")
         u.save()
         add_profile(u)
 
