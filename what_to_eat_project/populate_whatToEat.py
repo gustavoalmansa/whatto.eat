@@ -12,7 +12,7 @@ def populate():
 
     for i in xrange(15):
         u = User(username="User "+str(i))
-	u.set_password("q")
+        u.set_password("q")
         u.save()
         add_profile(u)
 
