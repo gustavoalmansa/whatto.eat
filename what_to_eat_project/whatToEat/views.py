@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
+from django.shortcuts import redirect
 
 from whatToEat.forms import InitialRecipeForm, IngredientForm, linkIngredientToRecipe, DetailRecipeForm, UserProfileForm
 
@@ -13,6 +14,7 @@ import json as simplejson
 def index(request):
     context_dict = {}
     return render(request, 'whatToEat/index.html', context_dict)
+
 
 
 def about(request):
@@ -290,3 +292,10 @@ def search_results(request):
 
 
     return render(request, 'whatToEat/search.html', context_dict)
+
+
+def login_redirect(request):
+    url = '/whatToEat/profile'
+    
+
+    return redirect(url)
