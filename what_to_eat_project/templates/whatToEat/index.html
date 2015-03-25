@@ -8,15 +8,10 @@
 
         <h1>Someday...</h1>
         There wll be a search functionality here that actually does something! <strong>{{ boldmessage }}</strong><br />
-        <div class="panel panel-primary">
-            <br/>
-
-            <form class="form-inline" id="user_form" method="post" action="{% url 'search' %}">
-                {% csrf_token %}
-                <!-- Display the search form elements here -->
-                <input class="form-control" type="text" size="50" name="query" value="" id="query" />
-                <input class="btn btn-primary" type="submit" name="submit" value="Search" />
-                <br />
-            </form>
+        <form action="search" method="post">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit", value="Search">
+        </form>
 
 {% endblock %}

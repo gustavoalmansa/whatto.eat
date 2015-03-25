@@ -47,3 +47,6 @@ class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         exclude = ('user',)
+
+class SearchForm(forms.Form):
+    search = forms.CharField(label="Search Recipes", max_length=100)
