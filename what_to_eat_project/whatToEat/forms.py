@@ -13,7 +13,7 @@ class InitialRecipeForm(forms.ModelForm):
 
 
 class DetailRecipeForm(forms.ModelForm):
-    instructions = forms.CharField(widget=forms.Textarea)
+    instructions = forms.CharField(widget=forms.Textarea, max_length=5000)
 
     class Meta:
         model = Recipe

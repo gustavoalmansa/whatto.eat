@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
-from whatToEat.forms import InitialRecipeForm, IngredientForm, linkIngredientToRecipe
+from whatToEat.forms import InitialRecipeForm, IngredientForm, linkIngredientToRecipe, DetailRecipeForm
 from whatToEat.models import Recipe, Category, Ingredients_In_Recipe, ShoppingList, Inventory, UserProfile, Ingredient
 import json as simplejson
 
@@ -38,10 +38,12 @@ def recipe(request, recipe_name_slug):
     try:
         recipe = Recipe.objects.get(slug=recipe_name_slug)
         context_dict['ingredient_list'] = []
-        for ingred in Ingredients_In_Recipe.objects.filter(recipe=recipe):
-            context_dict['ingredient_list'] += [ingred]
+        # for ingred in Ingredients_In_Recipe.objects.filter(recipe=recipe):
+        #    context_dict['ingredient_list'] += [ingred]
 
-        context_dict['ingredient'] = ingred
+        context_dict['ingredient_list'] = Ingredients_In_Recipe.objects.filter(recipe=recipe)
+
+        # context_dict['ingredient'] = ingred
         context_dict['recipe_name'] = recipe.name
         context_dict['recipe_rating'] = recipe.rating
         context_dict['recipe_instr'] = recipe.instructions
@@ -54,15 +56,37 @@ def recipe(request, recipe_name_slug):
 
 def recipe_details(request, recipe_name_slug):
 
+    recipe = Recipe.objects.get(slug=recipe_name_slug)
+    context_dict = {}
+
     if request.method == 'POST':
-        return index(request)
+        recipe_form = DetailRecipeForm(data=request.POST)
+
+        if recipe_form.is_valid():
+            instructions = recipe_form.save(commit=False)
+            instructions = instructions.instructions
+            recipe.instructions = instructions
+            recipe.save()
+
+        return HttpResponseRedirect('/whatToEat/')
     else:
         # If the request was not a POST, display the form to enter details.
-        recipe_form = InitialRecipeForm()
+        try:
+            used_ingredients = Ingredients_In_Recipe.objects.filter(recipe=recipe)
+            context_dict['used_ingredients'] = used_ingredients
+        except Ingredients_In_Recipe.DoesNotExist:
+            pass
 
-    # Bad form (or form details), no form supplied...
-    # Render the form with error messages (if any).
-    return render(request, 'whatToEat/add_recipe_details.html', {'recipe_form': recipe_form, 'recipe': recipe_name_slug})
+        recipe_form = DetailRecipeForm(None, initial={"instructions": recipe.instructions})
+
+    context_dict['recipe_form'] = recipe_form
+    context_dict['recipe'] = recipe
+
+    if request.user == recipe.author.user:
+        return render(request, 'whatToEat/add_recipe_details.html', context_dict)
+    else:
+        return HttpResponseRedirect('/whatToEat/recipe/'+recipe.slug)
+
 
 
 def add_recipe(request, category_name_slug):
@@ -79,7 +103,7 @@ def add_recipe(request, category_name_slug):
             recipe.save()
             # Now call the index() view.
             # The user will be shown the homepage.
-            return add_recipe_details(request, ca)
+            return recipe_details(request, recipe.slug)
         else:
             # The supplied form contained errors - just print them to the terminal.
             print (recipe_form.errors, ingredient_form.errors, link_form.errors)
