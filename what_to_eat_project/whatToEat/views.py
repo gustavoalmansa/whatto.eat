@@ -185,11 +185,15 @@ def profile(request):
         user = User.objects.get(username=request.user)
         user_profile = UserProfile.objects.get(user=user)
         ingredient_list = Inventory.objects.filter(user=user_profile)
+        recipe_list = Recipe.objects.filter(author=user_profile)
+        context_dict['recipe_list'] = recipe_list
         context_dict['user'] = user
         context_dict['user_profile'] = user_profile
         context_dict['ingredient_list'] = ingredient_list
     except UserProfile.DoesNotExist, Inventory.DoesNotExist:
         pass
+
+
 
     return render(request, 'whatToEat/profile.html', context_dict)
 

@@ -64,4 +64,8 @@
 
     <script> inventoryPage = true; </script>
 
+    Your Recipes:
+        {% for recipe in recipe_list %}
+            <li><a href="/whatToEat/recipe/{{ recipe.slug }}">{{ recipe.name }}</a></li>
+        {% endfor %}
 {% endblock %}
