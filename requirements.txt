@@ -3,3 +3,4 @@ PILLOW==2.7.0
 django-registration-redux==1.1
 django-bootstrap3==5.1.1
 django-bootstrap-toolkit==2.15.0
+django-watson==1.1.1

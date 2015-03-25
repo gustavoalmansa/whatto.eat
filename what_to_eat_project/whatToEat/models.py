@@ -69,4 +69,4 @@ class Ingredients_In_Recipe(models.Model):
     quantity = models.CharField(max_length=100, default=" ")
 
     def __unicode__(self):
-        return self.recipe.name
+        return (self.recipe.name, self.ingredient.ingredient_name, self.quantity)
