@@ -290,7 +290,21 @@ def user_logout(request):
 
 def search_results(request):
     #TODO make function that actually searches recipes and returns them
-    context_dict = {}
+    ##IF user wants to search through inventory:
+    ##context_dict = {}
+    ##recipe_list = Recipe.object.all()
+    ##inventory = UserProfile.user.inventory
+    ##result_list = []
+    ##for recipe in recipe_list:
+        ##flag = true
+        ##for ingredients_in_recipe in recipe:
+            ##if ingredients_in_recipe not in inventory:
+                ##flag = false
+        ##if flag = true:
+            ##result_list += recipe
+    ##return result_list.orderby(rating)
+
+    ##IF user wants to search just with words, implement a normal seach...
 
     context_dict['result_list'] = ['implement', 'search with results','to go here']
 
