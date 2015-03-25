@@ -1,8 +1,10 @@
-
 $(document).ready(initPage());
-
 function initPage() {
     "use strict"; //Help to get better code quality by applying strict rules in code execution
+
+
+    //Get Recipe ID
+    var recipeId = $("#recipe-id").val();
 
 
     //Initial select styling
@@ -22,16 +24,16 @@ function initPage() {
 
 
     //Event registers
-    $(".table tbody").on("click", ".custom-update .btn", updateClickHandler);
-    $("#btn-add-ingredient").on("click", addClickHandler);
+    $(".table tbody").on("click", ".custom-update-recipe .btn", updateClickHandler);
+    $("#btn-add-ingredient-recipe").on("click", addClickHandler);
 
 
     //Event handlers
     function updateClickHandler() {
-        var inputField = $(this).closest(".custom-update").find("input");
+        var inputField = $(this).closest(".custom-update-recipe").find("input[type=text]");
         var quantity = inputField.val();
         var ingredientId = inputField.attr("id").split("-")[1];
-        updateIngredient(ingredientId, quantity);
+        updateIngredient(ingredientId, quantity, recipeId);
     }
 
     function addClickHandler() {
@@ -39,7 +41,7 @@ function initPage() {
         var inputField = $(this).parent().find("#new-ingredient-quantity");
         var ingredientId = selectField.val();
         var quantity = inputField.val();
-        addIngredient(ingredientId, quantity);
+        addIngredient(ingredientId, quantity, recipeId);
     }
 
 
@@ -71,7 +73,7 @@ function initPage() {
         var column2 = $("<td>");
         var column3 = $("<td>");
         var form = $("<form>", {role: "form", class: "form-inline"});
-        var div2 = $("<div>", {class: "input-group custom-update"});
+        var div2 = $("<div>", {class: "input-group custom-update-recipe"});
         var input = $("<input>", {
             type: "text", class: "form-control",
             id: "ingredient-" + ingredientId, value: quantity,
@@ -114,10 +116,10 @@ function initPage() {
             .html(text);
     }
 
-    function updateIngredient(ingredientId, quantity) {
-        var passedData = {ingredient: ingredientId, quantity: quantity};
+    function updateIngredient(ingredientId, quantity, recipeId) {
+        var passedData = {ingredient: ingredientId, quantity: quantity, recipe: recipeId };
         $.ajax({
-            url: "/whatToEat/update-inventory/",
+            url: "/whatToEat/update-recipe/",
             dataType: "JSON",
             data: passedData
         })
@@ -135,10 +137,10 @@ function initPage() {
     }
 
 
-    function addIngredient(ingredientId, quantity) {
-        var passedData = {ingredient: ingredientId, quantity: quantity};
+    function addIngredient(ingredientId, quantity, recipeId) {
+        var passedData = {ingredient: ingredientId, quantity: quantity, recipe: recipeId};
         $.ajax({
-            url: "/whatToEat/update-inventory/",
+            url: "/whatToEat/update-recipe/",
             dataType: "JSON",
             data: passedData
         })

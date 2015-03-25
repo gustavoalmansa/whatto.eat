@@ -3,11 +3,17 @@
 {% block title %} {{ recipe_name }}{% endblock %}
 
 {% block body_block %}
-        <h1> {{ recipe_name }} </h1> by {{ recipe_author }} <br> Rating: {{ recipe_rating }}
-        <br> <br>
-        {% for ingredient in ingredient_list %}
-               {{ ingredient.quantity }} {{ ingredient.ingredient.ingredient_name }}   <br>
-        {% endfor %}
-        <br>
-        {{ recipe_instr }}
+    <h1> {{ recipe_name }} </h1>
+    {% if same %}
+        <a class="btn btn-default btn-primary" href="details/">Edit details</a>
+    {% endif %}
+    <br><br>
+    by {{ recipe_author }} <br>
+    Rating: {{ recipe_rating }}<br> <br>
+
+    {% for ingredient in ingredient_list %}
+        {{ ingredient.quantity }} {{ ingredient.ingredient.ingredient_name }}   <br>
+    {% endfor %}
+    <br>
+    {{ recipe_instr }}
 {% endblock %}
