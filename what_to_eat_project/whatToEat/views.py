@@ -48,6 +48,9 @@ def recipe(request, recipe_name_slug):
         context_dict['recipe_rating'] = recipe.rating
         context_dict['recipe_instr'] = recipe.instructions
         context_dict['recipe_author'] = recipe.author
+        if request.user == recipe.author.user:
+            context_dict['same'] = True
+
     except Recipe.DoesNotExist:
         pass
 
@@ -57,7 +60,15 @@ def recipe(request, recipe_name_slug):
 def recipe_details(request, recipe_name_slug):
 
     recipe = Recipe.objects.get(slug=recipe_name_slug)
-    context_dict = {}
+
+    context_dict = {
+        'all_ingredients': {}
+    }
+    try:
+        all_ingredients = Ingredient.objects.order_by('ingredient_name')
+        context_dict['all_ingredients'] = all_ingredients
+    except Ingredient.DoesNotExist:
+        pass
 
     if request.method == 'POST':
         recipe_form = DetailRecipeForm(data=request.POST)
@@ -68,7 +79,7 @@ def recipe_details(request, recipe_name_slug):
             recipe.instructions = instructions
             recipe.save()
 
-        return HttpResponseRedirect('/whatToEat/')
+        return HttpResponseRedirect('/whatToEat/recipe/'+recipe.slug+"/")
     else:
         # If the request was not a POST, display the form to enter details.
         try:
@@ -85,8 +96,7 @@ def recipe_details(request, recipe_name_slug):
     if request.user == recipe.author.user:
         return render(request, 'whatToEat/add_recipe_details.html', context_dict)
     else:
-        return HttpResponseRedirect('/whatToEat/recipe/'+recipe.slug)
-
+        return HttpResponseRedirect('/whatToEat/recipe/'+recipe.slug+"/")
 
 
 def add_recipe(request, category_name_slug):
@@ -103,7 +113,7 @@ def add_recipe(request, category_name_slug):
             recipe.save()
             # Now call the index() view.
             # The user will be shown the homepage.
-            return recipe_details(request, recipe.slug)
+            return HttpResponseRedirect("/whatToEat/recipe/" + recipe.slug + "/details/")
         else:
             # The supplied form contained errors - just print them to the terminal.
             print (recipe_form.errors, ingredient_form.errors, link_form.errors)
@@ -157,6 +167,38 @@ def update_inventory(request):
                 user = User.objects.get(username=request.user)
                 user_profile = UserProfile.objects.get(user=user)
                 row = Inventory.objects.get_or_create(user=user_profile, ingredient=ingredient)[0]
+                row.quantity = quantity
+                row.save()
+                dict['status'] = 'success'
+                dict['quantity'] = quantity
+                dict['ingredient'] = ingredient_id
+                dict['ingredientname'] = row.ingredient.ingredient_name
+            return HttpResponse(simplejson.dumps(dict), content_type="application/json")
+        except Inventory.DoesNotExist:
+            pass
+        except User.DoesNotExist, UserProfile.DoesNotExist:
+            pass
+    else:
+        return HttpResponse("Can't update via GET method")
+
+
+@login_required
+def update_recipe(request):
+    if request.method == 'POST' and request.is_ajax():
+        try:
+            dict = {
+                'status': 'failure',
+                'quantity': '0',
+                'ingredient': '0',
+                'recipe': '0'
+            }
+            ingredient_id = request.POST.get('ingredient', 0)
+            recipe_id = request.POST.get('recipe', 0)
+            quantity = request.POST.get('quantity', 0)
+            if ingredient_id != 0:
+                ingredient = Ingredient.objects.get(id=ingredient_id)
+                recipe = Recipe.objects.get(id=recipe_id)
+                row = Ingredients_In_Recipe.objects.get_or_create(recipe=recipe, ingredient=ingredient)[0]
                 row.quantity = quantity
                 row.save()
                 dict['status'] = 'success'

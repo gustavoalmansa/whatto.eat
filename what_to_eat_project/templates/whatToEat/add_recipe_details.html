@@ -10,6 +10,62 @@
 
     <h1>Enter details of {{ recipe.name }}</h1>
 
+    <br>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">Ingredients</div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Ingredient</th>
+                <th>Quantity</th>
+                <th>Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in used_ingredients %}
+                <tr>
+                    <td>{{ item.ingredient }}</td>
+                    <td>
+                        <form role="form" class="form-inline">
+                            {% csrf_token %}
+                            <div class="input-group custom-update-recipe">
+                                <input type="text" class="form-control" id="ingredient-{{ item.ingredient.id }}" value="{{ item.quantity }}" placeholder="Quantity">
+                                <div class="input-group-btn">
+                                    <button type="button" class="btn btn-default btn-primary">Update</button>
+                                </div>
+                            </div>
+                        </form>
+                    </td>
+                    <td>Not changed</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+
+    {% if all_ingredients %}
+        <div class="panel panel-default">
+            <div class="panel-heading">Add new ingredient to recipe</div>
+            <div class="panel-body">
+                <form role="form" class="form-inline">
+                    <select class="selectpicker">
+                        {% for item in all_ingredients %}
+                            <option value="{{ item.id }}">{{ item.ingredient_name }}</option>
+                        {% endfor %}
+                    </select>
+                    <div class="input-group">
+                        <div class="input-group-btn">
+                            <input class="form-control" value="" id="new-ingredient-quantity" placeholder="Quantity">
+                            <button type="button" class="btn btn-default btn-primary" id="btn-add-ingredient-recipe">Add</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    {% endif %}
+
     <form id="recipe_form" method="post" action="{% url 'recipe_details' recipe.slug %}">
         {% csrf_token %}
         {% bootstrap_form recipe_form %}
@@ -19,6 +75,6 @@
             </button>
         {% endbuttons %}
     </form>
-
-
+    <input type="hidden" id="recipe-id" value="{{ recipe.id }}">
+    <script> recipePage = true; </script>
 {% endblock %}

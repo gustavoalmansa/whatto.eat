@@ -10,6 +10,7 @@ urlpatterns = patterns('',
         url(r'^recipe/(?P<recipe_name_slug>[\w\-]+)/details/$', views.recipe_details, name='recipe_details'),
         url(r'^profile/', views.profile, name='profile'),
         url(r'^update-inventory/', views.update_inventory, name='update_inventory'),
+        url(r'^update-recipe/', views.update_recipe, name='update_recipe'),
         url(r'^search/$', views.search_results, name='search'),
 )
 

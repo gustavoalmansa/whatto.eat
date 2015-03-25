@@ -36,17 +36,17 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                                <li><a href="{% url 'index' %}">Home</a></li>
-                                    {% if user.is_authenticated %}
-                                        <li><a href="{% url 'profile' %}">My Profile</a></li>
-                                        <li><a href="{% url 'auth_logout' %}?next=/whatToEat/">Log Out</a></li>
-                                        <li><a href="{% url 'index' %}">Add a New Recipe</a></li>
-                                        <li><a href="{% url 'index' %}">Update Inventory</a></li>
+                <li><a href="{% url 'index' %}">Home</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'profile' %}">My Profile</a></li>
+                    <li><a href="{% url 'auth_logout' %}?next=/whatToEat/">Log Out</a></li>
+                    <li><a href="{% url 'index' %}">Add a New Recipe</a></li>
+                    <li><a href="{% url 'index' %}">Update Inventory</a></li>
 
-                                    {% else %}
-                                        <li><a href="{% url 'registration_register' %}">Register Here</a></li>
-                                        <li><a href="{% url 'auth_login' %}">Login</a></li>
-                                    {% endif %}
+                {% else %}
+                    <li><a href="{% url 'registration_register' %}">Register Here</a></li>
+                    <li><a href="{% url 'auth_login' %}">Login</a></li>
+                {% endif %}
                 <li><a href="{% url 'about' %}">About</a></li>
             </ul>
         </div>
@@ -60,21 +60,20 @@
 
 {% load whatToEat_extras %}
 
-    <div class="container-fluid">
-      <div class="row">
+<div class="container-fluid">
+    <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
-                {% block side_block %}
+            {% block side_block %}
                 {% get_category_list category %}
-                {% endblock %}
+            {% endblock %}
 
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-           <div>
-                </div>
+            <div>
+            </div>
         </div>
-      </div>
     </div>
-
+</div>
 
 <!-- Bootstrap core JavaScript
 ================================================== -->
@@ -85,6 +84,7 @@
 <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.4/js/bootstrap-select.min.js"></script>
 <script src="{% static "js/update_inventory.js" %}"></script>
+<script src="{% static "js/update_recipe.js" %}"></script>
 
 </body>
 </html>
