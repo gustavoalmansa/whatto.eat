@@ -9,13 +9,16 @@ from whatToEat.forms import InitialRecipeForm, IngredientForm, linkIngredientToR
 
 from whatToEat.models import Recipe, Category, Ingredients_In_Recipe, ShoppingList, Inventory, UserProfile, Ingredient
 import json as simplejson
+import watson
 
 
 def index(request):
     if request.method == 'POST':
+        print "request is post"
         form = SearchForm(request.POST)
         if form.is_valid():
             print "Search entered"
+
     else:
         form = SearchForm()
     return render(request, 'whatToEat/index.html', {'form': form})
@@ -297,7 +300,11 @@ def search_results(request):
     #TODO make function that actually searches recipes and returns them
     context_dict = {}
 
-    context_dict['result_list'] = ['implement', 'search with results','to go here']
+    if request.method == 'POST':
+        search_terms = request.POST["search"]
+        searchResults = watson.search(search_terms)
+
+        context_dict['result_list'] = searchResults
 
 
     return render(request, 'whatToEat/search.html', context_dict)
