@@ -298,27 +298,21 @@ def user_logout(request):
 
 def search_results(request):
     #TODO make function that actually searches recipes and returns them
-    ##IF user wants to search through inventory:
-    ##context_dict = {}
-    ##recipe_list = Recipe.object.all()
-    ##inventory = UserProfile.user.inventory
-    ##result_list = []
-    ##for recipe in recipe_list:
-        ##flag = true
-        ##for ingredients_in_recipe in recipe:
-            ##if ingredients_in_recipe not in inventory:
-                ##flag = false
-        ##if flag = true:
-            ##result_list += recipe
-    ##return result_list.orderby(rating)
+    context_dict = {}
 
-    ##IF user wants to search just with words, implement a normal seach...
 
     if request.method == 'POST':
         search_terms = request.POST["search"]
+        print search_terms
         searchResults = watson.search(search_terms)
-
-        context_dict['result_list'] = searchResults
+        print searchResults
+        print type(searchResults)
+        print searchResults[0]
+        recipes = Recipe.objects.filter(name=searchResults[0])
+        print recipes
+        print type(recipes)
+        context_dict['result_list'] = recipes
+        #context_dict['rating_list'] = ratings
 
 
     return render(request, 'whatToEat/search.html', context_dict)
