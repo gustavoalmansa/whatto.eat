@@ -37,7 +37,7 @@ class Migration(migrations.Migration):
             name='Ingredients_In_Recipe',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('quantity', models.CharField(default=b' ', max_length=100)),
+                ('quantity', models.DecimalField(default=0.0, max_digits=8, decimal_places=2)),
                 ('ingredient', models.ForeignKey(to='whatToEat.Ingredient')),
             ],
             options={
@@ -48,7 +48,7 @@ class Migration(migrations.Migration):
             name='Inventory',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('quantity', models.CharField(default=b' ', max_length=100)),
+                ('quantity', models.DecimalField(default=0.0, max_digits=20, decimal_places=2)),
                 ('ingredient', models.ForeignKey(to='whatToEat.Ingredient')),
             ],
             options={

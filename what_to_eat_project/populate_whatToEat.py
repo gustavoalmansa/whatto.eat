@@ -19,8 +19,9 @@ def populate():
     author_profile = add_profile(User.objects.get(username="User 1"))
     print("Users added")
 
-    add_unit("Millilitres")
-    add_unit("Grams")
+    ml = add_unit("Millilitres")
+    g = add_unit("Grams")
+    arbitrary = add_unit("")
     print("Units added")
 
     chicken_breast = add_ingred("Chicken Breast")
@@ -356,7 +357,7 @@ def populate():
     snack  = add_cat("Snacks")
     dinner  = add_cat("Dinner")
     dessert = add_cat("Dessert")
-    print("Catagories added")
+    print("Categories added")
 
     mushroomOmlette = add_recipe(name="Mushroom omelette", rating=4, author=author_profile, category=lunch,
                                  instructions="\n1) Crack the eggs into a mixing bowl \n2) Add a pinch of salt and pepper"
@@ -372,13 +373,13 @@ def populate():
                             "slide the omelette on to a plate")
     print("Recipe added")
 
-    relateIngredientDictToRecipe({egg_ingredient:"2 large",
-                                  salt:"A pinch of",
-                                  pepper:"A pinch of",
-                                  butter:"A knob of",
-                                  olive_oil:"A splash of",
-                                  cheddar_cheese:"A handful of",
-                                  mushroom:"3 large"},
+    relateIngredientDictToRecipe({egg_ingredient:[2, arbitrary],
+                                  salt:[.5, g],
+                                  pepper:[.5, g],
+                                  butter:[5, g],
+                                  olive_oil:[10, ml],
+                                  cheddar_cheese:[10, g],
+                                  mushroom:[3, arbitrary]},
                                  mushroomOmlette)
 
     add_ingredient_to_inventory(author_profile, 2.0, chicken_breast)
@@ -391,11 +392,11 @@ def populate():
                                     instructions = "1)Toast the bread in a toaster. Meanwhile, mix the cheese sauce, onions and a grind of pepper together in a small bowl.\n2)Transfer the toast to a non-stick grill rack and drape the ham over each slice. Next, spoon the cheese sauce onto the ham and spread it around with the back of the spoon. Scatter the grated cheese over the sauce, then pop the rarebit under a hot grill until the cheese turns bubbly and golden. Cut each slice in half and serve while still hot.")
 
 
-    relateIngredientDictToRecipe({white_bread:"4 slices of",
-                                  four_cheese_sauce:"350g tub of",
-                                  spring_onion:"3, finely sliced",
-                                  sliced_ham:"100g",
-                                  cheddar_cheese:"50g"},
+    relateIngredientDictToRecipe({white_bread:[50, g],
+                                  four_cheese_sauce:[350, g],
+                                  spring_onion:[3, arbitrary],
+                                  sliced_ham:[100, g],
+                                  cheddar_cheese:[50, g]},
                                 cheeseOnionRarebit)
 
     honeyGlazedChicken = add_recipe(name = "Honey Glazed Chicken",
@@ -405,10 +406,10 @@ def populate():
                                     instructions = "1)Put 2 chicken breasts, skin side up in a small baking dish and season.\n2)Squeeze the lemon into a bowl and stir in the honey and soy sauce. Spoon the mixture over the chicken, then tuck the squeezed-out half of lemon between the pieces (this will moisten and add flavour to the chicken).\n3)Roast the chicken breasts in a baking dish, uncovered, for 30-35 minutes in a preheated oven (190C/gas 5/fan oven 170C). Cook until done and richly glazed, basting with the juices at least twice. To check if they are done, prod the chicken with your finger - if it's still a bit soft, give it a bit longer.\n4)Serve with salad and potatoes roasted with herbs and garlic.")
 
 
-    relateIngredientDictToRecipe({chicken_breast:"2",
-                                  lemon:"half of a",
-                                  honey:"One Tablespoon",
-                                  soy_sauce:"One Tablespoon"},
+    relateIngredientDictToRecipe({chicken_breast:[2, arbitrary],
+                                  lemon:[.5, arbitrary],
+                                  honey:[15, g],
+                                  soy_sauce:[15, g]},
                                  honeyGlazedChicken)
 
     stickyChickenDrumstick = add_recipe("Sticky Chicken Drumstick",
@@ -416,12 +417,12 @@ def populate():
                                         category=dinner,
                                         instructions="1)Make 3 slashes on each of the drumsticks. Mix together the soy, honey, oil, tomato puree and mustard. Pour this mixture over the chicken and coat thoroughly. Leave to marinate for 30 mins at room temperature or overnight in the fridge. Heat oven to 200C/fan 180C/gas 6.\n2)Tip the chicken into a shallow roasting tray and cook for 35 mins, turning occasionally, until the chicken is tender and glistening with the marinade.")
 
-    relateIngredientDictToRecipe({chicken_drumstick:"Eight",
-                                  soy_sauce:"Two Tablespoons",
-                                  honey:"One Tablespoon",
-                                  olive_oil:"One Tablespoon",
-                                  tomato_puree: "One Tablespoon",
-                                  dijon:"One Tablespoon"},
+    relateIngredientDictToRecipe({chicken_drumstick:[8, arbitrary],
+                                  soy_sauce:[30, ml],
+                                  honey:[15, ml],
+                                  olive_oil:[15, ml],
+                                  tomato_puree: [15, ml],
+                                  dijon:[1, ml]},
                                  stickyChickenDrumstick)
 
     chocolatesouflee = add_recipe("Basic Chocolate Souflee", rating = 5,
@@ -429,21 +430,16 @@ def populate():
                                   category = dessert,
                                   instructions = "1)Brush four 200ml souffle dishes and brush them with softened butter. Chill them for 5 minutes and then coat each lightly with some grated dark chocolate. 2) For the custard cream, mix flour, sugar, and cornflour. Put egg yolk and whole egg into a bowl, stir, then beat in half of the flour mixture to give a smooth paste. Tip in the rest of the flour mixture and mix well. 3) Pour the milk and cream into a pan and bring just to a boil. Remove from the heat, and add chocolate to mix until smooth. 4) Slowly mix chocolate into the custard cream over light heat until it is a thick paste. Then leave it to cool as you make the ganache. 5)Slowly warm cream in a pan. Just before it boils, take off the heat and add chocolate and beat until it has a velvetty texture. Allow this to cool as well. 6)Heat up the oven to 190 degrees Celsius. Whisk your egg whites until they have soft peaks. 7) Mix the cream and ganache, and then carefully fold in the egg whites. 8)Spoon the egg white and cream mixture into each dish, filling it up 2/3s of the way. Bang the dishes down a bit to ensure that the dishes are filled completely, and then even out with a palette knife. 9) Put the souffles in the oven for about 15 minutes. 10) When risen, take out of the oven and serve as soon as possible.")
 
-    relateIngredientDictToRecipe({butter:"25 grams",
-                                  dark_chocolate:"finely grated",
-                                  flour:"2 tablespoons",
-                                  sugar:".5 teaspoons",
-                                  eggyolk:"1",
-                                  egg_ingredient:"1 whole",
-                                  milk:"100ml",
-                                  cream:"50ml",
-                                  dark_chocolate:"25 grams",
-                                  cacaopowder: "1 tablespoon",
-                                  eggwhite:"6",
-                                  sugar:"85g for egg whites",
-                                  cream:"50ml for ganache",
-                                  dark_chocolate:"50g for ganache",
-                                  cacaopowder:"50g for ganache"},
+    relateIngredientDictToRecipe({butter : [25, g],
+                                  flour : [30, g],
+                                  sugar : [5, g],
+                                  eggyolk : [1, arbitrary],
+                                  egg_ingredient : [1, arbitrary],
+                                  milk : [100, ml],
+                                  cream : [100, ml],
+                                  dark_chocolate : [50, g],
+                                  eggwhite: [6, arbitrary],
+                                  cacaopowder:[60, g]},
                                  chocolatesouflee)
     print ("Recipes added, and ingredients related")
 
@@ -463,7 +459,7 @@ def add_ingred(name):
 
 def relateIngredientDictToRecipe(ingredientDict, recipe):
     for ingredient in ingredientDict:
-        relate_ingred_to_recipe(ingredient, recipe, ingredientDict[ingredient])
+        relate_ingred_to_recipe(ingredient, recipe, ingredientDict[ingredient][0], ingredientDict[ingredient][1])
 
 def add_recipe(name, rating, author, category, instructions):
     r = Recipe.objects.get_or_create(name=name, rating=rating,
@@ -480,10 +476,10 @@ def add_ingredient_to_inventory(user_profile, quantity, ingredient):
     return i
 
 
-def relate_ingred_to_recipe(ingredient, recipe, quantity):
+def relate_ingred_to_recipe(ingredient, recipe, quantity, unit):
     ir = Ingredients_In_Recipe.objects.get_or_create(ingredient=ingredient,
                                                      recipe=recipe,
-                                                     quantity=quantity)
+                                                     quantity=quantity, unit = unit)
     return ir
 
 

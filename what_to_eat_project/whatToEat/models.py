@@ -63,7 +63,7 @@ class Unit(models.Model):
 
 class Inventory(models.Model):
     ingredient = models.ForeignKey(Ingredient)
-    quantity = models.CharField(max_length=100, default=" ")
+    quantity = models.DecimalField(max_digits=20, decimal_places=2, default=0.00)
     user = models.ForeignKey(UserProfile)
     unit = models.ForeignKey(Unit, null=True)
 
@@ -74,9 +74,9 @@ class Inventory(models.Model):
 class Ingredients_In_Recipe(models.Model):
     ingredient = models.ForeignKey(Ingredient)
     recipe = models.ForeignKey(Recipe)
-    quantity = models.CharField(max_length=100, default=" ")
+    quantity = models.DecimalField(max_digits=8, decimal_places=2, default=0.00)
     unit = models.ForeignKey(Unit, null=True)
 
     def __unicode__(self):
 
-        return self.quantity+" "+self.ingredient.ingredient_name+" "+self.recipe.name
+        return str(self.quantity)+" " + str(self.unit) +" " +self.ingredient.ingredient_name+" "+self.recipe.name
