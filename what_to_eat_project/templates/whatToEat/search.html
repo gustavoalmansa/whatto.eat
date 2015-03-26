@@ -21,7 +21,7 @@
                             {% for result in result_list %}
                                 <div class="list-group-item">
                                     <h4 class="list-group-item-heading"><a href="/whatToEat/recipe/{{ result.slug }}">{{ result.name }}</a></h4>
-                                    <p class="list-group-item-text">{{ result.summary }}</p>
+                                    <p class="list-group-item-text">Rating: {{ result.rating }}</p>
                                 </div>
                             {% endfor %}
                         </div>

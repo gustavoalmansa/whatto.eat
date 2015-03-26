@@ -6,6 +6,7 @@ from django.shortcuts import render
 from django.shortcuts import redirect
 import json
 import watson
+from string import digits
 
 from whatToEat.forms import InitialRecipeForm, IngredientForm, linkIngredientToRecipe, DetailRecipeForm, UserProfileForm, SearchForm
 
@@ -334,17 +335,16 @@ def search_results(request):
     context_dict = {}
 
     if request.method == 'POST':
+        recipes = []
         search_terms = request.POST["search"]
-        print search_terms
         searchResults = watson.search(search_terms)
-        print searchResults
-        print type(searchResults)
-        print searchResults[0]
-        recipes = Recipe.objects.filter(name=searchResults[0])
-        print recipes
-        print type(recipes)
+        # Gets search results which aren't ingredients
+        c = 0
+        while c<len(searchResults):
+            if str(searchResults[c])[0] not in digits:
+                recipes += [Recipe.objects.get(name=searchResults[c])]
+            c += 1
         context_dict['result_list'] = recipes
-        #context_dict['rating_list'] = ratings
 
 
     return render(request, 'whatToEat/search.html', context_dict)
