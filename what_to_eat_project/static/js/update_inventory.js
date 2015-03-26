@@ -49,8 +49,9 @@ function initPage() {
 
 
     function deleteClickHandler() {
-        $(this).closest("tr").hide();
-        //Change
+        var inputField = $(this).closest("form").find("input[type=text]");
+        var ingredientId = inputField.attr("id").split("-")[1];
+        deleteFromDatabase(ingredientId);
     }
 
 
@@ -98,7 +99,9 @@ function initPage() {
             select.append("<option value='2'>Grams</option>");
             select.append("<option value='1'>Millilitres</option>");
         }
-
+        var dangerButton = $("<a>", {class: "btn btn-danger"});
+        var spanIcon = $("<span>", {class: "fa fa-times"});
+        dangerButton.append(spanIcon);
 
         button.html("update");
         inputGroupBtn.append(button);
@@ -106,6 +109,7 @@ function initPage() {
         div2.append(input);
         div2.append(inputGroupBtn);
         form.append(div2);
+        form.append(dangerButton);
         column2.append(form);
         column1.html(ingredientName);
         column3.html("Sucessfully added");
@@ -180,4 +184,25 @@ function initPage() {
                 }
             })
     }
+
+    function deleteFromDatabase(ingredientId){
+        var passedData = {ingredient: ingredientId};
+        $.ajax({
+            url: "/whatToEat/delete-inventory/",
+            dataType: "JSON",
+            data: passedData
+        })
+            .done(function (data) {
+
+                var status = data.status;
+                var ingredientId = data.ingredient;
+                console.log("OK");
+                console.log("id " + ingredientId);
+                if (status == "success" && ingredientId > 0) {
+                    resetAllStatus();
+                    $("#ingredient-"+ingredientId).closest("tr").hide();
+                }
+            })
+    }
+
 }

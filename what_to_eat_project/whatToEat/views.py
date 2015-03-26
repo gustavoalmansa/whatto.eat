@@ -247,6 +247,31 @@ def update_inventory(request):
 
 
 @login_required
+def delete_inventory(request):
+    if request.method == 'POST' and request.is_ajax():
+        try:
+            dict = {
+                'status': 'failure',
+                }
+            ingredient_id = request.POST.get('ingredient', 0)
+            if ingredient_id != 0:
+                ingredient = Ingredient.objects.get(id=ingredient_id)
+                user = User.objects.get(username=request.user)
+                user_profile = UserProfile.objects.get(user=user)
+                row = Inventory.objects.get_or_create(user=user_profile, ingredient=ingredient)[0]
+                row.delete()
+                dict['status'] = 'success'
+                dict['ingredient'] = ingredient_id
+            return HttpResponse(json.dumps(dict), content_type="application/json")
+        except Inventory.DoesNotExist:
+            pass
+        except User.DoesNotExist, UserProfile.DoesNotExist:
+            pass
+    else:
+        return HttpResponse("Can't update via GET method")
+
+
+@login_required
 def update_recipe(request):
     if request.method == 'POST' and request.is_ajax():
         try:
@@ -255,7 +280,7 @@ def update_recipe(request):
                 'quantity': '0',
                 'ingredient': '0',
                 'recipe': '0',
-            }
+                }
             ingredient_id = request.POST.get('ingredient', 0)
             recipe_id = request.POST.get('recipe', 0)
             quantity = request.POST.get('quantity', 0)
@@ -327,6 +352,4 @@ def search_results(request):
 
 def login_redirect(request):
     url = '/whatToEat/profile'
-
-
     return redirect(url)
