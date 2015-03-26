@@ -50,6 +50,7 @@ function initPage() {
 
     function deleteClickHandler() {
         $(this).closest("tr").hide();
+        //Change
     }
 
 
