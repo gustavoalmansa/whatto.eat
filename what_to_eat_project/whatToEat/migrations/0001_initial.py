@@ -81,6 +81,16 @@ class Migration(migrations.Migration):
             bases=(models.Model,),
         ),
         migrations.CreateModel(
+            name='Unit',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('unit_name', models.CharField(max_length=50)),
+            ],
+            options={
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
             name='UserProfile',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
@@ -104,6 +114,12 @@ class Migration(migrations.Migration):
         ),
         migrations.AddField(
             model_name='inventory',
+            name='unit',
+            field=models.ForeignKey(to='whatToEat.Unit', null=True),
+            preserve_default=True,
+        ),
+        migrations.AddField(
+            model_name='inventory',
             name='user',
             field=models.ForeignKey(to='whatToEat.UserProfile'),
             preserve_default=True,
@@ -112,6 +128,12 @@ class Migration(migrations.Migration):
             model_name='ingredients_in_recipe',
             name='recipe',
             field=models.ForeignKey(to='whatToEat.Recipe'),
+            preserve_default=True,
+        ),
+        migrations.AddField(
+            model_name='ingredients_in_recipe',
+            name='unit',
+            field=models.ForeignKey(to='whatToEat.Unit', null=True),
             preserve_default=True,
         ),
     ]

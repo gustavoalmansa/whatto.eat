@@ -22,16 +22,18 @@ function initPage() {
 
 
     //Event registers
-    $(".table tbody").on("click", ".custom-update .btn", updateClickHandler);
+    $(".table tbody").on("click", ".custom-update .btn-update", updateClickHandler);
     $("#btn-add-ingredient").on("click", addClickHandler);
 
 
     //Event handlers
     function updateClickHandler() {
         var inputField = $(this).closest(".custom-update").find("input");
+        var selectField = $(this).closest(".custom-update").find("select");
         var quantity = inputField.val();
         var ingredientId = inputField.attr("id").split("-")[1];
-        updateIngredient(ingredientId, quantity);
+        var unitId = selectField.val();
+        updateIngredient(ingredientId, quantity, unitId);
     }
 
     function addClickHandler() {
@@ -39,6 +41,7 @@ function initPage() {
         var inputField = $(this).parent().find("#new-ingredient-quantity");
         var ingredientId = selectField.val();
         var quantity = inputField.val();
+        var unitId = selectField.val();
         addIngredient(ingredientId, quantity);
     }
 
@@ -114,8 +117,8 @@ function initPage() {
             .html(text);
     }
 
-    function updateIngredient(ingredientId, quantity) {
-        var passedData = {ingredient: ingredientId, quantity: quantity};
+    function updateIngredient(ingredientId, quantity, unit) {
+        var passedData = {ingredient: ingredientId, quantity: quantity, unit: unit};
         $.ajax({
             url: "/whatToEat/update-inventory/",
             dataType: "JSON",
@@ -135,7 +138,7 @@ function initPage() {
     }
 
 
-    function addIngredient(ingredientId, quantity) {
+    function addIngredient(ingredientId, quantity, unit) {
         var passedData = {ingredient: ingredientId, quantity: quantity};
         $.ajax({
             url: "/whatToEat/update-inventory/",

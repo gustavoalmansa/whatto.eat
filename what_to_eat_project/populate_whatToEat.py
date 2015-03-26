@@ -4,7 +4,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'what_to_eat_project.settings')
 import django
 django.setup()
 
-from whatToEat.models import Ingredient, Recipe, Category, UserProfile, Inventory, Ingredients_In_Recipe
+from whatToEat.models import Ingredient, Recipe, Category, UserProfile, Inventory, Ingredients_In_Recipe, Unit
 from django.contrib.auth.models import User
 
 
@@ -18,6 +18,10 @@ def populate():
 
     author_profile = add_profile(User.objects.get(username="User 1"))
     print("Users added")
+
+    add_unit("Millilitres")
+    add_unit("Grams")
+    print("Units added")
 
     chicken_breast = add_ingred("Chicken Breast")
     egg_ingredient = add_ingred("Eggs")
@@ -481,6 +485,11 @@ def relate_ingred_to_recipe(ingredient, recipe, quantity):
                                                      recipe=recipe,
                                                      quantity=quantity)
     return ir
+
+
+def add_unit(name):
+    unit = Unit.objects.get_or_create(unit_name=name)
+    return unit
 
 if __name__ == '__main__':
     print "Running population script v0.01"
