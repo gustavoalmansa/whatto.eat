@@ -298,9 +298,7 @@ def user_logout(request):
     return HttpResponseRedirect('/whatToEat/')
 
 def search_results(request):
-    #TODO make function that actually searches recipes and returns them
     context_dict = {}
-
 
     if request.method == 'POST':
         search_terms = request.POST["search"]
