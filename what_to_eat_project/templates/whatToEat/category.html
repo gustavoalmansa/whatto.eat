@@ -19,10 +19,12 @@
                                 </div>
                             {% endfor %}
                             {% endif %}
+                                {% if user.is_authenticated %}
                                 <div class="list-group-item">
                                     <h4 class="list-group-item-heading"><a href="/whatToEat/category/{{ category.slug }}/add_recipe/">Add a New Recipe!</a></h4>
                                     <p class="list-group-item-text">You must be logged in to add Recipes</p>
                                 </div>
+                                {% endif %}
                         
                         </div>
                     </div>
