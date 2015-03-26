@@ -23,6 +23,7 @@ function initPage() {
 
     //Event registers
     $(".table tbody").on("click", ".custom-update .btn-update", updateClickHandler);
+    $(".table tbody").on("click", ".btn-danger", deleteClickHandler);
     $("#btn-add-ingredient").on("click", addClickHandler);
 
 
@@ -44,6 +45,11 @@ function initPage() {
         var quantity = inputField.val();
         var unitId = unitList.val();
         addIngredient(ingredientId, quantity, unitId);
+    }
+
+
+    function deleteClickHandler() {
+        $(this).closest("tr").hide();
     }
 
 

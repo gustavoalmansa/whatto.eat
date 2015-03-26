@@ -27,7 +27,7 @@
                             {% csrf_token %}
                             <div class="input-group custom-update">
                                 {% if all_units %}
-                                    <select class="selectpicker">
+                                    <select data-width="100px" class="selectpicker">
                                         {% for unit in all_units %}
                                             {% if unit.id == item.unit.id %}
                                                 <option value="{{ unit.id }}">{{ unit.unit_name }}</option>
@@ -46,6 +46,10 @@
                                     <button type="button" class="btn btn-default btn-primary btn-update">Update</button>
                                 </div>
                             </div>
+                            <a class="btn btn-danger">
+                                <span class="fa fa-times"></span>
+                            </a>
+
                         </form>
                     </td>
                     <td>Not changed</td>
@@ -67,7 +71,7 @@
                         {% endfor %}
                     </select>
 
-                    <select class="selectpicker" id="list-units">
+                    <select data-width="100px" class="selectpicker" id="list-units">
                         {% for unit in all_units %}
                             <option value="{{ unit.id }}">{{ unit.unit_name }}</option>
                         {% endfor %}
