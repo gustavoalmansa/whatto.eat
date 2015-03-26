@@ -488,7 +488,7 @@ def relate_ingred_to_recipe(ingredient, recipe, quantity):
 
 
 def add_unit(name):
-    unit = Unit.objects.get_or_create(unit_name=name)
+    unit = Unit.objects.get_or_create(unit_name=name)[0]
     return unit
 
 if __name__ == '__main__':
