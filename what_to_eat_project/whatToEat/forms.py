@@ -9,7 +9,7 @@ class InitialRecipeForm(forms.ModelForm):
 
     class Meta:
         model = Recipe
-        exclude = ('instructions', 'category', 'author', 'rating', 'slug')
+        exclude = ('instructions', 'category', 'author', 'like', 'slug')
 
 
 class DetailRecipeForm(forms.ModelForm):
@@ -17,7 +17,7 @@ class DetailRecipeForm(forms.ModelForm):
 
     class Meta:
         model = Recipe
-        exclude = ('name', 'category', 'author', 'rating', 'slug')
+        exclude = ('name', 'category', 'author', 'like', 'slug')
 
 
 class IngredientForm(forms.ModelForm):
@@ -50,3 +50,8 @@ class UserProfileForm(forms.ModelForm):
 
 class SearchForm(forms.Form):
     search = forms.CharField(label="Search Recipes", max_length=100)
+
+class LikeForm(forms.Form):
+    inLike = forms.IntegerField(max_value=1, min_value=0, label="Like Recipe")
+    class Meta:
+        exlude = ('inLike')

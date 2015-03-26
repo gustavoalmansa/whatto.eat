@@ -16,7 +16,7 @@
                             {% for recipe in recipes %}
                                 <div class="list-group-item">
                                     <h4 class="list-group-item-heading"><a href="/whatToEat/recipe/{{ recipe.slug }}">{{ recipe.name }}</a></h4>
-                                    <p class="list-group-item-text">Rating: {{ recipe.rating }}</p>
+                                    <p class="list-group-item-text">Rating: {{ recipe.aggregate }}</p>
                                 </div>
                             {% endfor %}
                             {% endif %}

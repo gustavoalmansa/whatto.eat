@@ -57,22 +57,13 @@ def recipe(request, recipe_name_slug):
     context_dict = {}
     try:
         recipe = Recipe.objects.get(slug=recipe_name_slug)
-        context_dict['ingredient_list'] = []
-        # for ingred in Ingredients_In_Recipe.objects.filter(recipe=recipe):
-        #    context_dict['ingredient_list'] += [ingred]
-
         context_dict['ingredient_list'] = Ingredients_In_Recipe.objects.filter(recipe=recipe)
-
-        # context_dict['ingredient'] = ingred
-        context_dict['recipe_name'] = recipe.name
-        context_dict['recipe_rating'] = recipe.rating
-        context_dict['recipe_instr'] = recipe.instructions
-        context_dict['recipe_author'] = recipe.author
+        context_dict['recipe'] = recipe
         if request.user == recipe.author.user:
             context_dict['same'] = True
 
     except Recipe.DoesNotExist:
-        pass
+        return redirect('/404/')
 
     return render(request, 'whatToEat/recipe.html', context_dict)
 
@@ -340,7 +331,7 @@ def search_results(request):
         searchResults = watson.search(search_terms)
         # Gets search results which aren't ingredients
         c = 0
-        while c<len(searchResults):
+        while c < len(searchResults):
             if str(searchResults[c])[0] not in digits:
                 recipes += [Recipe.objects.get(name=searchResults[c])]
             c += 1

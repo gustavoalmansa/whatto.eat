@@ -2,7 +2,6 @@ from django.db import models
 from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
 
-
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
 
@@ -32,14 +31,18 @@ class Category(models.Model):
 class Recipe(models.Model):
     name = models.CharField(max_length=128, unique=True)
     slug = models.SlugField(unique=True)
-    rating = models.IntegerField(default=0)
+    likes = models.IntegerField()
+    dislikes = models.IntegerField()
+    rating = models.IntegerField()
     author = models.ForeignKey(UserProfile)
     category = models.ForeignKey(Category)
     instructions = models.CharField(max_length=5000, default=" ")
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
+        self.rating = self.likes-self.dislikes
         super(Recipe, self).save(*args, **kwargs)
+
 
     def __unicode__(self):
         return self.name

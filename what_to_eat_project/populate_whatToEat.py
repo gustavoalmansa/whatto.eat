@@ -23,7 +23,7 @@ def populate():
     g = add_unit("Grams")
     arbitrary = add_unit("")
     print("Units added")
-
+    print("Adding ingredients")
     chicken_breast = add_ingred("Chicken Breast")
     egg_ingredient = add_ingred("Eggs")
     honey = add_ingred("Honey")
@@ -200,7 +200,7 @@ def populate():
     maltvingar =  add_ingred("Malt Vinegar")
     mandarinorange =  add_ingred("Mandarin Oranges")
     mango =  add_ingred("Mangoes")
-    print("50% of ingredients add..")
+    print("50% of ingredients added..")
     margarine =  add_ingred("Margarine")
     maplesyrup =  add_ingred("Maple Syrup")
     marmalade =  add_ingred("Marmalade")
@@ -291,62 +291,57 @@ def populate():
     soybeans =  add_ingred("Soybeans")
     tofu =  add_ingred("Tofu")
     sugar =  add_ingred("Sugar")
-    spinach =  add_ingred("Spinach")
-    squid =  add_ingred("Squid")
-    staranise =  add_ingred("Star Anise")
-    steak =  add_ingred("Steak")
-    stevia =  add_ingred("Stevia")
-    stilton =  add_ingred("Stilton")
-    strawberries =  add_ingred("Strawberries")
-    sweetpotatoe =  add_ingred("Sweet Potatoes")
-    condensedmilk =  add_ingred("Condensed Milk")
-    swisscheese =  add_ingred("Swiss Cheese")
-    swordfish =  add_ingred("Swordfish")
-    sweetchilisauce =  add_ingred("Sweet Chili Sauce")
-    tabascosauce =  add_ingred("Tabasco Sauce")
-    tamarind =  add_ingred("Tamarind")
-    tandooripaste =  add_ingred("Tandoori Paste")
-    tarragon =  add_ingred("Tarragon")
-    tempeh =  add_ingred("Tempeh")
-    thyme =  add_ingred("Thyme")
-    tofu = add_ingred("Tofu")
-    trout =  add_ingred("Trout")
-    tomatopaste =  add_ingred("Tomato Paste")
-    tomatosauce =  add_ingred("Tomato Sauce")
-    tonicwater =  add_ingred("Tonic Water")
-    tuna = add_ingred("Tuna")
-    turkey =  add_ingred("Turkey")
-    turmericpowder =  add_ingred("Turmeric Powder")
-    trumeric =  add_ingred("Turmeric")
-    turnips =  add_ingred("Turnips")
-    vanilla =  add_ingred("Vanilla Beans")
-    vanillaextract =  add_ingred("Vanilla extract")
-    venison =  add_ingred("Venison")
-    vinegar =  add_ingred("Vinegar")
-    vermouth =  add_ingred("Vermouth")
-    walnuts =  add_ingred("Walnuts")
-    wasabi =  add_ingred("Wasabi")
-    waterchestnut =  add_ingred("Water Chestnuts")
-    water =  add_ingred("Water")
-    watercress =  add_ingred("Watercress")
-    watermelon =  add_ingred("Watermelon")
-    wheatgerm =  add_ingred("Wheat Germ")
-    whitebeans =  add_ingred("White Beans")
-    wildrice =  add_ingred("Wild Rice")
-    wine =  add_ingred("Red Wine")
-    whitewine =  add_ingred("White Wine")
-    worchestershiresauce =  add_ingred("Worcestershire Sauce")
-    yeast =  add_ingred("Fresh Yeast")
-    dryyeast =  add_ingred("Dry Yeast")
-    yogurt =  add_ingred("Yogurt")
-    zucchini =  add_ingred("zucchini")
-    lemonzest =  add_ingred("Lemon Zest")
-    orangezest =  add_ingred("Orange Zest")
-
-
-
-
-
+    # spinach =  add_ingred("Spinach")
+    # squid =  add_ingred("Squid")
+    # staranise =  add_ingred("Star Anise")
+    # steak =  add_ingred("Steak")
+    # stevia =  add_ingred("Stevia")
+    # stilton =  add_ingred("Stilton")
+    # strawberries =  add_ingred("Strawberries")
+    # sweetpotatoe =  add_ingred("Sweet Potatoes")
+    # condensedmilk =  add_ingred("Condensed Milk")
+    # swisscheese =  add_ingred("Swiss Cheese")
+    # swordfish =  add_ingred("Swordfish")
+    # sweetchilisauce =  add_ingred("Sweet Chili Sauce")
+    # tabascosauce =  add_ingred("Tabasco Sauce")
+    # tamarind =  add_ingred("Tamarind")
+    # tandooripaste =  add_ingred("Tandoori Paste")
+    # tarragon =  add_ingred("Tarragon")
+    # tempeh =  add_ingred("Tempeh")
+    # thyme =  add_ingred("Thyme")
+    # tofu = add_ingred("Tofu")
+    # trout =  add_ingred("Trout")
+    # tomatopaste =  add_ingred("Tomato Paste")
+    # tomatosauce =  add_ingred("Tomato Sauce")
+    # tonicwater =  add_ingred("Tonic Water")
+    # tuna = add_ingred("Tuna")
+    # turkey =  add_ingred("Turkey")
+    # turmericpowder =  add_ingred("Turmeric Powder")
+    # trumeric =  add_ingred("Turmeric")
+    # turnips =  add_ingred("Turnips")
+    # vanilla =  add_ingred("Vanilla Beans")
+    # vanillaextract =  add_ingred("Vanilla extract")
+    # venison =  add_ingred("Venison")
+    # vinegar =  add_ingred("Vinegar")
+    # vermouth =  add_ingred("Vermouth")
+    # walnuts =  add_ingred("Walnuts")
+    # wasabi =  add_ingred("Wasabi")
+    # waterchestnut =  add_ingred("Water Chestnuts")
+    # water =  add_ingred("Water")
+    # watercress =  add_ingred("Watercress")
+    # watermelon =  add_ingred("Watermelon")
+    # wheatgerm =  add_ingred("Wheat Germ")
+    # whitebeans =  add_ingred("White Beans")
+    # wildrice =  add_ingred("Wild Rice")
+    # wine =  add_ingred("Red Wine")
+    # whitewine =  add_ingred("White Wine")
+    # worchestershiresauce =  add_ingred("Worcestershire Sauce")
+    # yeast =  add_ingred("Fresh Yeast")
+    # dryyeast =  add_ingred("Dry Yeast")
+    # yogurt =  add_ingred("Yogurt")
+    # zucchini =  add_ingred("zucchini")
+    # lemonzest =  add_ingred("Lemon Zest")
+    # orangezest =  add_ingred("Orange Zest")
 
 
 
@@ -359,7 +354,7 @@ def populate():
     dessert = add_cat("Dessert")
     print("Categories added")
 
-    mushroomOmlette = add_recipe(name="Mushroom omelette", rating=4, author=author_profile, category=lunch,
+    mushroomOmlette = add_recipe(name="Mushroom omelette", likes=4, dislikes=1, author=author_profile, category=lunch,
                                  instructions="\n1) Crack the eggs into a mixing bowl \n2) Add a pinch of salt and pepper"
                             "\n3) Beat well with a fork Quarter or roughly chop the mushrooms and add to a small frying"
                             " pan on a high heat with a small knob of butter, a drizzle of olive oil and a pinch of "
@@ -387,7 +382,7 @@ def populate():
     print("Ingredients added to inventory")
 
     cheeseOnionRarebit = add_recipe(name="Quick Cheese and Onion Rarebit",
-                                    rating=3, author=author_profile,
+                                    likes=3, dislikes=1, author=author_profile,
                                     category=snack,
                                     instructions = "1)Toast the bread in a toaster. Meanwhile, mix the cheese sauce, onions and a grind of pepper together in a small bowl.\n2)Transfer the toast to a non-stick grill rack and drape the ham over each slice. Next, spoon the cheese sauce onto the ham and spread it around with the back of the spoon. Scatter the grated cheese over the sauce, then pop the rarebit under a hot grill until the cheese turns bubbly and golden. Cut each slice in half and serve while still hot.")
 
@@ -400,7 +395,7 @@ def populate():
                                 cheeseOnionRarebit)
 
     honeyGlazedChicken = add_recipe(name = "Honey Glazed Chicken",
-                                    rating=5,
+                                    likes=5, dislikes=1,
                                     author = author_profile,
                                     category=dinner,
                                     instructions = "1)Put 2 chicken breasts, skin side up in a small baking dish and season.\n2)Squeeze the lemon into a bowl and stir in the honey and soy sauce. Spoon the mixture over the chicken, then tuck the squeezed-out half of lemon between the pieces (this will moisten and add flavour to the chicken).\n3)Roast the chicken breasts in a baking dish, uncovered, for 30-35 minutes in a preheated oven (190C/gas 5/fan oven 170C). Cook until done and richly glazed, basting with the juices at least twice. To check if they are done, prod the chicken with your finger - if it's still a bit soft, give it a bit longer.\n4)Serve with salad and potatoes roasted with herbs and garlic.")
@@ -413,7 +408,7 @@ def populate():
                                  honeyGlazedChicken)
 
     stickyChickenDrumstick = add_recipe("Sticky Chicken Drumstick",
-                                        rating = 4, author = author_profile,
+                                        likes = 4, dislikes=1, author = author_profile,
                                         category=dinner,
                                         instructions="1)Make 3 slashes on each of the drumsticks. Mix together the soy, honey, oil, tomato puree and mustard. Pour this mixture over the chicken and coat thoroughly. Leave to marinate for 30 mins at room temperature or overnight in the fridge. Heat oven to 200C/fan 180C/gas 6.\n2)Tip the chicken into a shallow roasting tray and cook for 35 mins, turning occasionally, until the chicken is tender and glistening with the marinade.")
 
@@ -425,8 +420,8 @@ def populate():
                                   dijon:[1, ml]},
                                  stickyChickenDrumstick)
 
-    chocolatesouflee = add_recipe("Basic Chocolate Souflee", rating = 5,
-                                  author = author_profile,
+    chocolatesouflee = add_recipe("Basic Chocolate Souflee", likes = 5,
+                                  dislikes=1, author = author_profile,
                                   category = dessert,
                                   instructions = "1)Brush four 200ml souffle dishes and brush them with softened butter. Chill them for 5 minutes and then coat each lightly with some grated dark chocolate. 2) For the custard cream, mix flour, sugar, and cornflour. Put egg yolk and whole egg into a bowl, stir, then beat in half of the flour mixture to give a smooth paste. Tip in the rest of the flour mixture and mix well. 3) Pour the milk and cream into a pan and bring just to a boil. Remove from the heat, and add chocolate to mix until smooth. 4) Slowly mix chocolate into the custard cream over light heat until it is a thick paste. Then leave it to cool as you make the ganache. 5)Slowly warm cream in a pan. Just before it boils, take off the heat and add chocolate and beat until it has a velvetty texture. Allow this to cool as well. 6)Heat up the oven to 190 degrees Celsius. Whisk your egg whites until they have soft peaks. 7) Mix the cream and ganache, and then carefully fold in the egg whites. 8)Spoon the egg white and cream mixture into each dish, filling it up 2/3s of the way. Bang the dishes down a bit to ensure that the dishes are filled completely, and then even out with a palette knife. 9) Put the souffles in the oven for about 15 minutes. 10) When risen, take out of the oven and serve as soon as possible.")
 
@@ -443,6 +438,7 @@ def populate():
                                  chocolatesouflee)
     print ("Recipes added, and ingredients related")
 
+
 def add_profile(user):
     up = UserProfile.objects.get_or_create(user=user)[0]
     return up
@@ -457,12 +453,15 @@ def add_ingred(name):
     i = Ingredient.objects.get_or_create(ingredient_name=name)[0]
     return i
 
+
 def relateIngredientDictToRecipe(ingredientDict, recipe):
     for ingredient in ingredientDict:
         relate_ingred_to_recipe(ingredient, recipe, ingredientDict[ingredient][0], ingredientDict[ingredient][1])
 
-def add_recipe(name, rating, author, category, instructions):
-    r = Recipe.objects.get_or_create(name=name, rating=rating,
+
+def add_recipe(name, likes, dislikes, author, category, instructions):
+    r = Recipe.objects.get_or_create(name=name, likes=likes, dislikes=dislikes,
+                                     rating=likes-dislikes,
                                      author=author, category=category,
                                      instructions=instructions)[0]
     return r
