@@ -22,8 +22,8 @@ class Category(models.Model):
     slug = models.SlugField(unique=True)
 
     def save(self, *args, **kwargs):
-                self.slug = slugify(self.name)
-                super(Category, self).save(*args, **kwargs)
+        self.slug = slugify(self.name)
+        super(Category, self).save(*args, **kwargs)
 
     def __unicode__(self):
         return self.name
@@ -54,10 +54,18 @@ class ShoppingList(models.Model):
         return self.shopping
 
 
+class Unit(models.Model):
+    unit_name = models.CharField(max_length=50)
+
+    def __unicode__(self):
+        return self.unit_name
+
+
 class Inventory(models.Model):
     ingredient = models.ForeignKey(Ingredient)
     quantity = models.CharField(max_length=100, default=" ")
     user = models.ForeignKey(UserProfile)
+    unit = models.ForeignKey(Unit, null=True)
 
     def __unicode__(self):
         return self.ingredient.name
@@ -67,6 +75,7 @@ class Ingredients_In_Recipe(models.Model):
     ingredient = models.ForeignKey(Ingredient)
     recipe = models.ForeignKey(Recipe)
     quantity = models.CharField(max_length=100, default=" ")
+    unit = models.ForeignKey(Unit, null=True)
 
     def __unicode__(self):
 

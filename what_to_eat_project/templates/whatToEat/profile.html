@@ -8,37 +8,52 @@
     {% endif %}
 
 
-        <div class="panel panel-default">
-            <div class="panel-heading">Inventory</div>
-            <table class="table">
-                <thead>
+    <div class="panel panel-default">
+        <div class="panel-heading">Inventory</div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Ingredient</th>
+                <th>Quantity</th>
+                <th>Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in ingredient_list %}
                 <tr>
-                    <th>Ingredient</th>
-                    <th>Quantity</th>
-                    <th>Status</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for item in ingredient_list %}
-                    <tr>
-                        <td>{{ item.ingredient }}</td>
-                        <td>
-                            <form role="form" class="form-inline">
-                                {% csrf_token %}
-                                <div class="input-group custom-update">
-                                    <input type="text" class="form-control" id="ingredient-{{ item.ingredient.id }}" value="{{ item.quantity }}" placeholder="Quantity">
-                                    <div class="input-group-btn">
-                                        <button type="button" class="btn btn-default btn-primary">Update</button>
-                                    </div>
+                    <td>{{ item.ingredient }}</td>
+                    <td>
+                        <form role="form" class="form-inline">
+                            {% csrf_token %}
+                            <div class="input-group custom-update">
+                                <input type="text" class="form-control" id="ingredient-{{ item.ingredient.id }}" value="{{ item.quantity }}" placeholder="Quantity">
+                                {% if all_units %}
+                                    <select class="selectpicker">
+                                        {% for unit in all_units %}
+                                            {% if unit.id == item.unit.id %}
+                                                <option value="{{ unit.id }}">{{ unit.unit_name }}</option>
+                                            {% endif %}
+                                        {% endfor %}
+
+                                        {% for unit in all_units %}
+                                            {% if unit.id != item.unit.id %}
+                                                <option value="{{ unit.id }}">{{ unit.unit_name }}</option>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </select>
+                                {% endif %}
+                                <div class="input-group-btn">
+                                    <button type="button" class="btn btn-default btn-primary btn-update">Update</button>
                                 </div>
-                            </form>
-                        </td>
-                        <td>Not changed</td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-        </div>
+                            </div>
+                        </form>
+                    </td>
+                    <td>Not changed</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
 
     {% if all_ingredients %}
@@ -65,7 +80,7 @@
     <script> inventoryPage = true; </script>
 
     Your Recipes:
-        {% for recipe in recipe_list %}
-            <li><a href="/whatToEat/recipe/{{ recipe.slug }}">{{ recipe.name }}</a></li>
-        {% endfor %}
+    {% for recipe in recipe_list %}
+        <li><a href="/whatToEat/recipe/{{ recipe.slug }}">{{ recipe.name }}</a></li>
+    {% endfor %}
 {% endblock %}

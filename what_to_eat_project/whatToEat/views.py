@@ -9,8 +9,8 @@ import watson
 
 from whatToEat.forms import InitialRecipeForm, IngredientForm, linkIngredientToRecipe, DetailRecipeForm, UserProfileForm, SearchForm
 
-from whatToEat.models import Recipe, Category, Ingredients_In_Recipe, ShoppingList, Inventory, UserProfile, Ingredient
-
+from whatToEat.models import Recipe, Category, Ingredients_In_Recipe, ShoppingList, Inventory, UserProfile, Ingredient, \
+    Unit
 
 
 def index(request):
@@ -176,18 +176,23 @@ def register_profile(request):
     return render(request, 'whatToEat/profile_registration.html', {'form': form})
 
 
-
-
 @login_required
 def profile(request):
 
     context_dict = {
-        'all_ingredients': {}
+        'all_ingredients': {},
+        'all_units': {}
     }
     try:
         all_ingredients = Ingredient.objects.order_by('ingredient_name')
         context_dict['all_ingredients'] = all_ingredients
     except Ingredient.DoesNotExist:
+        pass
+
+    try:
+        all_units = Unit.objects.order_by('unit_name')
+        context_dict['all_units'] = all_units
+    except Unit.DoesNotExist:
         pass
 
     try:
@@ -202,8 +207,6 @@ def profile(request):
     except UserProfile.DoesNotExist, Inventory.DoesNotExist:
         pass
 
-
-
     return render(request, 'whatToEat/profile.html', context_dict)
 
 
@@ -214,16 +217,20 @@ def update_inventory(request):
             dict = {
                 'status': 'failure',
                 'quantity': '0',
-                'ingredient': '0'
+                'ingredient': '0',
+                'unit': '0'
             }
             ingredient_id = request.POST.get('ingredient', 0)
             quantity = request.POST.get('quantity', 0)
-            if ingredient_id != 0:
+            unit_id = request.POST.get('unit', 0)
+            if ingredient_id != 0 and unit_id != 0:
+                unit = Unit.objects.get(id=unit_id)
                 ingredient = Ingredient.objects.get(id=ingredient_id)
                 user = User.objects.get(username=request.user)
                 user_profile = UserProfile.objects.get(user=user)
                 row = Inventory.objects.get_or_create(user=user_profile, ingredient=ingredient)[0]
                 row.quantity = quantity
+                row.unit = unit
                 row.save()
                 dict['status'] = 'success'
                 dict['quantity'] = quantity
@@ -246,7 +253,7 @@ def update_recipe(request):
                 'status': 'failure',
                 'quantity': '0',
                 'ingredient': '0',
-                'recipe': '0'
+                'recipe': '0',
             }
             ingredient_id = request.POST.get('ingredient', 0)
             recipe_id = request.POST.get('recipe', 0)
@@ -319,6 +326,6 @@ def search_results(request):
 
 def login_redirect(request):
     url = '/whatToEat/profile'
-    
+
 
     return redirect(url)
