@@ -229,7 +229,7 @@ def update_inventory(request):
                 dict['quantity'] = quantity
                 dict['ingredient'] = ingredient_id
                 dict['ingredientname'] = row.ingredient.ingredient_name
-            return HttpResponse(simplejson.dumps(dict), content_type="application/json")
+            return HttpResponse(json.dumps(dict), content_type="application/json")
         except Inventory.DoesNotExist:
             pass
         except User.DoesNotExist, UserProfile.DoesNotExist:
@@ -261,7 +261,7 @@ def update_recipe(request):
                 dict['quantity'] = quantity
                 dict['ingredient'] = ingredient_id
                 dict['ingredientname'] = row.ingredient.ingredient_name
-            return HttpResponse(simplejson.dumps(dict), content_type="application/json")
+            return HttpResponse(json.dumps(dict), content_type="application/json")
         except Inventory.DoesNotExist:
             pass
         except User.DoesNotExist, UserProfile.DoesNotExist:
