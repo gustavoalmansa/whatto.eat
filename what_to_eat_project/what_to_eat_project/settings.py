@@ -53,7 +53,7 @@ INSTALLED_APPS = (
     'registration',
     'bootstrap_toolkit',
     'bootstrap3',
-    'watson'
+    'watson',
 )
 
 MIDDLEWARE_CLASSES = (

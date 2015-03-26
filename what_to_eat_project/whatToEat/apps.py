@@ -6,6 +6,6 @@ class whatToEatConfig(AppConfig):
     def ready(self):
         Recipe = self.get_model("Recipe")
         watson.register(Recipe, store=("slug","rating"))
-	ingredients_in_recipe = self.get_model("Ingredients_In_Recipe")
-	watson.register(ingredients_in_recipe)
+	    ingredients_in_recipe = self.get_model("Ingredients_In_Recipe")
+	    watson.register(ingredients_in_recipe)
 	
