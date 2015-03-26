@@ -19,9 +19,9 @@ def populate():
     author_profile = add_profile(User.objects.get(username="User 1"))
     print("Users added")
 
-    ml = add_unit("Millilitres")
-    g = add_unit("Grams")
-    arbitrary = add_unit("")
+    ml = add_unit("ml")
+    g = add_unit("g")
+    arbitrary = add_unit(" ")
     print("Units added")
 
     chicken_breast = add_ingred("Chicken Breast")

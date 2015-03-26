@@ -25,6 +25,7 @@ class IngredientForm(forms.ModelForm):
 
     class Meta:
         model = Ingredient
+        exclude = ()
 
 
 class linkIngredientToRecipe(forms.ModelForm):
