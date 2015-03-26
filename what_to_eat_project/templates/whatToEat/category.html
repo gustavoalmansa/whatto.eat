@@ -16,5 +16,7 @@
         {% else %}
             The specified category {{ category_name }} does not exist!
         {% endif %}
+        {% if user.is_authenticated %}
         <a href="/whatToEat/category/{{ category.slug }}/add_recipe/">Add a New Recipe!</a><br />
+        {% endif %}
 {% endblock %}

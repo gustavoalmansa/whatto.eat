@@ -377,14 +377,6 @@ def populate():
                                   mushroom:"3 large"},
                                  mushroomOmlette)
 
-    #relate_ingred_to_recipe(egg_ingredient, mushroomOmlette, "2 large")
-    #relate_ingred_to_recipe(salt, mushroomOmlette, "A pinch of")
-    #relate_ingred_to_recipe(pepper, mushroomOmlette, "A pinch of")
-    #relate_ingred_to_recipe(butter, mushroomOmlette, "A knob of")
-    #relate_ingred_to_recipe(olive_oil, mushroomOmlette, "A splash of")
-    #relate_ingred_to_recipe(cheddar_cheese, mushroomOmlette, "A handful of")
-    #relate_ingred_to_recipe(mushroom, mushroomOmlette, "3 large")
-
     add_ingredient_to_inventory(author_profile, 2.0, chicken_breast)
     add_ingredient_to_inventory(author_profile, 3.0, egg_ingredient)
     print("Ingredients added to inventory")

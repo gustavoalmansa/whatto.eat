@@ -32,7 +32,7 @@ def about(request):
 
 def all_recipes(request):
     context_dict = {}
-    recipes = Recipe.objects.all()
+    recipes = Recipe.objects.all().order_by("-rating")
     context_dict['recipes'] = recipes
 
     return render(request, 'whatToEat/all_recipes.html', context_dict)
@@ -43,7 +43,7 @@ def category(request, category_name_slug):
         category = Category.objects.get(slug=category_name_slug)
         context_dict['category_name'] = category.name
 
-        recipes = Recipe.objects.filter(category=category)
+        recipes = Recipe.objects.filter(category=category).order_by("-rating")
         context_dict['recipes'] = recipes
         context_dict['category'] = category
     except Category.DoesNotExist:
