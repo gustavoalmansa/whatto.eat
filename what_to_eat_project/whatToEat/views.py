@@ -159,7 +159,7 @@ def register_profile(request):
             profile.save()
             # Now call the index() view.
             # The user will be shown the homepage.
-            return index(request)
+            return HttpResponseRedirect('/whatToEat/')
         else:
             # The supplied form contained errors - just print them to the terminal.
             print form.errors
@@ -182,7 +182,7 @@ def profile(request):
         pass
 
     try:
-        all_units = Unit.objects.order_by('unit_name')
+        all_units = Unit.objects.all()
         context_dict['all_units'] = all_units
     except Unit.DoesNotExist:
         pass
@@ -342,5 +342,6 @@ def search_results(request):
 
 
 def login_redirect(request):
-    url = '/whatToEat/profile'
+    url = '/whatToEat/'
     return redirect(url)
+
