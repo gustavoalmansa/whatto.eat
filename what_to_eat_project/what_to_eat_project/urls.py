@@ -10,6 +10,7 @@ class MyRegistrationView(RegistrationView):
         return '/whatToEat/add_profile/'
 
 
+
 urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^whatToEat/', include('whatToEat.urls')),

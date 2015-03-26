@@ -168,7 +168,7 @@ def register_profile(request):
             profile.save()
             # Now call the index() view.
             # The user will be shown the homepage.
-            return index(request)
+            return HttpResponseRedirect('/whatToEat/')
         else:
             # The supplied form contained errors - just print them to the terminal.
             print form.errors
@@ -351,5 +351,6 @@ def search_results(request):
 
 
 def login_redirect(request):
-    url = '/whatToEat/profile'
+    url = '/whatToEat/'
     return redirect(url)
+
