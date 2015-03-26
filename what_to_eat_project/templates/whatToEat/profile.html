@@ -26,7 +26,6 @@
                         <form role="form" class="form-inline">
                             {% csrf_token %}
                             <div class="input-group custom-update">
-                                <input type="text" class="form-control" id="ingredient-{{ item.ingredient.id }}" value="{{ item.quantity }}" placeholder="Quantity">
                                 {% if all_units %}
                                     <select class="selectpicker">
                                         {% for unit in all_units %}
@@ -42,6 +41,7 @@
                                         {% endfor %}
                                     </select>
                                 {% endif %}
+                                <input type="text" class="form-control" id="ingredient-{{ item.ingredient.id }}" value="{{ item.quantity }}" placeholder="Quantity">
                                 <div class="input-group-btn">
                                     <button type="button" class="btn btn-default btn-primary btn-update">Update</button>
                                 </div>
@@ -61,11 +61,18 @@
             <div class="panel-heading">Add new ingredient to inventory</div>
             <div class="panel-body">
                 <form role="form" class="form-inline">
-                    <select class="selectpicker">
+                    <select class="selectpicker" id="list-ingredients">
                         {% for item in all_ingredients %}
                             <option value="{{ item.id }}">{{ item.ingredient_name }}</option>
                         {% endfor %}
                     </select>
+
+                    <select class="selectpicker" id="list-units">
+                        {% for unit in all_units %}
+                            <option value="{{ unit.id }}">{{ unit.unit_name }}</option>
+                        {% endfor %}
+                    </select>
+
                     <div class="input-group">
                         <div class="input-group-btn">
                             <input class="form-control" value="" id="new-ingredient-quantity" placeholder="Quantity">

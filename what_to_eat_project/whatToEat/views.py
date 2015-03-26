@@ -236,6 +236,7 @@ def update_inventory(request):
                 dict['quantity'] = quantity
                 dict['ingredient'] = ingredient_id
                 dict['ingredientname'] = row.ingredient.ingredient_name
+                dict['unit'] = unit_id
             return HttpResponse(json.dumps(dict), content_type="application/json")
         except Inventory.DoesNotExist:
             pass
