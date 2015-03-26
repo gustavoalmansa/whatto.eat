@@ -89,7 +89,7 @@ def populate():
     breadcrumbs =  add_ingred("Breadcrumbs")
     buttermilk =  add_ingred("Buttermilk")
     cabbage =  add_ingred("Cabbage")
-    cacao =  add_ingred("Cacao")
+    cacaopowder =  add_ingred("Cacao Powder")
     cactus =  add_ingred("Cactus")
     cannellini_beans =  add_ingred("Cannellini Beans")
     cantaloupes =  add_ingred("Cantaloupes")
@@ -420,6 +420,27 @@ def populate():
                                   dijon:"One Tablespoon"},
                                  stickyChickenDrumstick)
 
+    chocolatesouflee = add_recipe("Basic Chocolate Souflee", rating = 5,
+                                  author = author_profile,
+                                  category = dessert,
+                                  instructions = "1)Brush four 200ml souffle dishes and brush them with softened butter. Chill them for 5 minutes and then coat each lightly with some grated dark chocolate. 2) For the custard cream, mix flour, sugar, and cornflour. Put egg yolk and whole egg into a bowl, stir, then beat in half of the flour mixture to give a smooth paste. Tip in the rest of the flour mixture and mix well. 3) Pour the milk and cream into a pan and bring just to a boil. Remove from the heat, and add chocolate to mix until smooth. 4) Slowly mix chocolate into the custard cream over light heat until it is a thick paste. Then leave it to cool as you make the ganache. 5)Slowly warm cream in a pan. Just before it boils, take off the heat and add chocolate and beat until it has a velvetty texture. Allow this to cool as well. 6)Heat up the oven to 190 degrees Celsius. Whisk your egg whites until they have soft peaks. 7) Mix the cream and ganache, and then carefully fold in the egg whites. 8)Spoon the egg white and cream mixture into each dish, filling it up 2/3s of the way. Bang the dishes down a bit to ensure that the dishes are filled completely, and then even out with a palette knife. 9) Put the souffles in the oven for about 15 minutes. 10) When risen, take out of the oven and serve as soon as possible.")
+
+    relateIngredientDictToRecipe({butter:"25 grams",
+                                  dark_chocolate:"finely grated",
+                                  flour:"2 tablespoons",
+                                  sugar:".5 teaspoons",
+                                  eggyolk:"1",
+                                  egg_ingredient:"1 whole",
+                                  milk:"100ml",
+                                  cream:"50ml",
+                                  dark_chocolate:"25 grams",
+                                  cacaopowder: "1 tablespoon",
+                                  eggwhite:"6",
+                                  sugar:"85g for egg whites",
+                                  cream:"50ml for ganache",
+                                  dark_chocolate:"50g for ganache",
+                                  cacaopowder:"50g for ganache"},
+                                 chocolatesouflee)
     print ("Recipes added, and ingredients related")
 
 def add_profile(user):
