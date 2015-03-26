@@ -191,7 +191,7 @@ def profile(request):
         pass
 
     try:
-        all_units = Unit.objects.order_by('unit_name')
+        all_units = Unit.objects.all()
         context_dict['all_units'] = all_units
     except Unit.DoesNotExist:
         pass
