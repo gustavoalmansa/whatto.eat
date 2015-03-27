@@ -358,8 +358,9 @@ def populate():
     print("Categories added")
 
     mushroomOmlette = add_recipe(name="Mushroom omelette", likes=4, dislikes=1, author=author_profile, category=lunch,
-                                 instructions="<br>1) Crack the eggs into a mixing bowl <br>2) Add a pinch of salt and pepper"
-                            "<br>3) Beat well with a fork Quarter or roughly chop the mushrooms and add to a small frying"
+                                 instructions="<br>1) Crack the eggs into a mixing bowl "
+                                              "<br>2) Add a pinch of salt and pepper"
+                                              "<br>3) Beat well with a fork Quarter or roughly chop the mushrooms and add to a small frying"
                             " pan on a high heat with a small knob of butter, a drizzle of olive oil and a pinch of "
                             "salt and pepper"
                             "<br>4) Fry and toss around until golden, then turn the heat down to medium "
@@ -387,7 +388,13 @@ def populate():
     cheeseOnionRarebit = add_recipe(name="Quick Cheese and Onion Rarebit",
                                     likes=3, dislikes=1, author=author_profile,
                                     category=snack,
-                                    instructions = "1)Toast the bread in a toaster. Meanwhile, mix the cheese sauce, onions and a grind of pepper together in a small bowl.<br>2)Transfer the toast to a non-stick grill rack and drape the ham over each slice. Next, spoon the cheese sauce onto the ham and spread it around with the back of the spoon. Scatter the grated cheese over the sauce, then pop the rarebit under a hot grill until the cheese turns bubbly and golden. Cut each slice in half and serve while still hot.")
+                                    instructions = "<br>1)Toast the bread in a toaster. Meanwhile, mix the cheese sauce,"
+                                                   " onions and a grind of pepper together in a small bowl."
+                                                   "<br>2)Transfer the toast to a non-stick grill rack and drape the ham"
+                                                   " over each slice. Next, spoon the cheese sauce onto the ham and spread it around with the back of "
+                                                   "the spoon. Scatter the grated cheese over the sauce, then pop the "
+                                                   "rarebit under a hot grill until the cheese turns bubbly and golden. "
+                                                   "<br>3)Cut each slice in half and serve while still hot.")
 
 
     relateIngredientDictToRecipe({white_bread:[50, g],
@@ -401,7 +408,13 @@ def populate():
                                     likes=5, dislikes=1,
                                     author = author_profile,
                                     category=dinner,
-                                    instructions = "1)Put 2 chicken breasts, skin side up in a small baking dish and season.<br>2)Squeeze the lemon into a bowl and stir in the honey and soy sauce. Spoon the mixture over the chicken, then tuck the squeezed-out half of lemon between the pieces (this will moisten and add flavour to the chicken).<br>3)Roast the chicken breasts in a baking dish, uncovered, for 30-35 minutes in a preheated oven (190C/gas 5/fan oven 170C). Cook until done and richly glazed, basting with the juices at least twice. To check if they are done, prod the chicken with your finger - if it's still a bit soft, give it a bit longer.<br>4)Serve with salad and potatoes roasted with herbs and garlic.")
+                                    instructions = "1)Put 2 chicken breasts, skin side up in a small baking dish and season."
+                                                   "<br>2)Squeeze the lemon into a bowl and stir in the honey and soy sauce. Spoon the mixture over the chicken, "
+                                                   "then tuck the squeezed-out half of lemon between the pieces (this will moisten and add flavour to the chicken)."
+                                                   "<br>3)Roast the chicken breasts in a baking dish, uncovered, for 30-35 minutes in a preheated oven (190C/gas 5/fan oven 170C). "
+                                                   "4)Cook until done and richly glazed, basting with the juices at least twice. To check if they are done, prod the chicken with your"
+                                                   " finger - if it's still a bit soft, give it a bit longer."
+                                                   "<br>5)Serve with salad and potatoes roasted with herbs and garlic.")
 
 
     relateIngredientDictToRecipe({chicken_breast:[2, arbitrary],
@@ -413,7 +426,11 @@ def populate():
     stickyChickenDrumstick = add_recipe("Sticky Chicken Drumstick",
                                         likes = 4, dislikes=1, author = author_profile,
                                         category=dinner,
-                                        instructions="1)Make 3 slashes on each of the drumsticks. Mix together the soy, honey, oil, tomato puree and mustard. Pour this mixture over the chicken and coat thoroughly. Leave to marinate for 30 mins at room temperature or overnight in the fridge. Heat oven to 200C/fan 180C/gas 6.<br>2)Tip the chicken into a shallow roasting tray and cook for 35 mins, turning occasionally, until the chicken is tender and glistening with the marinade.")
+                                        instructions="<br>1)Make 3 slashes on each of the drumsticks. Mix together the soy, honey, oil,"
+                                                     " tomato puree and mustard. Pour this mixture over the chicken and coat thoroughly. "
+                                                     "Leave to marinate for 30 mins at room temperature or overnight in the fridge. Heat oven to 200C/fan 180C/gas 6."
+                                                     "<br>2)Tip the chicken into a shallow roasting tray and cook for 35 mins, turning occasionally, "
+                                                     "until the chicken is tender and glistening with the marinade.")
 
     relateIngredientDictToRecipe({chicken_drumstick:[8, arbitrary],
                                   soy_sauce:[30, ml],
@@ -426,7 +443,24 @@ def populate():
     chocolatesouflee = add_recipe("Basic Chocolate Souflee", likes = 5,
                                   dislikes=1, author = author_profile,
                                   category = dessert,
-                                  instructions = "1)Brush four 200ml souffle dishes and brush them with softened butter. Chill them for 5 minutes and then coat each lightly with some grated dark chocolate. 2) For the custard cream, mix flour, sugar, and cornflour. Put egg yolk and whole egg into a bowl, stir, then beat in half of the flour mixture to give a smooth paste. Tip in the rest of the flour mixture and mix well. 3) Pour the milk and cream into a pan and bring just to a boil. Remove from the heat, and add chocolate to mix until smooth. 4) Slowly mix chocolate into the custard cream over light heat until it is a thick paste. Then leave it to cool as you make the ganache. 5)Slowly warm cream in a pan. Just before it boils, take off the heat and add chocolate and beat until it has a velvetty texture. Allow this to cool as well. 6)Heat up the oven to 190 degrees Celsius. Whisk your egg whites until they have soft peaks. 7) Mix the cream and ganache, and then carefully fold in the egg whites. 8)Spoon the egg white and cream mixture into each dish, filling it up 2/3s of the way. Bang the dishes down a bit to ensure that the dishes are filled completely, and then even out with a palette knife. 9) Put the souffles in the oven for about 15 minutes. 10) When risen, take out of the oven and serve as soon as possible.")
+                                  instructions = "<br>1)Brush four 200ml souffle dishes and brush them with softened butter. "
+                                                 "Chill them for 5 minutes and then coat each lightly with some grated dark chocolate. "
+                                                 "<br>2) For the custard cream, mix flour, sugar, and cornflour. Put egg yolk and whole egg"
+                                                 " into a bowl, stir, then beat in half of the flour mixture to give a smooth paste. Tip in"
+                                                 " the rest of the flour mixture and mix well. "
+                                                 "<br>3) Pour the milk and cream into a pan and bring "
+                                                 "just to a boil. Remove from the heat, and add chocolate to mix until smooth. "
+                                                 "<br>4) Slowly mix chocolate into the custard cream over light heat until it is a thick paste. "
+                                                 "Then leave it to cool as you make the ganache. "
+                                                 "<br>5)Slowly warm cream in a pan. Just before it boils, take off the heat and add chocolate and "
+                                                 "beat until it has a velvetty texture. Allow this to cool as well. "
+                                                 "<br>6)Heat up the oven to 190 degrees Celsius. Whisk your egg whites until they have soft peaks. "
+                                                 "<br>7) Mix the cream and ganache, and then carefully fold in the egg whites. "
+                                                 "<br>8)Spoon the egg white and cream mixture into each dish, filling it up 2/3s of the way. "
+                                                 "Bang the dishes down a bit to ensure that the dishes are filled completely, and then even out "
+                                                 "with a palette knife. "
+                                                 "<br>9) Put the souffles in the oven for about 15 minutes. "
+                                                 "<br>10) When risen, take out of the oven and serve as soon as possible.")
 
     relateIngredientDictToRecipe({butter : [25, g],
                                   flour : [30, g],
