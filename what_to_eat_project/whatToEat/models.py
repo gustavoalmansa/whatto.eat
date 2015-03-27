@@ -1,7 +1,7 @@
 from django.db import models
 from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
-from tinymce.models import HTMLField
+# from tinymce.models import HTMLField
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
@@ -37,7 +37,7 @@ class Recipe(models.Model):
     rating = models.IntegerField()
     author = models.ForeignKey(UserProfile)
     category = models.ForeignKey(Category)
-    instructions = HTMLField(max_length=5000, default=" ")
+    instructions = models.TextField(max_length=5000, default=" ")
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
