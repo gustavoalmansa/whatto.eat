@@ -22,6 +22,7 @@ def populate():
     ml = add_unit("ml")
     g = add_unit("g")
     arbitrary = add_unit(" ")
+
     print("Units added")
     print("Adding ingredients")
     chicken_breast = add_ingred("Chicken Breast")
@@ -114,6 +115,7 @@ def populate():
     chicken =  add_ingred("Chicken")
     chickpeas = add_ingred("Chickpeas")
     chicken_liver =  add_ingred("Chicken Liver")
+    chives = add_ingred("Chives")
     chili_power =  add_ingred("Chili Powder")
     chilis =  add_ingred("Chili Peppers")
     milk_chocolate =  add_ingred("Milk Chocolate")
@@ -165,6 +167,7 @@ def populate():
     golden_syrup =  add_ingred("Golden Syrup")
     grandmarnier =  add_ingred("Grand Marnier")
     grapefruit =  add_ingred("Grapefruit")
+    gravy = add_ingred("Gravy")
     granola =  add_ingred("Granola")
     greenbeans =  add_ingred("Greenbeans")
     greenonions =  add_ingred("Green Onions")
@@ -377,8 +380,8 @@ def populate():
                                   mushroom:[3, arbitrary]},
                                  mushroomOmlette)
 
-    add_ingredient_to_inventory(author_profile, 2.0, chicken_breast)
-    add_ingredient_to_inventory(author_profile, 3.0, egg_ingredient)
+    add_ingredient_to_inventory(author_profile, 2, arbitrary, chicken_breast)
+    add_ingredient_to_inventory(author_profile, 3, arbitrary,  egg_ingredient)
     print("Ingredients added to inventory")
 
     cheeseOnionRarebit = add_recipe(name="Quick Cheese and Onion Rarebit",
@@ -467,10 +470,11 @@ def add_recipe(name, likes, dislikes, author, category, instructions):
     return r
 
 
-def add_ingredient_to_inventory(user_profile, quantity, ingredient):
+def add_ingredient_to_inventory(user_profile, quantity, unit, ingredient):
     i = Inventory.objects.get_or_create(
         user=user_profile,
         quantity=quantity,
+        unit = unit,
         ingredient=ingredient)[0]
     return i
 
