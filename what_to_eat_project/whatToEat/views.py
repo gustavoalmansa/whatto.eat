@@ -6,6 +6,7 @@ from django.shortcuts import render
 from django.shortcuts import redirect
 import json
 import watson
+import markdown
 from string import digits
 
 from whatToEat.forms import InitialRecipeForm, IngredientForm, linkIngredientToRecipe,\
@@ -62,24 +63,25 @@ def recipe(request, recipe_name_slug):
             context_dict['same'] = True
         response = render(request, 'whatToEat/recipe.html', context_dict)
         if request.method == 'POST':
+
             if "dislike" in request.POST:
                 recipe.dislikes += 1
                 response.set_cookie('disliked', str(recipe.name))
-                if 'disliked' in request.COOKIES:
-                    print "here"
-                    print request.COOKIES['disliked']
-                    if request.COOKIES['disliked'] == str(recipe.name):
-                        recipe.dislikes -= 1
+                #if 'disliked' in request.COOKIES:
+                #    print "here"
+                #    print request.COOKIES['disliked']
+                #    if request.COOKIES['disliked'] == str(recipe.name):
+                #        recipe.dislikes -= 1
                 recipe.save()
                 response = render(request, 'whatToEat/recipe.html', context_dict)
 
             elif "like" in request.POST:
                 if 'liked' in request.COOKIES:
-                    if request.COOKIES['liked'] != str(recipe.name):
-                        recipe.likes += 1
-                        recipe.save()
-                        response.set_cookie('liked', str(recipe.name))
-                        response = render(request, 'whatToEat/recipe.html', context_dict)
+                    # if request.COOKIES['liked'] != str(recipe.name):
+                    recipe.likes += 1
+                    recipe.save()
+                    response.set_cookie('liked', str(recipe.name))
+                    response = render(request, 'whatToEat/recipe.html', context_dict)
 
     except Recipe.DoesNotExist:
         return redirect('/404/')

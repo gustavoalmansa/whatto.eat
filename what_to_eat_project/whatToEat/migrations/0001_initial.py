@@ -64,7 +64,7 @@ class Migration(migrations.Migration):
                 ('likes', models.IntegerField()),
                 ('dislikes', models.IntegerField()),
                 ('rating', models.IntegerField()),
-                ('instructions', models.CharField(default=b' ', max_length=5000)),
+                ('instructions', models.TextField(default=b' ', max_length=5000)),
             ],
             options={
             },
