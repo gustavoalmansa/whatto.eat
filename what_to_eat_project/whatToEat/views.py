@@ -54,7 +54,7 @@ def category(request, category_name_slug):
 
 def recipe(request, recipe_name_slug):
     context_dict = {}
-
+    response = render(request, 'whatToEat/recipe.html', context_dict)
     try:
         recipe = Recipe.objects.get(slug=recipe_name_slug)
         context_dict['ingredient_list'] = Ingredients_In_Recipe.objects.filter(recipe=recipe)
@@ -63,19 +63,24 @@ def recipe(request, recipe_name_slug):
             context_dict['same'] = True
 
         if request.method == 'POST':
-            print request.POST
             if "dislike" in request.POST:
-                recipe.dislikes += 1
-                recipe.save()
+                if 'disliked' and str(recipe.name) not in request.COOKIES:
+                    recipe.dislikes += 1
+                    recipe.save()
+                    response.set_cookie('disliked', str(recipe.name))
+
             elif "like" in request.POST:
-                recipe.likes += 1
-                recipe.save()
+                if 'liked' and str(recipe.name) not in request.COOKIES:
+                    recipe.likes += 1
+                    recipe.save()
+                    response.set_cookie('liked', str(recipe.name))
+
+            response = render(request, 'whatToEat/recipe.html', context_dict)
 
     except Recipe.DoesNotExist:
         return redirect('/404/')
 
-
-    return render(request, 'whatToEat/recipe.html', context_dict)
+    return response
 
 
 def recipe_details(request, recipe_name_slug):
