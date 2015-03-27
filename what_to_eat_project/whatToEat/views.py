@@ -108,7 +108,13 @@ def recipe_details(request, recipe_name_slug):
             instructions = recipe_form.save(commit=False)
             instructions = instructions.instructions
             recipe.instructions = instructions
+
+            if 'picture' in request.FILES:
+                recipe.picture = request.FILES['picture']
+
             recipe.save()
+
+
 
         return HttpResponseRedirect('/whatToEat/recipe/'+recipe.slug+"/")
     else:

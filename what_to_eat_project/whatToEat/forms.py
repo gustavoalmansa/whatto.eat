@@ -9,7 +9,7 @@ class InitialRecipeForm(forms.ModelForm):
 
     class Meta:
         model = Recipe
-        exclude = ('instructions', 'category', 'author', 'like', 'slug')
+        exclude = ('instructions', 'category', 'author', 'likes', 'dislikes', 'rating', 'slug', 'picture')
 
 
 class DetailRecipeForm(forms.ModelForm):
@@ -17,7 +17,8 @@ class DetailRecipeForm(forms.ModelForm):
 
     class Meta:
         model = Recipe
-        exclude = ('name', 'category', 'author', 'like', 'slug')
+        exclude = ('name', 'category', 'author', 'likes', 'dislikes', 'slug',)
+        fields = ('picture', 'instructions')
 
 
 class IngredientForm(forms.ModelForm):
