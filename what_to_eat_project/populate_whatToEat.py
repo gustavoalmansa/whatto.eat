@@ -369,7 +369,8 @@ def populate():
                             " sprinkle over the Cheddar, if using "
                             "<br><br>7) Ease around the edge of the omelette with a spatula, then fold it in half "
                             "<br><br>8) When it starts to turn golden brown underneath, remove the pan from the heat and "
-                            "slide the omelette on to a plate")
+                            "slide the omelette on to a plate",
+                                 picture = "recipe_images/mushroomOmelette.jpg")
     print("Recipe added")
 
     relateIngredientDictToRecipe({egg_ingredient:[2, arbitrary],
@@ -394,7 +395,8 @@ def populate():
                                                    " over each slice. Next, spoon the cheese sauce onto the ham and spread it around with the back of "
                                                    "the spoon. Scatter the grated cheese over the sauce, then pop the "
                                                    "rarebit under a hot grill until the cheese turns bubbly and golden. "
-                                                   "<br><br>3)Cut each slice in half and serve while still hot.")
+                                                   "<br><br>3)Cut each slice in half and serve while still hot.",
+                                    picture = "recipe_images/cheeseOnion.jpg")
 
 
     relateIngredientDictToRecipe({white_bread:[50, g],
@@ -414,7 +416,8 @@ def populate():
                                                    "<br><br>3)Roast the chicken breasts in a baking dish, uncovered, for 30-35 minutes in a preheated oven (190C/gas 5/fan oven 170C). "
                                                    "<br><br>4)Cook until done and richly glazed, basting with the juices at least twice. To check if they are done, prod the chicken with your"
                                                    " finger - if it's still a bit soft, give it a bit longer."
-                                                   "<br><br>5)Serve with salad and potatoes roasted with herbs and garlic.")
+                                                   "<br><br>5)Serve with salad and potatoes roasted with herbs and garlic.",
+                                    picture = "recipe_images/honeyChicken.jpg")
 
 
     relateIngredientDictToRecipe({chicken_breast:[2, arbitrary],
@@ -430,7 +433,8 @@ def populate():
                                                      " tomato puree and mustard. Pour this mixture over the chicken and coat thoroughly. "
                                                      "Leave to marinate for 30 mins at room temperature or overnight in the fridge. Heat oven to 200C/fan 180C/gas 6."
                                                      "<br><br>2)Tip the chicken into a shallow roasting tray and cook for 35 mins, turning occasionally, "
-                                                     "until the chicken is tender and glistening with the marinade.")
+                                                     "until the chicken is tender and glistening with the marinade.",
+                                        picture = "recipe_images/stickyChicken.jpg")
 
     relateIngredientDictToRecipe({chicken_drumstick:[8, arbitrary],
                                   soy_sauce:[30, ml],
@@ -460,7 +464,8 @@ def populate():
                                                  "Bang the dishes down a bit to ensure that the dishes are filled completely, and then even out "
                                                  "with a palette knife. "
                                                  "<br><br>9) Put the souffles in the oven for about 15 minutes. "
-                                                 "<br><br>10) When risen, take out of the oven and serve as soon as possible.")
+                                                 "<br><br>10) When risen, take out of the oven and serve as soon as possible.",
+                                  picture = "recipe_/images/chocolateSouffle.jpg")
 
     relateIngredientDictToRecipe({butter : [25, g],
                                   flour : [30, g],
@@ -496,11 +501,12 @@ def relateIngredientDictToRecipe(ingredientDict, recipe):
         relate_ingred_to_recipe(ingredient, recipe, ingredientDict[ingredient][0], ingredientDict[ingredient][1])
 
 
-def add_recipe(name, likes, dislikes, author, category, instructions):
+def add_recipe(name, likes, dislikes, author, category, instructions, picture):
     r = Recipe.objects.get_or_create(name=name, likes=likes, dislikes=dislikes,
                                      rating=likes-dislikes,
                                      author=author, category=category,
-                                     instructions=instructions)[0]
+                                     instructions=instructions,
+                                     picture = picture)[0]
     return r
 
 
