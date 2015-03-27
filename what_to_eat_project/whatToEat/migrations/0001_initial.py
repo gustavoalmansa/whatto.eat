@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from django.db import models, migrations
+import tinymce.models
 from django.conf import settings
 
 
@@ -64,7 +65,7 @@ class Migration(migrations.Migration):
                 ('likes', models.IntegerField()),
                 ('dislikes', models.IntegerField()),
                 ('rating', models.IntegerField()),
-                ('instructions', models.TextField(default=b' ', max_length=5000)),
+                ('instructions', tinymce.models.HTMLField(default=b' ', max_length=5000)),
             ],
             options={
             },
