@@ -49,7 +49,7 @@ function initPage() {
 
 
     function deleteClickHandler() {
-        var inputField = $(this).closest("form").find("input[type=text]");
+        var inputField = $(this).closest("form").find("input[type=number]");
         var ingredientId = inputField.attr("id").split("-")[1];
         deleteFromDatabase(ingredientId);
     }
@@ -85,19 +85,25 @@ function initPage() {
         var form = $("<form>", {role: "form", class: "form-inline"});
         var div2 = $("<div>", {class: "input-group custom-update"});
         var input = $("<input>", {
-            type: "text", class: "form-control",
+            type: "number", class: "form-control",
             id: "ingredient-" + ingredientId, value: quantity,
             placeholder: "Quantity"
         });
         var inputGroupBtn = $("<div>", {class: "input-group-btn"});
         var button = $("<button>", {type: "button", class: "btn btn-default btn-primary btn-update"});
-        var select = $("<select>",{class: "selectpicker"});
+        var select = $("<select>",{class: "selectpicker", "data-width": "100px"});
         if (unitId == 1) {
-            select.append("<option value='1'>Millilitres</option>");
-            select.append("<option value='2'>Grams</option>");
+            select.append("<option value='1'>ml</option>");
+            select.append("<option value='2'>g</option>");
+            select.append("<option value='3'> </option>");
+        } else if (unitId == 2) {
+            select.append("<option value='2'>g</option>");
+            select.append("<option value='1'>ml</option>");
+            select.append("<option value='3'> </option>");
         } else {
-            select.append("<option value='2'>Grams</option>");
-            select.append("<option value='1'>Millilitres</option>");
+            select.append("<option value='3'> </option>");
+            select.append("<option value='2'>g</option>");
+            select.append("<option value='1'>ml</option>");
         }
         var dangerButton = $("<a>", {class: "btn btn-danger"});
         var spanIcon = $("<span>", {class: "fa fa-times"});

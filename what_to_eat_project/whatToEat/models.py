@@ -40,7 +40,7 @@ class Recipe(models.Model):
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
-        self.rating = self.likes-self.dislikes
+        self.rating = int(self.likes)-int(self.dislikes)
         super(Recipe, self).save(*args, **kwargs)
 
 

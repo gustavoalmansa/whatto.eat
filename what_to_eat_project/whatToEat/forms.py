@@ -51,8 +51,3 @@ class UserProfileForm(forms.ModelForm):
 
 class SearchForm(forms.Form):
     search = forms.CharField(label="Search Recipes", max_length=100)
-
-class LikeForm(forms.Form):
-    inLike = forms.IntegerField(max_value=1, min_value=0, label="Like Recipe")
-    class Meta:
-        exlude = ('inLike')

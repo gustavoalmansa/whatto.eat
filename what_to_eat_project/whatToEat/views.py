@@ -8,7 +8,8 @@ import json
 import watson
 from string import digits
 
-from whatToEat.forms import InitialRecipeForm, IngredientForm, linkIngredientToRecipe, DetailRecipeForm, UserProfileForm, SearchForm
+from whatToEat.forms import InitialRecipeForm, IngredientForm, linkIngredientToRecipe,\
+    DetailRecipeForm, UserProfileForm, SearchForm
 
 from whatToEat.models import Recipe, Category, Ingredients_In_Recipe, ShoppingList, Inventory, UserProfile, Ingredient, \
     Unit
@@ -16,11 +17,9 @@ from whatToEat.models import Recipe, Category, Ingredients_In_Recipe, ShoppingLi
 
 def index(request):
     if request.method == 'POST':
-        print "request is post"
         form = SearchForm(request.POST)
         if form.is_valid():
-            print "Search entered"
-
+            print("valid form")
     else:
         form = SearchForm()
     return render(request, 'whatToEat/index.html', {'form': form})
@@ -43,7 +42,6 @@ def category(request, category_name_slug):
     try:
         category = Category.objects.get(slug=category_name_slug)
         context_dict['category_name'] = category.name
-
         recipes = Recipe.objects.filter(category=category).order_by("-rating")
         context_dict['recipes'] = recipes
         context_dict['category'] = category
@@ -55,17 +53,38 @@ def category(request, category_name_slug):
 
 def recipe(request, recipe_name_slug):
     context_dict = {}
+
     try:
         recipe = Recipe.objects.get(slug=recipe_name_slug)
         context_dict['ingredient_list'] = Ingredients_In_Recipe.objects.filter(recipe=recipe)
         context_dict['recipe'] = recipe
         if request.user == recipe.author.user:
             context_dict['same'] = True
+        response = render(request, 'whatToEat/recipe.html', context_dict)
+        if request.method == 'POST':
+            if "dislike" in request.POST:
+                recipe.dislikes += 1
+                response.set_cookie('disliked', str(recipe.name))
+                if 'disliked' in request.COOKIES:
+                    print "here"
+                    print request.COOKIES['disliked']
+                    if request.COOKIES['disliked'] == str(recipe.name):
+                        recipe.dislikes -= 1
+                recipe.save()
+                response = render(request, 'whatToEat/recipe.html', context_dict)
+
+            elif "like" in request.POST:
+                if 'liked' in request.COOKIES:
+                    if request.COOKIES['liked'] != str(recipe.name):
+                        recipe.likes += 1
+                        recipe.save()
+                        response.set_cookie('liked', str(recipe.name))
+                        response = render(request, 'whatToEat/recipe.html', context_dict)
 
     except Recipe.DoesNotExist:
         return redirect('/404/')
 
-    return render(request, 'whatToEat/recipe.html', context_dict)
+    return response
 
 
 def recipe_details(request, recipe_name_slug):
@@ -135,6 +154,7 @@ def add_recipe(request, category_name_slug):
     # Bad form (or form details), no form supplied...
     # Render the form with error messages (if any).
     return render(request, 'whatToEat/add_recipe.html', {'recipe_form': recipe_form, 'category': category_name_slug})
+
 
 def register_profile(request):
 
@@ -335,7 +355,8 @@ def search_results(request):
             if str(searchResults[c])[0] not in digits:
                 recipes += [Recipe.objects.get(name=searchResults[c])]
             c += 1
-        context_dict['result_list'] = recipes
+        if len(recipes) > 0:
+            context_dict['result_list'] = recipes
 
 
     return render(request, 'whatToEat/search.html', context_dict)

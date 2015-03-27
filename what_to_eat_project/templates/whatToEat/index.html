@@ -6,12 +6,16 @@
 
 {% block body_block %}
 
-        <h1>Someday...</h1>
-        There wll be a search functionality here that actually does something! <strong>{{ boldmessage }}</strong><br />
+        <div class="panel panel-default">
+            <div class="panel-heading">What do you want to make?</div>
+            <div class="panel-body">
+
         <form action="search/" method="post">
             {% csrf_token %}
             {{ form }}
-            <input type="submit", value="Search">
+            <input type="submit", value="whatTo.Eat">
         </form>
+        </div>
+        </div>
 
 {% endblock %}
