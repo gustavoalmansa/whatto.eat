@@ -6,7 +6,6 @@ from django.shortcuts import render
 from django.shortcuts import redirect
 import json
 import watson
-import markdown
 from string import digits
 
 from whatToEat.forms import InitialRecipeForm, IngredientForm, linkIngredientToRecipe,\

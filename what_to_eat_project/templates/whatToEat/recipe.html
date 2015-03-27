@@ -23,10 +23,13 @@
         <button type="submit">dislike</button>
     </form>
     {% endif %}
-    <br><br>
+    <br>
+    <strong> Ingredients </strong>
+    <br>
     {% for ingredient in ingredient_list %}
         {{ ingredient.quantity }} {{ingredient.unit}} {{ ingredient.ingredient.ingredient_name }}   <br>
     {% endfor %}
     <br>
+    <strong> Instructions </strong>
     {{ recipe.instructions | safe }}
 {% endblock %}
