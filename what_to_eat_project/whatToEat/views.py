@@ -8,7 +8,8 @@ import json
 import watson
 from string import digits
 
-from whatToEat.forms import InitialRecipeForm, IngredientForm, linkIngredientToRecipe, DetailRecipeForm, UserProfileForm, SearchForm
+from whatToEat.forms import InitialRecipeForm, IngredientForm, linkIngredientToRecipe,\
+    DetailRecipeForm, UserProfileForm, SearchForm
 
 from whatToEat.models import Recipe, Category, Ingredients_In_Recipe, ShoppingList, Inventory, UserProfile, Ingredient, \
     Unit
@@ -16,7 +17,6 @@ from whatToEat.models import Recipe, Category, Ingredients_In_Recipe, ShoppingLi
 
 def index(request):
     if request.method == 'POST':
-        print "request is post"
         form = SearchForm(request.POST)
         if form.is_valid():
             print "Search entered"
@@ -43,7 +43,6 @@ def category(request, category_name_slug):
     try:
         category = Category.objects.get(slug=category_name_slug)
         context_dict['category_name'] = category.name
-
         recipes = Recipe.objects.filter(category=category).order_by("-rating")
         context_dict['recipes'] = recipes
         context_dict['category'] = category
@@ -55,6 +54,10 @@ def category(request, category_name_slug):
 
 def recipe(request, recipe_name_slug):
     context_dict = {}
+    if request.method == 'POST':
+        print request.POST["dislike"]
+
+
     try:
         recipe = Recipe.objects.get(slug=recipe_name_slug)
         context_dict['ingredient_list'] = Ingredients_In_Recipe.objects.filter(recipe=recipe)
@@ -135,6 +138,7 @@ def add_recipe(request, category_name_slug):
     # Bad form (or form details), no form supplied...
     # Render the form with error messages (if any).
     return render(request, 'whatToEat/add_recipe.html', {'recipe_form': recipe_form, 'category': category_name_slug})
+
 
 def register_profile(request):
 
