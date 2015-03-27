@@ -14,14 +14,14 @@ class MyRegistrationView(RegistrationView):
 urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^whatToEat/', include('whatToEat.urls')),
-    url(r'^accounts/register/$', MyRegistrationView.as_view(), name='registration_profile'), 
+    url(r'^accounts/register/$', MyRegistrationView.as_view(), name='registration_profile'),
     url(r'^accounts/', include('registration.backends.simple.urls')),
     url(r'^accounts/profile/$', views.login_redirect , name='login_redirect'))
- 
+
 if settings.DEBUG:
     urlpatterns += patterns(
         'django.views.static',
-        (r'^static/(?P<path>.*)',
+        (r'^media/(?P<path>.*)',
         'serve',
         {'document_root': settings.MEDIA_ROOT}), )
 

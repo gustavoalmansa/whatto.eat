@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load staticfiles %}
 {% block title %} {{ recipe_name }}{% endblock %}
 
 {% block body_block %}
@@ -27,6 +27,8 @@
     {% for ingredient in ingredient_list %}
         {{ ingredient.quantity }} {{ingredient.unit}} {{ ingredient.ingredient.ingredient_name }}   <br>
     {% endfor %}
+    <br>
+    <img src="/media/{{ recipe.picture }}">
     <br>
     {{ recipe.instructions | safe }}
 {% endblock %}

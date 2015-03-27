@@ -32,12 +32,13 @@ class Category(models.Model):
 class Recipe(models.Model):
     name = models.CharField(max_length=128, unique=True)
     slug = models.SlugField(unique=True)
-    likes = models.IntegerField()
-    dislikes = models.IntegerField()
-    rating = models.IntegerField()
+    likes = models.IntegerField(default=0)
+    dislikes = models.IntegerField(default=0)
+    rating = models.IntegerField(default=0)
     author = models.ForeignKey(UserProfile)
     category = models.ForeignKey(Category)
     instructions = models.TextField(max_length=5000, default=" ")
+    picture = models.ImageField(upload_to='recipe_images', blank=True)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)

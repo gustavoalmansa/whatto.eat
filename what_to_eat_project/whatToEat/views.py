@@ -6,7 +6,7 @@ from django.shortcuts import render
 from django.shortcuts import redirect
 import json
 import watson
-import markdown
+# import markdown
 from string import digits
 
 from whatToEat.forms import InitialRecipeForm, IngredientForm, linkIngredientToRecipe,\
@@ -109,7 +109,13 @@ def recipe_details(request, recipe_name_slug):
             instructions = recipe_form.save(commit=False)
             instructions = instructions.instructions
             recipe.instructions = instructions
+
+            if 'picture' in request.FILES:
+                recipe.picture = request.FILES['picture']
+
             recipe.save()
+
+
 
         return HttpResponseRedirect('/whatToEat/recipe/'+recipe.slug+"/")
     else:
