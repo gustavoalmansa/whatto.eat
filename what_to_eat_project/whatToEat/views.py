@@ -54,9 +54,6 @@ def category(request, category_name_slug):
 
 def recipe(request, recipe_name_slug):
     context_dict = {}
-    if request.method == 'POST':
-        print request.POST["dislike"]
-
 
     try:
         recipe = Recipe.objects.get(slug=recipe_name_slug)
@@ -65,8 +62,18 @@ def recipe(request, recipe_name_slug):
         if request.user == recipe.author.user:
             context_dict['same'] = True
 
+        if request.method == 'POST':
+            print request.POST
+            if "dislike" in request.POST:
+                recipe.dislikes += 1
+                recipe.save()
+            elif "like" in request.POST:
+                recipe.likes += 1
+                recipe.save()
+
     except Recipe.DoesNotExist:
         return redirect('/404/')
+
 
     return render(request, 'whatToEat/recipe.html', context_dict)
 
