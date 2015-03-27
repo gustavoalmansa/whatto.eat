@@ -346,7 +346,8 @@ def search_results(request):
             if str(searchResults[c])[0] not in digits:
                 recipes += [Recipe.objects.get(name=searchResults[c])]
             c += 1
-        context_dict['result_list'] = recipes
+        if len(recipes) > 0:
+            context_dict['result_list'] = recipes
 
 
     return render(request, 'whatToEat/search.html', context_dict)
