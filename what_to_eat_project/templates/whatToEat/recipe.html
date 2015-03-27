@@ -28,5 +28,5 @@
         {{ ingredient.quantity }} {{ingredient.unit}} {{ ingredient.ingredient.ingredient_name }}   <br>
     {% endfor %}
     <br>
-    {{ recipe.instructions }}
+    {{ recipe.instructions | safe }}
 {% endblock %}

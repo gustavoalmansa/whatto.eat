@@ -19,6 +19,7 @@ TEMPLATE_DIRS = [TEMPLATE_PATH]
 STATIC_PATH = os.path.join(BASE_DIR, 'static')
 
 STATICFILES_DIRS = [STATIC_PATH]
+STATIC_ROOT = STATIC_PATH
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -31,7 +32,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 SECRET_KEY = '2%saynuo8waa7bsq$sgei=+m-ue+6_2oib1-0lcrio02+)1t%*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 TEMPLATE_DEBUG = True
 
@@ -54,6 +55,7 @@ INSTALLED_APPS = (
     'bootstrap_toolkit',
     'bootstrap3',
     'watson',
+    'tinymce'
 )
 
 MIDDLEWARE_CLASSES = (

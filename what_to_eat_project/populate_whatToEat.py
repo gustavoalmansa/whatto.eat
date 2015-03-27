@@ -358,16 +358,16 @@ def populate():
     print("Categories added")
 
     mushroomOmlette = add_recipe(name="Mushroom omelette", likes=4, dislikes=1, author=author_profile, category=lunch,
-                                 instructions="\n1) Crack the eggs into a mixing bowl \n2) Add a pinch of salt and pepper"
-                            "\n3) Beat well with a fork Quarter or roughly chop the mushrooms and add to a small frying"
+                                 instructions="<br>1) Crack the eggs into a mixing bowl <br>2) Add a pinch of salt and pepper"
+                            "<br>3) Beat well with a fork Quarter or roughly chop the mushrooms and add to a small frying"
                             " pan on a high heat with a small knob of butter, a drizzle of olive oil and a pinch of "
                             "salt and pepper"
-                            "\n4) Fry and toss around until golden, then turn the heat down to medium "
-                            "\n5) Add your eggs and move the pan around to spread them out evenly "
-                            "\n6) When the omelette begins to cook and firm up, but still has a little raw egg on top,"
+                            "<br>4) Fry and toss around until golden, then turn the heat down to medium "
+                            "<br>5) Add your eggs and move the pan around to spread them out evenly "
+                            "<br>6) When the omelette begins to cook and firm up, but still has a little raw egg on top,"
                             " sprinkle over the Cheddar, if using "
-                            "\n7) Ease around the edge of the omelette with a spatula, then fold it in half "
-                            "\n8) When it starts to turn golden brown underneath, remove the pan from the heat and "
+                            "<br>7) Ease around the edge of the omelette with a spatula, then fold it in half "
+                            "<br>8) When it starts to turn golden brown underneath, remove the pan from the heat and "
                             "slide the omelette on to a plate")
     print("Recipe added")
 
@@ -387,7 +387,7 @@ def populate():
     cheeseOnionRarebit = add_recipe(name="Quick Cheese and Onion Rarebit",
                                     likes=3, dislikes=1, author=author_profile,
                                     category=snack,
-                                    instructions = "1)Toast the bread in a toaster. Meanwhile, mix the cheese sauce, onions and a grind of pepper together in a small bowl.\n2)Transfer the toast to a non-stick grill rack and drape the ham over each slice. Next, spoon the cheese sauce onto the ham and spread it around with the back of the spoon. Scatter the grated cheese over the sauce, then pop the rarebit under a hot grill until the cheese turns bubbly and golden. Cut each slice in half and serve while still hot.")
+                                    instructions = "1)Toast the bread in a toaster. Meanwhile, mix the cheese sauce, onions and a grind of pepper together in a small bowl.<br>2)Transfer the toast to a non-stick grill rack and drape the ham over each slice. Next, spoon the cheese sauce onto the ham and spread it around with the back of the spoon. Scatter the grated cheese over the sauce, then pop the rarebit under a hot grill until the cheese turns bubbly and golden. Cut each slice in half and serve while still hot.")
 
 
     relateIngredientDictToRecipe({white_bread:[50, g],
@@ -401,7 +401,7 @@ def populate():
                                     likes=5, dislikes=1,
                                     author = author_profile,
                                     category=dinner,
-                                    instructions = "1)Put 2 chicken breasts, skin side up in a small baking dish and season.\n2)Squeeze the lemon into a bowl and stir in the honey and soy sauce. Spoon the mixture over the chicken, then tuck the squeezed-out half of lemon between the pieces (this will moisten and add flavour to the chicken).\n3)Roast the chicken breasts in a baking dish, uncovered, for 30-35 minutes in a preheated oven (190C/gas 5/fan oven 170C). Cook until done and richly glazed, basting with the juices at least twice. To check if they are done, prod the chicken with your finger - if it's still a bit soft, give it a bit longer.\n4)Serve with salad and potatoes roasted with herbs and garlic.")
+                                    instructions = "1)Put 2 chicken breasts, skin side up in a small baking dish and season.<br>2)Squeeze the lemon into a bowl and stir in the honey and soy sauce. Spoon the mixture over the chicken, then tuck the squeezed-out half of lemon between the pieces (this will moisten and add flavour to the chicken).<br>3)Roast the chicken breasts in a baking dish, uncovered, for 30-35 minutes in a preheated oven (190C/gas 5/fan oven 170C). Cook until done and richly glazed, basting with the juices at least twice. To check if they are done, prod the chicken with your finger - if it's still a bit soft, give it a bit longer.<br>4)Serve with salad and potatoes roasted with herbs and garlic.")
 
 
     relateIngredientDictToRecipe({chicken_breast:[2, arbitrary],
@@ -413,7 +413,7 @@ def populate():
     stickyChickenDrumstick = add_recipe("Sticky Chicken Drumstick",
                                         likes = 4, dislikes=1, author = author_profile,
                                         category=dinner,
-                                        instructions="1)Make 3 slashes on each of the drumsticks. Mix together the soy, honey, oil, tomato puree and mustard. Pour this mixture over the chicken and coat thoroughly. Leave to marinate for 30 mins at room temperature or overnight in the fridge. Heat oven to 200C/fan 180C/gas 6.\n2)Tip the chicken into a shallow roasting tray and cook for 35 mins, turning occasionally, until the chicken is tender and glistening with the marinade.")
+                                        instructions="1)Make 3 slashes on each of the drumsticks. Mix together the soy, honey, oil, tomato puree and mustard. Pour this mixture over the chicken and coat thoroughly. Leave to marinate for 30 mins at room temperature or overnight in the fridge. Heat oven to 200C/fan 180C/gas 6.<br>2)Tip the chicken into a shallow roasting tray and cook for 35 mins, turning occasionally, until the chicken is tender and glistening with the marinade.")
 
     relateIngredientDictToRecipe({chicken_drumstick:[8, arbitrary],
                                   soy_sauce:[30, ml],
